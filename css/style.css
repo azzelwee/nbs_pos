@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+
+.form-logo {
+    width: 100%;
+    height: 13vh;
+    background-color: blue;
+}
+
+.form-logo img {
+    float: right;
+}
+
+.gray {
+    padding-top: 8px;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: darkgray;
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.yellow {
+    background-color: yellow;
+    width: 100%;
+    height: 90px;
+}
+
+.main-container {
+    position: absolute;
+    margin-top: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+    width: 600px;
+    background-color: green;
+    text-align: center;
+}
+
+.main-container h2 {
+    font-size: 28px;
+    margin-top: 12px;
+    color: white;
+}
+
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 550px;
+    background-color: darkgrey;
+}
+
+.form-element {
+    margin-top: 10px;
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-element label {
+    order: 1;
+    /* Pushes label below input */
+}
+
+.form-element input {
+    align-items: center;
+    width: 480px;
+    height: 35px;
+    order: -1;
+    /* Pulls input above label */
+}
+
+/* Styling for OK button */
+.btn-ok {
+    font-weight: bold;
+    margin-top: 4.5vh;
+    background-color: rgb(99, 99, 99);
+    font-size: 24px;
+    width: 49%;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Styling for Cancel button */
+.btn-cancel {
+    font-weight: bold;
+    background-color: rgb(99, 99, 99);
+    font-size: 24px;
+    width: 50%;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+.info-container {
+    display: flex;
+    justify-content: center;
+}
+
+.info-text {
+    font-size: 25px;
+    margin-right: 250px;
+    margin-top: 50vh;
+    text-align: left;
+}
+
+.green {
+    width: 100%;
+    height: 50px;
+    margin-top: 50px;
+    bottom: 0;
+    background-color: green;
+}
