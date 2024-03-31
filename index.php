@@ -72,12 +72,23 @@ $con = connection();
                 <input type="scan" name="scan" id="scan">
             </div>
 
-        <div class="test">
-            <h2>test1</h2>
-            <h2>test2</h2>
-            <h2>test3</h2>
-            <h2>test4</h2>
-        </div>
+            <div class="test">
+                <div class="box1">
+                    <h2>F11</h2>
+                </div>
+                <div class="box2">
+                    <h2>F12</h2>
+                </div>
+                <div class="box3">
+                    <h2>CSA</br>
+                        ON/OFF</br>
+                        F10</h2>
+                </div>
+                <div class="box4">
+                    <h2>Lookup</br>
+                        F2</h2>
+                </div>
+            </div>
         </div>
 
         <div class="input-container-right">
