@@ -93,13 +93,26 @@ $con = connection();
 
         <div class="input-container-right">
             <div class="black-index">
+                <div class="subtotal">
+                    <p>Subtotal: </p>
+                </div>
 
+                <div class="quantity">
+                    <p>Quantity: </p>
+                </div>
+
+                <div class="unit-price">
+                    <p>Unit Price: </p>
+                </div>
             </div>
 
         </div>
 
         <div class="input-container-rightmost">
-            test
+            <div class="b1">Container 1</div>
+            <div class="b2">Container 2</div>
+            <div class="b3">Container 3</div>
+            <div class="b4">Container 4</div>
         </div>
     </div>
 

@@ -54,7 +54,7 @@
 }
 
 .input-container-left {
-    width: 60%;
+    width: 40%;
 }
 
 .yellow-index {
@@ -69,14 +69,14 @@
 
 .yellow-index label {
     text-align: left;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .yellow-index input {
-    width: 480px;
-    height: 35px;
+    width: 530px;
+        height: 45px;
 }
 .test {
     display: flex;
@@ -96,20 +96,53 @@
 /* right side */
 .input-container-right {
     display: flex;
-    width: 100%;
+    width: 60%;
 }
 
 .black-index {
+    display: flex;
     background-color: black;
+    flex-direction: column;
     height: 240px;
-        width: 100%;
+    width: 100%;
+    justify-content: center;
+    }
+    
+    .subtotal p {
+        margin-left: 120px;
+        font-size: 28px;
+        color: aqua;
+    }
+    
+    .quantity p {
+        margin-top: 10px;
+        margin-left: 120px;
+        font-size: 28px;
+        color: white;
 }
 
-.input-container-rightmost {
-    width: 200px;
-    height: 200px;
-    background-color: red;
+.unit-price {
+    margin-top: 10px;
+    margin-left: 120px;
+    font-size: 28px;
+    color: green;
 }
+.input-container-rightmost {
+    display: flex;
+        flex-direction: column;
+    }
+        .b1,
+        .b2,
+        .b3,
+        .b4,
+        .b5,
+        .b6,
+        .b7 {
+            width: 250px;
+            height: 100px;
+            margin-bottom: 2px;
+            background-color: graY;
+        }
 /* end of input containers */
 .main-container {
     position: absolute;
