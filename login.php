@@ -20,6 +20,7 @@ if(isset($_POST['login'])){
 
     if($total > 0){
         $_SESSION['UserLogin'] = $row['username'];
+        $_SESSION['Name'] = $row['name'];
         $_SESSION['Trx'] = $row['trx'];
         $_SESSION['Access'] = $row['access'];
         echo header("Location: index.php");

@@ -27,25 +27,48 @@ $con = connection();
         <div class ="trx-number">
             <?php
             if(isset($_SESSION['UserLogin'])){
-                echo "Trx: ".$_SESSION['Trx'];
+                echo "Trx.: ".$_SESSION['Trx'];
             } else {
                 echo "Trx: None";
             }        
             ?>
         </div>
+
         <div class="clerk">
             <?php
             if(isset($_SESSION['UserLogin'])){
-                echo "Clerk: ".$_SESSION['UserLogin'];
+                echo "Clerk: ".$_SESSION['Name'];
             } else {
                 echo "Guest";
             }        
             ?>
         </div>
 
+        <div class="str">
+            <?php
+            if(isset($_SESSION['UserLogin'])){
+                echo "Str No.: 1000";
+            } else {
+                echo "Str No.:";
+            }        
+            ?>
+        </div>
+
+        <div class="reg">
+            <?php
+            if(isset($_SESSION['UserLogin'])){
+                echo "Reg No.: 0001";
+            } else {
+                echo "Reg No.:";
+            }        
+            ?>
+        </div>
+
     </div>
 
-    <div class= "yellow">
+    <div class= "yellow-index">
+            <label>Scan or Enter UPC: </label>
+            <input type="scan" name="scan" id="scan">
     </div>
     
     <div class="green">
