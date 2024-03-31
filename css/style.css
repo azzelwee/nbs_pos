@@ -46,21 +46,25 @@
     margin-left: 1600px;
 }
 
-.yellow {
-    background-color: yellow;
+/* input containers */
+
+.input-container {
+    display: flex;
     width: 100%;
-    height: 90px;
+}
+
+.input-container-left {
+    width: 60%;
 }
 
 .yellow-index {
     background-color: yellow;
-    width: 40%;
+    width: 100%;
     height: 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .yellow-index label {
@@ -74,6 +78,23 @@
     width: 480px;
     height: 35px;
 }
+.test {
+    display: flex;
+}
+
+/* right side */
+.input-container-right {
+    display: flex;
+    width: 100%;
+}
+
+.black-index {
+    background-color: black;
+    height: 180px;
+    width: 80%;
+}
+
+/* end of input containers */
 .main-container {
     position: absolute;
     margin-top: 30px;
@@ -159,6 +180,11 @@
     text-align: left;
 }
 
+.yellow {
+    background-color: yellow;
+    width: 100%;
+    height: 90px;
+}
 .green {
     width: 100%;
     height: 50px;

@@ -65,11 +65,29 @@ $con = connection();
         </div>
 
     </div>
+    <div class="input-container">
+        <div class="input-container-left">
+            <div class= "yellow-index">
+                <label>Scan or Enter UPC: </label>
+                <input type="scan" name="scan" id="scan">
+            </div>
 
-    <div class= "yellow-index">
-            <label>Scan or Enter UPC: </label>
-            <input type="scan" name="scan" id="scan">
+        <div class="test">
+            <h2>test1</h2>
+            <h2>test2</h2>
+            <h2>test3</h2>
+            <h2>test4</h2>
+        </div>
+        </div>
+
+        <div class="input-container-right">
+            <div class="black-index">
+
+            </div>
+
+        </div>
     </div>
+
     
     <div class="green">
     </div>
