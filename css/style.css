@@ -76,7 +76,7 @@
 
 .yellow-index input {
     width: 530px;
-        height: 45px;
+    height: 45px;
 }
 .test {
     display: flex;
@@ -108,17 +108,17 @@
     justify-content: center;
     }
     
-    .subtotal p {
-        margin-left: 120px;
-        font-size: 28px;
-        color: aqua;
+.subtotal p {
+    margin-left: 120px;
+    font-size: 28px;
+    color: aqua;
     }
     
-    .quantity p {
-        margin-top: 10px;
-        margin-left: 120px;
-        font-size: 28px;
-        color: white;
+.quantity p {
+    margin-top: 10px;
+    margin-left: 120px;
+    font-size: 28px;
+    color: white;
 }
 
 .unit-price {
@@ -130,19 +130,22 @@
 .input-container-rightmost {
     display: flex;
         flex-direction: column;
-    }
-        .b1,
-        .b2,
-        .b3,
-        .b4,
-        .b5,
-        .b6,
-        .b7 {
-            width: 250px;
-            height: 100px;
-            margin-bottom: 2px;
-            background-color: graY;
+}
+
+.b1,
+.b2,
+.b3,
+.b4,
+.b5,
+.b6,
+.b7 {
+    width: 140px;
+        height: 90px;
+        margin-bottom: 1px;
+        border: 1px solid;
+        background-color: gray;
         }
+
 /* end of input containers */
 .main-container {
     position: absolute;

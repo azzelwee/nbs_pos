@@ -113,6 +113,9 @@ $con = connection();
             <div class="b2">Container 2</div>
             <div class="b3">Container 3</div>
             <div class="b4">Container 4</div>
+            <div class="b5">Container 5</div>
+            <div class="b6">Container 6</div>
+            <div class="b7">Container 7</div>
         </div>
     </div>
 
