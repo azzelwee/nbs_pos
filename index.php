@@ -89,6 +89,9 @@ $con = connection();
                         F2</h2>
                 </div>
             </div>
+            <div class="gray-below">
+                test
+            </div>
         </div>
 
         <div class="input-container-right">
@@ -106,8 +109,9 @@ $con = connection();
                 </div>
             </div>
 
-        </div>
 
+        </div>
+            
         <div class="input-container-rightmost">
             <div class="b1">Container 1</div>
             <div class="b2">Container 2</div>
