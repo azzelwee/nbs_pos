@@ -7,8 +7,8 @@
 
 
 .form-logo {
-    width: 100%;
-    height: 13vh;
+    width: auto;
+    height: 130px;
     background-color: blue;
 }
 
@@ -17,51 +17,38 @@
 }
 
 .gray {
-    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    background-color: darkgray;
     font-size: 22px;
     font-weight: bold;
-    background-color: darkgray;
-    width: 100%;
+    width: auto;
     height: 45px;
-    display: flex;
-}
 
-.trx-number {
-    position: fixed;
-    margin-left: 20px;
 }
-
-.clerk {
-    position: fixed;
-    margin-left: 600px;
-}
-
-.str {
-    position: fixed;
-    margin-left: 1200px;
-}
-
-.reg {
-    position: fixed;
-    margin-left: 1600px;
-}
-
-/* input containers */
 
 .input-container {
     display: flex;
-    width: 100%;
+    flex-wrap: nowrap;
 
 }
 
-.input-container-left {
-    width: 40%;
+
+.input-container-left{
+    flex: 1;
     height: fit-content;
 }
 
+.input-container-right {
+    flex: 1;
+    height: fit-content;
+}
+
+/* yelllow section start */
+
 .yellow-index {
     background-color: yellow;
-    width: 100%;
+    width: auto;
     height: 120px;
     display: flex;
     flex-direction: column;
@@ -80,40 +67,42 @@
     width: 530px;
     height: 45px;
 }
-.test {
+
+/* end of yellow section */
+
+.button-container {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.gray-below{
-    width: 100%;
-    height: 50px;
-    background-color: gray;
-}
-
-.box1,
-.box2,
-.box3,
-.box4 {
-    text-align: center;
+.button1,
+.button2,
+.button3,
+.button4 {
+    display: flex; /* Added */
+    justify-content: center; /* Added */
+    align-items: center; /* Added */
+    text-align: center; /* Added */
+    font-weight: bold;
+    font-size: 22px;
     width: 180px;
     height: 120px;
     background-color: gray;
     border: 1px solid white;
     cursor: pointer;
 }
-/* right side */
-.input-container-right {
-    width: 60%;
-    height: fit-content;
-}
 
+/* black section start */
 .black-index {
     display: flex;
-    background-color: black;
     flex-direction: column;
-    height: 240px;
-    width: 100%;
     justify-content: center;
+    background-color: black;
+    height: 240px;
+    width: 1080px;
     }
     
 .subtotal p {
@@ -135,26 +124,38 @@
     font-size: 28px;
     color: green;
 }
-.input-container-rightmost {
+
+/* end of black section */
+
+/* gray section start */
+.gray-index{
     display: flex;
-        flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.b1,
-.b2,
-.b3,
-.b4,
-.b5,
-.b6,
-.b7 {
+.container1,
+.container2,
+.container3,
+.container4,
+.container5,
+.container6,
+.container7{
+    display: flex; /* Added */
+    justify-content: center; /* Added */
+    align-items: center; /* Added */
+    text-align: center; /* Added */
+    font-weight: bold;
+    font-size: 22px;
     width: 120px;
-    height: 90px;
-    margin-bottom: 1px;
-    border: 1px solid;
+    height: 100px;
     background-color: gray;
+    border: 1px solid white;
+    cursor: pointer;
 }
 
-/* end of input containers */
+/* end of gray section */
+
 .main-container {
     position: absolute;
     margin-top: 30px;
@@ -246,9 +247,9 @@
     height: 90px;
 }
 .green {
+    bottom: 0;
     width: 100%;
     height: 50px;
-    margin-top: 50px;
-    bottom: 0;
+    margin-top: 10px;
     background-color: green;
 }
