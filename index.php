@@ -24,7 +24,7 @@ $con = connection();
     </div>
 
     <div class= "gray">
-            <div class ="trx">
+            <div class ="gray-text">
                 <?php
                 if(isset($_SESSION['UserLogin'])){
                     echo "Trx.: ".$_SESSION['Trx'];
@@ -34,7 +34,7 @@ $con = connection();
                 ?>
             </div>
 
-            <div class="clerk">
+            <div class="gray-text">
                 <?php
                 if(isset($_SESSION['UserLogin'])){
                     echo "Clerk: ".$_SESSION['Name'];
@@ -44,7 +44,7 @@ $con = connection();
                 ?>
             </div>
 
-            <div class="str">
+            <div class="gray-text">
                 <?php
                 if(isset($_SESSION['UserLogin'])){
                     echo "Str No.: 1000";
@@ -54,7 +54,7 @@ $con = connection();
                 ?>
             </div>
 
-            <div class="reg">
+            <div class="gray-text">
                 <?php
                 if(isset($_SESSION['UserLogin'])){
                     echo "Reg No.: 0001";
@@ -63,86 +63,39 @@ $con = connection();
                 }        
                 ?>
             </div>
-
     </div>
-    <div class="main-cont">
-        <div class="input-container">
-            <div class="input-container-left">
-                <div class= "yellow-index">
-                    <label>Scan or Enter UPC: </label>
-                    <input type="scan" name="scan" id="scan">
-                </div>
 
-                <div class="button-container">
-                    <div class="button1">
-                        F11
-                    </div>
-                    <div class="button2">
-                        F12
-                    </div>
-                    <div class="button3">
-                        CSA</br>
-                        ON/OFF</br>
-                        F10
-                    </div>
-                    <div class="button4">
-                        Lookup</br>
-                        F2</h2>
-                    </div>
-                </div>
+
+    <div class="container">
+        <div class="column-1">
+            test1
+
+            <div class="column-x">
+                <div class="box1">
+                    test1
+                 </div>
+                 <div class="box1">
+                    test2
+                 </div>
+                 <div class="box1">
+                    test3
+                 </div>
+                 <div class="box1">
+                    test4
+                 </div>
             </div>
-            
 
-            <div class="input-container-right">
-                <div class="black-index">
-                    <div class="subtotal">
-                        <p>Subtotal: </p>
-                    </div>
-
-                    <div class="quantity">
-                        <p>Quantity: </p>
-                    </div>
-
-                    <div class="unit-price">
-                        <p>Unit Price: </p>
-                    </div>
-                </div>
-                
-            </div>
-            
-        
-            <div class="input-container-rightmost">
-                <div class="gray-index">
-                    <div class="container1">
-                    test
-                    </div>
-                    <div class="container2">
-                    test
-                    </div>
-                    <div class="container3">
-                    test
-                    </div>
-                    <div class="container4">
-                    test
-                    </div>
-                    <div class="container5">
-                    test
-                    </div>
-                    <div class="container6">
-                    test
-                    </div>
-                    <div class="container7">
-                    test
-                    </div>
-                </div>
-            </div>
-            
+        </div>
+        <div class="column-2">
+            test2
         </div>
         
     </div>
-    
-    </div>
 
+    
+    <div class="test">
+        test
+    </div>
 
     <!-- <div class="green">
     </div> -->

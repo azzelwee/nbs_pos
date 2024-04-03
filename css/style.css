@@ -5,6 +5,7 @@
     font-family: 'Arial', sans-serif;
 }
 
+/* LOGIN SECTION */
 
 .form-logo {
     width: auto;
@@ -20,143 +21,23 @@
     display: flex;
     justify-content: space-between;
     background-color: darkgray;
-    font-size: 22px;
-    font-weight: bold;
     width: auto;
     height: 45px;
-
 }
 
-.input-container {
-    display: flex;
-    flex-wrap: nowrap;
-
+.gray-text{
+    margin: 10px;   
+    font-size: 22px;
+    font-weight: bold;
 }
 
-
-.input-container-left{
-    flex: 1;
-    height: fit-content;
-}
-
-.input-container-right {
-    flex: 1;
-    height: fit-content;
-}
-
-/* yelllow section start */
-
-.yellow-index {
+.yellow {
     background-color: yellow;
-    width: auto;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 90px;
 }
 
-.yellow-index label {
-    text-align: left;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.yellow-index input {
-    width: 530px;
-    height: 45px;
-}
-
-/* end of yellow section */
-
-.button-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.button1,
-.button2,
-.button3,
-.button4 {
-    display: flex; /* Added */
-    justify-content: center; /* Added */
-    align-items: center; /* Added */
-    text-align: center; /* Added */
-    font-weight: bold;
-    font-size: 22px;
-    width: 180px;
-    height: 120px;
-    background-color: gray;
-    border: 1px solid white;
-    cursor: pointer;
-}
-
-/* black section start */
-.black-index {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: black;
-    height: 240px;
-    width: 1080px;
-    }
-    
-.subtotal p {
-    margin-left: 120px;
-    font-size: 28px;
-    color: aqua;
-    }
-    
-.quantity p {
-    margin-top: 10px;
-    margin-left: 120px;
-    font-size: 28px;
-    color: white;
-}
-
-.unit-price {
-    margin-top: 10px;
-    margin-left: 120px;
-    font-size: 28px;
-    color: green;
-}
-
-/* end of black section */
-
-/* gray section start */
-.gray-index{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.container1,
-.container2,
-.container3,
-.container4,
-.container5,
-.container6,
-.container7{
-    display: flex; /* Added */
-    justify-content: center; /* Added */
-    align-items: center; /* Added */
-    text-align: center; /* Added */
-    font-weight: bold;
-    font-size: 22px;
-    width: 120px;
-    height: 100px;
-    background-color: gray;
-    border: 1px solid white;
-    cursor: pointer;
-}
-
-/* end of gray section */
-
-.main-container {
+.main-container { 
     position: absolute;
     margin-top: 30px;
     top: 50%;
@@ -195,7 +76,6 @@
 
 .form-element label {
     order: 1;
-    /* Pushes label below input */
 }
 
 .form-element input {
@@ -203,10 +83,8 @@
     width: 480px;
     height: 35px;
     order: -1;
-    /* Pulls input above label */
 }
 
-/* Styling for OK button */
 .btn-ok {
     font-weight: bold;
     margin-top: 4.5vh;
@@ -218,7 +96,6 @@
     cursor: pointer;
 }
 
-/* Styling for Cancel button */
 .btn-cancel {
     font-weight: bold;
     background-color: rgb(99, 99, 99);
@@ -241,15 +118,51 @@
     text-align: left;
 }
 
-.yellow {
-    background-color: yellow;
-    width: 100%;
-    height: 90px;
-}
 .green {
     bottom: 0;
     width: 100%;
     height: 50px;
     margin-top: 10px;
     background-color: green;
+}
+
+/* END OF LOGIN SECTION */
+
+/* START OF INDEX */
+
+.container{
+    display: flex;
+}
+
+.column-1 {
+    background-color: yellow;
+    width: 40%;
+    height: 90px;
+}
+
+.column-x{
+    margin-top: 72px;
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+}
+
+.box1{
+    background-color: aqua;
+    width: 50px;
+    height: 50px;
+
+}
+
+
+.column-2 {
+    background-color: black;
+    width: 60%;
+    height: 180px;
+}
+  
+.test{
+    background-color: gray;
+    width: 100%;
+    height: 40px;
 }
