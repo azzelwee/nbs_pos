@@ -10,7 +10,7 @@
 .form-logo {
     width: auto;
     height: 130px;
-    background-color: blue;
+    background-color: #293094;
 }
 
 .form-logo img {
@@ -20,19 +20,20 @@
 .gray {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: darkgray;
     width: auto;
     height: 45px;
 }
 
 .gray-text{
-    margin: 10px;   
+    margin: 15px;   
     font-size: 22px;
     font-weight: bold;
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: #fff36b;
     width: 100%;
     height: 90px;
 }
@@ -79,7 +80,6 @@
 }
 
 .form-element input {
-    align-items: center;
     width: 480px;
     height: 35px;
     order: -1;
@@ -135,34 +135,101 @@
 }
 
 .column-1 {
-    background-color: yellow;
-    width: 40%;
-    height: 90px;
-}
-
-.column-x{
-    margin-top: 72px;
     display: flex;
-    flex-direction: row;
-    gap: 1px;
+    justify-content: center;
+    background-color: #fff36b;
+    width: 40%;
+    height: 240px;
 }
 
-.box1{
-    background-color: aqua;
-    width: 50px;
-    height: 50px;
+.scan{
+    position: fixed;
+}
 
+.scan-element {
+    margin-top: 25px;
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scan-element label {
+    font-weight: bold;
+    order: -1;
+}
+
+.scan-element input {
+    width: 480px;
+    height: 35px;
+    order: 1;
+}
+
+.grays{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    transform: translate(0px, 120px);
+
+}
+
+.box{
+    background-color: #c2c2c2;;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid white;
+    height: 120px;
+    width: 40%;
+    cursor: pointer;
+}
+
+.box p{
+    text-align: center;
+    font-weight: bold;
 }
 
 
 .column-2 {
     background-color: black;
+    color: white;
     width: 60%;
-    height: 180px;
+    height: 240px;
 }
+
+.column-3{
+    position: absolute;
+    right: 0px;
+}
+
+.reds{
+    display: flex;
+    flex-direction: column;
+    /* transform: translate(0px, 120px); */
+
+}
+
+.button{
+    background-color: red;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid white;
+    text-align: center;
+    width: 120px;
+    height: 100px;
+
+}
+
   
-.test{
-    background-color: gray;
-    width: 100%;
-    height: 40px;
+.column-4{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkgray;
+    width: auto;
+    height: 45px;
+}
+
+.column-4 p{
+    margin: 15px;
+    text-align: center;
 }

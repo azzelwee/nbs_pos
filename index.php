@@ -68,34 +68,80 @@ $con = connection();
 
     <div class="container">
         <div class="column-1">
-            test1
-
-            <div class="column-x">
-                <div class="box1">
-                    test1
-                 </div>
-                 <div class="box1">
-                    test2
-                 </div>
-                 <div class="box1">
-                    test3
-                 </div>
-                 <div class="box1">
-                    test4
-                 </div>
+            <div class="scan">
+                <div class="scan-element">
+                    <label>Scan or Enter UPC</label>
+                    <input type="scan" name="scan" id="scan">
+                </div>
             </div>
-
-        </div>
-        <div class="column-2">
-            test2
+            <div class="grays">
+                <div class="box">
+                    <p>F11</p>
+                </div>
+                <div class="box">
+                    <p>F12</p>
+                </div>
+                <div class="box">
+                    <p>CSA</br>
+                    ON/OFF</br>
+                    F10</p>
+                </div>
+                <div class="box">
+                    <p>Lookup</br>
+                    F2</p>
+                </div>
+            </div>
         </div>
         
+        <div class="column-2">
+            BLACK
+        </div>
+
+        <div class="column-3">
+            <div class="reds">
+                <div class="button">
+                <p>test</p>
+                </div>
+                <div class="button">
+                <p>test</p>
+                </div>
+                <div class="button">
+                <p>test</p>
+                </div>
+                <div class="button">
+                <p>test</p>
+                </div>
+                <div class="button">
+                <p>test</p>
+                </div>
+                <div class="button">
+                <p>test</p>
+                </div>
+                <div class="button">
+                <p>test</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    
-    <div class="test">
+    <div class="column-4">
+        <p>LN</p>
+        <p>UPC</p>
+        <p>Description</p>
+        <p>Qty</p>
+        <p>SRP</p>
+        <p>Amount</p>
+        <p>Type</p>
+    </div>
+
+    <div class="sabi">
         test
     </div>
+
+<!--     
+    <div class="gray-below">
+        test
+    </div> -->
 
     <!-- <div class="green">
     </div> -->
