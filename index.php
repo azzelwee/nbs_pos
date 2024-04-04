@@ -7,6 +7,11 @@ if(!isset($_SESSION)){
 include_once("connections/connection.php");
 $con = connection();
 
+$sql = "SELECT * FROM product_list";
+$product = $con->query($sql) or die ($con->error);
+$row = $product->fetch_assoc();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -134,10 +139,23 @@ $con = connection();
         <p>Type</p>
     </div>
 
-    <div class="sabi">
-        test
-    </div>
+    <table>
+        <tr>
+            <th>ln</th>
+            <th>upc</th>
+        </tr>
 
+        </thead>
+        <tbody>
+        <?php do{ ?>
+        <tr>
+            <td><?php echo $row['ln']; ?></td>
+            <td><?php echo $row['upc']; ?></td>
+        </tr>
+        <?php }while($row = $product->fetch_assoc()); ?>
+        </tbody>
+
+    </table>
 <!--     
     <div class="gray-below">
         test
