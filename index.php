@@ -102,16 +102,6 @@ $row = $product->fetch_assoc();
         <div class="column-2">
             BLACK
         </div>
-    </div>
-<div class="column-4">
-        <p>LN</p>
-        <p>UPC</p>
-        <p>Description</p>
-        <p>Qty</p>
-        <p>SRP</p>
-        <p>Amount</p>
-        <p>Type</p>
-    </div>
 
         <div class="column-3">
             <div class="reds">
@@ -138,6 +128,18 @@ $row = $product->fetch_assoc();
                 </div>
             </div>
         </div>
+    </div>
+<div class="column-4">
+        <p>LN</p>
+        <p>UPC</p>
+        <p>Description</p>
+        <p>Qty</p>
+        <p>SRP</p>
+        <p>Amount</p>
+        <p>Type</p>
+    </div>
+
+        
 
     <table>
         <tr>
