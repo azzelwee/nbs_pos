@@ -12,6 +12,7 @@ $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -96,11 +97,21 @@ $row = $product->fetch_assoc();
                     F2</p>
                 </div>
             </div>
-        </div>
-        
+        </div>   
+
         <div class="column-2">
             BLACK
         </div>
+    </div>
+<div class="column-4">
+        <p>LN</p>
+        <p>UPC</p>
+        <p>Description</p>
+        <p>Qty</p>
+        <p>SRP</p>
+        <p>Amount</p>
+        <p>Type</p>
+    </div>
 
         <div class="column-3">
             <div class="reds">
@@ -127,33 +138,26 @@ $row = $product->fetch_assoc();
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="column-4">
-        <p>LN</p>
-        <p>UPC</p>
-        <p>Description</p>
-        <p>Qty</p>
-        <p>SRP</p>
-        <p>Amount</p>
-        <p>Type</p>
-    </div>
 
     <table>
         <tr>
-            <th>ln</th>
-            <th>upc</th>
         </tr>
 
         </thead>
         <tbody>
-        <?php do{ ?>
-        <tr>
-            <td><?php echo $row['ln']; ?></td>
-            <td><?php echo $row['upc']; ?></td>
-        </tr>
-        <?php }while($row = $product->fetch_assoc()); ?>
-        </tbody>
+            <?php do{ ?>
+            <tr>
+                <td><?php echo $row['ln']; ?></td>
+                <td><?php echo $row['upc']; ?></td>
+                <td><?php echo $row['description']; ?></td>
+                <td><?php echo $row['qty']; ?></td>
+                <td><?php echo $row['srp']; ?></td>
+                <td><?php echo $row['amount']; ?></td>
+                <td><?php echo $row['type']; ?></td>
+            </tr>
+            <?php }while($row = $product->fetch_assoc()); ?>
+            </tbody>
+        
 
     </table>
 <!--     

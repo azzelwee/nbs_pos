@@ -143,7 +143,7 @@
 }
 
 .scan{
-    position: fixed;
+    position: absolute;
 }
 
 .scan-element {
@@ -197,8 +197,7 @@
 }
 
 .column-3{
-    position: absolute;
-    right: 0px;
+
 }
 
 .reds{
@@ -222,14 +221,24 @@
   
 .column-4{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     background-color: darkgray;
-    width: auto;
+    width: 100%;
     height: 45px;
 }
 
 .column-4 p{
     margin: 15px;
     text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
