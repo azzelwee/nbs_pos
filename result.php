@@ -6,9 +6,10 @@ if(!isset($_SESSION)){
 
 include_once("connections/connection.php");
 $con = connection();
-$sql = "SELECT * FROM product_list";
+$search = $_GET['search'];
+
+$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln DESC";
 $product = $con->query($sql) or die ($con->error);
-$row = $product->fetch_assoc();
 
 
 
@@ -20,7 +21,7 @@ $row = $product->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access</title>
+    <title>Results</title>
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -79,7 +80,6 @@ $row = $product->fetch_assoc();
                     <label>Scan or Enter UPC</label>
                     <form action="result.php" method="get">
                     <input type="text" name="search" id="search">
-                    <button type="submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -103,12 +103,9 @@ $row = $product->fetch_assoc();
         </div>   
 
         <div class="column-2">
-            <p>Subtotal: </p>
-            <p>Quantity: </p>
-            <p>Unit Price: </p>
+            BLACK
         </div>
     </div>
-
         
         <div class="column-3">
             <div class="reds">
@@ -137,7 +134,7 @@ $row = $product->fetch_assoc();
         </div>
     </div>
     
-    <table>
+    <table class="products" id="myTable">
         <tr>
             <th>LN</th>
             <th>UPC</th>
@@ -151,6 +148,16 @@ $row = $product->fetch_assoc();
         <tbody>
             <?php do{ ?>
             <tr>
+                <?php 
+                    if ($product && $product->num_rows > 0) {
+                        // Fetch the data
+                        $row = $product->fetch_assoc();
+                        // Now $row contains the data you fetched
+                    } else {
+                        // No results found
+                        echo "No product found for the given search criteria.";
+                    }
+                ?>
             <td class="centered"><?php echo $row['ln']; ?></td>
             <td class="centered"><?php echo $row['upc']; ?></td>
             <td><?php echo $row['item']; ?></td>
@@ -158,6 +165,7 @@ $row = $product->fetch_assoc();
             <td class="centered"><?php echo $row['srp']; ?></td>
             <td class="centered"><?php echo $row['amount']; ?></td>
             <td class="centered"><?php echo $row['type']; ?></td>
+
             </tr>
             <?php }while($row = $product->fetch_assoc()); ?>
             </tbody>

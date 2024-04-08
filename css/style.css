@@ -199,9 +199,15 @@
 
 .column-2 {
     background-color: black;
+
+    align-content: center;
     color: white;
     width: 60%;
     height: 240px;
+}
+
+.column-2 p{
+    margin-left: 50px;
 }
 
 .column-3{
@@ -246,12 +252,19 @@ table {
     border-collapse: collapse;
     width: 93.75%
 }
-th, td {
+td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-.products{
-    width: 100%;
+th {
+    background-color: darkgray;
+    height: 45px;
+
+
+}
+
+.centered {
+    text-align: center;
 }
