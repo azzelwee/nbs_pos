@@ -140,10 +140,7 @@ $row = $product->fetch_assoc();
             </div>
         </div>
     </div>
-        
-
-
-    <!-- <table>
+    <table class="products" id="myTable">
         <tr>
         </tr>
 
@@ -162,17 +159,17 @@ $row = $product->fetch_assoc();
             <?php }while($row = $product->fetch_assoc()); ?>
             </tbody>
         
+    </table>
+    
+    <!-- <div class="gray-below">
+        test
+    </div>
 
-    </table> -->
-<!--     
-    <div class="gray-below">
+    <div class="green">
         test
     </div> -->
 
-    <!-- <div class="green">
-    </div> -->
-
-    <!-- <script src="js/main.js"></script> -->
+    <script src="js/main.js"></script>
 
 </body>
 </html>

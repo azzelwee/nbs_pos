@@ -148,10 +148,13 @@
 }
 
 .scan{
+    display: flex;
     position: absolute;
+    width: auto;
 }
 
 .scan-element {
+
     margin-top: 25px;
     font-size: 22px;
     display: flex;
@@ -202,8 +205,9 @@
 }
 
 .column-3{
-
-}
+    position: absolute;
+    right: 0;
+  }
 
 .reds{
     display: flex;
@@ -240,10 +244,14 @@
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 93.75%
 }
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+}
+
+.products{
+    width: 100%;
 }
