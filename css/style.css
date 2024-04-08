@@ -129,6 +129,11 @@
 /* END OF LOGIN SECTION */
 
 /* START OF INDEX */
+.outer-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
 
 .container{
     display: flex;

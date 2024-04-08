@@ -71,7 +71,7 @@ $row = $product->fetch_assoc();
             </div>
     </div>
 
-
+<div class="outer-container">
     <div class="container">
         <div class="column-1">
             <div class="scan">
@@ -102,7 +102,18 @@ $row = $product->fetch_assoc();
         <div class="column-2">
             BLACK
         </div>
+    </div>
 
+        <div class="column-4">
+            <p>LN</p>
+            <p>UPC</p>
+            <p>Description</p>
+            <p>Qty</p>
+            <p>SRP</p>
+            <p>Amount</p>
+            <p>Type</p>
+        </div>
+        
         <div class="column-3">
             <div class="reds">
                 <div class="button">
@@ -129,19 +140,10 @@ $row = $product->fetch_assoc();
             </div>
         </div>
     </div>
-<div class="column-4">
-        <p>LN</p>
-        <p>UPC</p>
-        <p>Description</p>
-        <p>Qty</p>
-        <p>SRP</p>
-        <p>Amount</p>
-        <p>Type</p>
-    </div>
-
         
 
-    <table>
+
+    <!-- <table>
         <tr>
         </tr>
 
@@ -161,7 +163,7 @@ $row = $product->fetch_assoc();
             </tbody>
         
 
-    </table>
+    </table> -->
 <!--     
     <div class="gray-below">
         test
