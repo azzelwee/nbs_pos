@@ -133,10 +133,10 @@ $row = $product->fetch_assoc()
                 <p>Quantity</p>
                 <p> <span class="highlight">F3</span></p>
                 </div>
-                <div class="button">
-                <p>Payment</p>
-                <p> <span class="highlight">F4</span></p>
-                </div>
+                <a href="payment.php" class="button">
+                    <p>Payment</p>
+                    <p><span class="highlight">F4</span></p>
+                </a>
                 <div class="button">
                 <p>Option</p>
                 <p> <span class="highlight">F5</span></p>
@@ -203,11 +203,11 @@ $row = $product->fetch_assoc()
     
     <!-- <div class="gray-below">
         test
-    </div>
+    </div> -->
 
     <div class="green">
         test
-    </div> -->
+    </div>
 
     <script src="js/main.js"></script>
 

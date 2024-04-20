@@ -111,7 +111,7 @@ $row = $product->fetch_assoc();
 
         <div class="column-3">
             <div class="reds">
-            <div class="button">
+                <div class="button">
                 <p>Quantity</p>
                 <p> <span class="highlight">F3</span></p>
                 </div>
@@ -163,11 +163,11 @@ $row = $product->fetch_assoc();
     
     <!-- <div class="gray-below">
         test
-    </div>
+    </div> -->
 
     <div class="green">
         test
-    </div> -->
+    </div>
 
     <script src="js/main.js"></script>
 
