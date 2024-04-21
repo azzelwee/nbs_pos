@@ -17,7 +17,7 @@ $row = $product->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access</title>
+    <title>Payment</title>
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -73,11 +73,16 @@ $row = $product->fetch_assoc();
 
         </div>
 
-        <div class= "main-container">
+        <div class= "main-container1">
+        <h2>Choose Option</h2>
             <div class="center-container">
-                <p>1. None</p>
+
+                <a href="receipt.php">
+                    <p>1. None</p>
+                </a>
+
                 <p>2. Laking National Card</p>
-                <p>3. LNQR / LNQR PLUS/p>
+                <p>3. LNQR / LNQR PLUS </p>
             </div>
 
         </div>
