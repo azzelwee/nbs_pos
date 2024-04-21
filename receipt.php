@@ -123,7 +123,14 @@ $row = $product->fetch_assoc();
             </div>
 
             <div class="column-1a">
-                <div class="compute">   
+                <div class="compute"> 
+                        <div class="textes">
+                        <p>Unit</p>
+                        </br>
+                        <p>Sales</p>
+                        </br>
+                        <p>Tendered</p>
+                        </div>
                     <div class="units">
                         
                     </div>
@@ -134,7 +141,22 @@ $row = $product->fetch_assoc();
                         
                     </div>
                 </div>
+
+                <div class="payment-details">
+                    <p>Cash Payment Details</p>
+                </div>
+
+                <div class="amount">
+                    <div class="amount-element">
+                        <label>Enter Amount</label>
+                        <form action="" method="get">
+                        <input type="text" name="search" id="search">
+                        </form>
+                    </div>
+                </div>
             </div>
+
+
         </div>
     </div>
     
