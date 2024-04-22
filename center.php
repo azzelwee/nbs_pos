@@ -12,22 +12,23 @@ $row = $product->fetch_assoc();
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access</title>
+    <title>Centered Box Container</title>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
+    <div class="whole-container">
+
     <div class="form-logo">
         <img src="img/nbslogo.png" alt="">
     </div>
 
     <div class= "gray">
-            <div class ="gray-text">
+            <div class ="gray-text"> 
                 <?php
                 if(isset($_SESSION['UserLogin'])){
                     echo "Trx.: ".$_SESSION['Trx'];
@@ -68,50 +69,8 @@ $row = $product->fetch_assoc();
             </div>
     </div>
 
-<div class="outer-container">
-    <div class="container">
-        <div class="column-1">
-            <div class="scan">
-                <div class="scan-element">
-                    <label>Scan or Enter UPC</label>
-                    <form action="result.php" method="get">
-                    <input type="text" name="search" id="search">
-                    </form>
-                </div>
-            </div>
-            <div class="grays">
-                <div class="box">
-                    <img src="img/green-triangle-up.png">
-                    <p>F11</p>
-                </div>
-                <div class="box">
-                    <img src="img/green-triangle-down.png">
-                    <p>F12</p>
-                </div>
-                <div class="box">
-                    <p>CSA</br>
-                    ON/OFF</br></p>
-                    <p> <span class="highlight">F10</span></p>
-                </div>
-                <div class="box">
-                    <p>Lookup</br></p>
-                    <p> <span class="highlight">F2</span></p>
-                </div>
-            </div>
-        </div>   
-
-        <div class="column-2">
-
-            <p span class="sub">Subtotal: 0</span> </p>
-            <p span class="qty">Quantity: 0</span></p>
-            <p span class="unit">Unit Price: 0</span> 
-            <div class="price">
-                    0.00</p> 
-            </div>
-        </div>
-    </div>
-
-        <div class="column-3">
+    <div class="e">
+    <div class="column-3">
             <div class="reds">
                 <div class="button">
                 <p>Quantity</p>
@@ -147,9 +106,61 @@ $row = $product->fetch_assoc();
             </div>
         </div>
     </div>
-    <div class="green">
-        test
+
+    <div class="outer-container">
+        <div class="container">
+            <div class="column-1">
+                <div class="scan">
+                    <div class="scan-element">
+                        <label>Scan or Enter UPC</label>
+                        <form action="result.php" method="get">
+                        <input type="text" name="search" id="search">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="grays">
+                    <div class="box">
+                        <img src="img/green-triangle-up.png">
+                        <p>F11</p>
+                    </div>
+
+                    <div class="box">
+                        <img src="img/green-triangle-down.png">
+                        <p>F12</p>
+                    </div>
+
+                    <div class="box">
+                        <p>CSA</br>
+                        ON/OFF</br></p>
+                        <p> <span class="highlight">F10</span></p>
+                    </div>
+
+                    <div class="box">
+                        <p>Lookup</br></p>
+                        <p> <span class="highlight">F2</span></p>
+                    </div>
+                </div>
+
+            </div>  
+            
+                <div class="column-2">
+                    <p> <span style="color: red;">Subtotal:</span> 0</p>
+                    <p> <span class="qty">Quantity: 0</span></p>
+                    <p> <span class="unit">Unit Price: 0</span> 
+                <div class="price">
+                        0.00</p> 
+                </div>
+            </div> 
+
+
+
+            <!-- <div class="thelefty">
+                asd
+            </div> -->          
     </div>
+
+
 
     <table>
         <tr>
@@ -165,19 +176,10 @@ $row = $product->fetch_assoc();
         <tbody>
         <tr>
         </tr>
-    </tbody>
-        
+        </tbody>
+            
     </table>
+
     
-    <!-- <div class="gray-below">
-        test
-    </div> -->
-
-    <div class="green">
-        test
-    </div>
-
-    <script src="js/main.js"></script>
-
 </body>
 </html>
