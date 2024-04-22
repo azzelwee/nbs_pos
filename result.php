@@ -83,9 +83,11 @@ $row = $product->fetch_assoc()
             </div>
             <div class="grays">
                 <div class="box">
+                    <img src="img/green-triangle-up.png">
                     <p>F11</p>
                 </div>
                 <div class="box">
+                    <img src="img/green-triangle-down.png">
                     <p>F12</p>
                 </div>
                 <div class="box">
@@ -156,6 +158,9 @@ $row = $product->fetch_assoc()
                 <div class="button">
                 <p>Suspend</p>
                 <p> <span class="highlight">F9</span></p>
+                </div>
+                <div class="button">
+                <p>Page: 1/1</p>
                 </div>
             </div>
         </div>
