@@ -141,16 +141,13 @@ $row = $product->fetch_assoc();
                 <p>Suspend</p>
                 <p> <span class="highlight">F9</span></p>
                 </div>
-                <div class="button" style = "width: 120px; height: 50px;">
+                <div class="button" style = "width: 120px; height: 50px;"">
                 <p>Page: 0/1</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="green">
-        test
-    </div>
-
+    
     <table>
         <tr>
             <th>LN</th>
