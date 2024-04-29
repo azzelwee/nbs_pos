@@ -183,28 +183,26 @@ $row = $product->fetch_assoc()
         </tr>
     </thead>
     <tbody>
+        <?php 
+        if ($product && $product->num_rows > 0) {
+            foreach ($product as $row) {
+        ?>
+                <tr>
+                    <td class="centered"><?php echo $row['ln']; ?></td>
+                    <td class="centered"><?php echo $row['upc']; ?></td>
+                    <td><?php echo $row['item']; ?></td>
+                    <td class="centered"><?php echo $row['qty']; ?></td>
+                    <td class="centered"><?php echo $row['srp']; ?></td>
+                    <td class="centered"><?php echo $row['amount']; ?></td>
+                    <td class="centered"><?php echo $row['type']; ?></td>
+                </tr>
 
-    <?php 
-    if ($product && $product->num_rows > 0) {
-        foreach ($product as $row) {
-    ?>
-            <tr>
-                <td class="centered"><?php echo $row['ln']; ?></td>
-                <td class="centered"><?php echo $row['upc']; ?></td>
-                <td><?php echo $row['item']; ?></td>
-                <td class="centered"><?php echo $row['qty']; ?></td>
-                <td class="centered"><?php echo $row['srp']; ?></td>
-                <td class="centered"><?php echo $row['amount']; ?></td>
-                <td class="centered"><?php echo $row['type']; ?></td>
-            </tr>
-
-<?php 
-        }
-    } else {
-        echo "<tr><td colspan='7'>No product found.</td></tr>";
-    }
-?>
-
+        <?php 
+                }
+            } else {
+                echo "<tr><td colspan='7'>No product found.</td></tr>";
+            }
+        ?>
     </tbody>
     </table>
 

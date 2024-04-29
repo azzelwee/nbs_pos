@@ -113,7 +113,7 @@ $row = $product->fetch_assoc();
                 <div class="scan">
                     <div class="scan-element">
                         <label>Scan or Enter UPC</label>
-                        <form action="posresult.php" method="get">
+                        <form action="posResult.php" method="get">
                         <input type="text" name="search" id="search">
                         </form>
                     </div>
