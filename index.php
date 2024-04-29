@@ -6,10 +6,28 @@ if(!isset($_SESSION)){
 
 include_once("connections/connection.php");
 $con = connection();
-$sql = "SELECT * FROM product_list";
-$product = $con->query($sql) or die ($con->error);
-$row = $product->fetch_assoc();
 
+if(isset($_POST['login'])){
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    
+    $sql = "SELECT * FROM pos_users WHERE
+    username = '$username' AND password = '$password'";
+    $user = $con->query($sql) or die ($con->error);
+    $row = $user->fetch_assoc();
+    $total = $user->num_rows;
+
+    if($total > 0){
+        $_SESSION['UserLogin'] = $row['username'];
+        $_SESSION['Name'] = $row['name'];
+        $_SESSION['Trx'] = $row['trx'];
+        $_SESSION['Access'] = $row['access'];
+        echo header("Location: pos.php");
+    } else {
+
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,159 +40,53 @@ $row = $product->fetch_assoc();
 
 </head>
 <body>
+<div class="whole-container">
+
     <div class="form-logo">
         <img src="img/nbslogo.png" alt="">
     </div>
 
     <div class= "gray">
-            <div class ="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Trx.: ".$_SESSION['Trx'];
-                } else {
-                    echo "Trx.:";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Clerk: ".$_SESSION['Name'];
-                } else {
-                    echo "Guest";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Str No.: 1000";
-                } else {
-                    echo "Str No.:";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Reg No.: 0001";
-                } else {
-                    echo "Reg No.:";
-                }        
-                ?>
-            </div>
     </div>
 
-<div class="outer-container">
-    <div class="container">
-        <div class="column-1">
-            <div class="scan">
-                <div class="scan-element">
-                    <label>Scan or Enter UPC</label>
-                    <form action="result.php" method="get">
-                    <input type="text" name="search" id="search">
-                    </form>
-                </div>
-            </div>
-            <div class="grays">
-                <div class="box">
-                    <img src="img/green-triangle-up.png">
-                    <p>F11</p>
-                </div>
-                <div class="box">
-                    <img src="img/green-triangle-down.png">
-                    <p>F12</p>
-                </div>
-                <div class="box">
-                    <p>CSA</br>
-                    ON/OFF</br></p>
-                    <p> <span class="highlight">F10</span></p>
-                </div>
-                <div class="box">
-                    <p>Lookup</br></p>
-                    <p> <span class="highlight">F2</span></p>
-                </div>
-            </div>
-        </div>   
+    <div class= "yellow">
+    </div>
 
-        <div class="column-2">
+    <div class= "main-container">
+    <h2>USER LOGIN</h2>
+        <div class="login-container">
+            <form action="" method="post" id="">
+                <div class="form-element">
+                    <label>Enter Information</label>
+                </div>
+                <div class="form-element">
+                    <label>UserName</label>
+                    <input type="username" name="username" id="username">
+                </div>
 
-            <p span class="sub">Subtotal: 0</span> </p>
-            <p span class="qty">Quantity: 0</span></p>
-            <p span class="unit">Unit Price: 0</span> 
-            <div class="price">
-                    0.00</p> 
-            </div>
+                <div class="form-element">
+                    <label>Password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+
+                <button type="submit" name="login" class="btn-ok">Ok</button>
+                <button type="submit" name="cancel" class="btn-cancel">Cancel</button>
+            </form>
         </div>
     </div>
 
-        <div class="column-3">
-            <div class="reds">
-                <div class="button">
-                <p>Quantity</p>
-                <p> <span class="highlight">F3</span></p>
-                </div>
-                <div class="button" style="background-color: red">
-                <p>Payment</p>
-                <p> <span class="highlight">F4</span></p>
-                </div>
-                <div class="button">
-                <p>Option</p>
-                <p> <span class="highlight">F5</span></p>
-                </div>
-                <div class="button">
-                <p>Non Mdse</p>
-                <p> <span class="highlight">F6</span></p>
-                </div>
-                <div class="button" style="background-color: red">
-                <p>Item Void</p>
-                <p> <span class="highlight">F7</span></p>
-                </div>
-                <div class="button" style="background-color: red">
-                <p>Trx Void</p>
-                <p> <span class="highlight">F8</span></p>
-                </div>
-                <div class="button" style="background-color: red">
-                <p>Suspend</p>
-                <p> <span class="highlight">F9</span></p>
-                </div>
-                <div class="button" style = "width: 120px; height: 50px;"">
-                <p>Page: 0/1</p>
-                </div>
+        <div class="info-container">
+            <div class="info-text">
+            <p>
+                Press [F2] for Lookup </br>
+                Press [F3] for Masterfile Updates</br>
+                Press [F3] for Scandos</br>
+                Press [F10] to Activate E-Gift Card
+            </p>
             </div>
         </div>
-    </div>
-    
-    <table>
-        <tr>
-            <th>LN</th>
-            <th>UPC</th>
-            <th>Description</th>
-            <th>Qty</th>
-            <th>SRP</th>
-            <th>Amount</th>
-            <th>Type</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        </tr>
-    </tbody>
-        
-    </table>
-    
-    <!-- <div class="gray-below">
-        test
-    </div> -->
+</div>
 
-    <div class="green">
-        test
-    </div>
-
-    <script src="js/main.js"></script>
-
+    <!-- <script src="js/main.js"></script> -->
 </body>
 </html>

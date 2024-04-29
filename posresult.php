@@ -17,11 +17,11 @@ $row = $product->fetch_assoc();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Centered Box Container</title>
+    <title>Point of Sale</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="whole-container">
+<div class="whole-container">
 
     <div class="form-logo">
         <img src="img/nbslogo.png" alt="">
@@ -162,7 +162,7 @@ $row = $product->fetch_assoc();
 
 
 
-    <table>
+    <table class="products">
         <tr>
             <th>LN</th>
             <th>UPC</th>
@@ -174,9 +174,27 @@ $row = $product->fetch_assoc();
         </tr>
         </thead>
         <tbody>
-        <tr>
-        </tr>
-        </tbody>
+        <?php 
+        if ($product && $product->num_rows > 0) {
+            foreach ($product as $row) {
+        ?>
+                <tr>
+                    <td class="centered"><?php echo $row['ln']; ?></td>
+                    <td class="centered"><?php echo $row['upc']; ?></td>
+                    <td><?php echo $row['item']; ?></td>
+                    <td class="centered"><?php echo $row['qty']; ?></td>
+                    <td class="centered"><?php echo $row['srp']; ?></td>
+                    <td class="centered"><?php echo $row['amount']; ?></td>
+                    <td class="centered"><?php echo $row['type']; ?></td>
+                </tr>
+
+        <?php 
+                }
+            } else {
+                echo "<tr><td colspan='7'>No product found.</td></tr>";
+            }
+        ?>
+    </tbody>
             
     </table>
 

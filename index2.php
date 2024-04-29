@@ -6,11 +6,9 @@ if(!isset($_SESSION)){
 
 include_once("connections/connection.php");
 $con = connection();
-$search = $_GET['search'];
-
-$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln DESC";
+$sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
-$row = $product->fetch_assoc()
+$row = $product->fetch_assoc();
 
 ?>
 
@@ -19,13 +17,11 @@ $row = $product->fetch_assoc()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results</title>
+    <title>Access</title>
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-<div class="whole-container">
-    
     <div class="form-logo">
         <img src="img/nbslogo.png" alt="">
     </div>
@@ -74,7 +70,7 @@ $row = $product->fetch_assoc()
 
 <div class="outer-container">
     <div class="container">
-    <div class="column-1">
+        <div class="column-1">
             <div class="scan">
                 <div class="scan-element">
                     <label>Scan or Enter UPC</label>
@@ -102,45 +98,29 @@ $row = $product->fetch_assoc()
                     <p> <span class="highlight">F2</span></p>
                 </div>
             </div>
-        </div>  
+        </div>   
 
         <div class="column-2">
-            <?php 
-            if ($product && $product->num_rows > 0) {
-                foreach ($product as $row) {
-            ?>
-      
-            <p span class="sub">Subtotal: </span> </p>
-            <p span class="qty">Quantity: </span><?php echo $row['qty']; ?></p>
-            <p span class="unit">Unit Price: </span> 
-                <div class="price">
-                    <?php echo $row['amount']; ?></p> 
-                </div>
 
-            <?php 
-                    }
-                } else {
-                    echo "
-                    <p>Subtotal: 0</p>
-                    <p>Quantity: 0</p>
-                    <p>Unit Price: 0</p> ";
-                }
-            ?>
-
-
+            <p span class="sub">Subtotal: 0</span> </p>
+            <p span class="qty">Quantity: 0</span></p>
+            <p span class="unit">Unit Price: 0</span> 
+            <div class="price">
+                    0.00</p> 
+            </div>
         </div>
     </div>
-        
-    <div class="column-3">
+
+        <div class="column-3">
             <div class="reds">
-            <div class="button">
+                <div class="button">
                 <p>Quantity</p>
                 <p> <span class="highlight">F3</span></p>
                 </div>
-                <a href="payment.php" class="button">
-                    <p>Payment</p>
-                    <p><span class="highlight">F4</span></p>
-                </a>
+                <div class="button" style="background-color: red">
+                <p>Payment</p>
+                <p> <span class="highlight">F4</span></p>
+                </div>
                 <div class="button">
                 <p>Option</p>
                 <p> <span class="highlight">F5</span></p>
@@ -149,30 +129,27 @@ $row = $product->fetch_assoc()
                 <p>Non Mdse</p>
                 <p> <span class="highlight">F6</span></p>
                 </div>
-                <div class="button">
+                <div class="button" style="background-color: red">
                 <p>Item Void</p>
                 <p> <span class="highlight">F7</span></p>
                 </div>
-                <div class="button">
+                <div class="button" style="background-color: red">
                 <p>Trx Void</p>
                 <p> <span class="highlight">F8</span></p>
                 </div>
-                <div class="button">
+                <div class="button" style="background-color: red">
                 <p>Suspend</p>
                 <p> <span class="highlight">F9</span></p>
                 </div>
-                <div class="button">
-                <p>Page: 1/1</p>
+                <div class="button" style = "width: 120px; height: 50px;"">
+                <p>Page: 0/1</p>
                 </div>
             </div>
         </div>
     </div>
     
-    
-    <table class="products">
-    <thead>
+    <table>
         <tr>
-            
             <th>LN</th>
             <th>UPC</th>
             <th>Description</th>
@@ -181,41 +158,21 @@ $row = $product->fetch_assoc()
             <th>Amount</th>
             <th>Type</th>
         </tr>
-    </thead>
-    <tbody>
-
-    <?php 
-    if ($product && $product->num_rows > 0) {
-        foreach ($product as $row) {
-    ?>
-            <tr>
-                <td class="centered"><?php echo $row['ln']; ?></td>
-                <td class="centered"><?php echo $row['upc']; ?></td>
-                <td><?php echo $row['item']; ?></td>
-                <td class="centered"><?php echo $row['qty']; ?></td>
-                <td class="centered"><?php echo $row['srp']; ?></td>
-                <td class="centered"><?php echo $row['amount']; ?></td>
-                <td class="centered"><?php echo $row['type']; ?></td>
-            </tr>
-
-<?php 
-        }
-    } else {
-        echo "<tr><td colspan='7'>No product found.</td></tr>";
-    }
-?>
-
+        </thead>
+        <tbody>
+        <tr>
+        </tr>
     </tbody>
+        
     </table>
-
     
     <!-- <div class="gray-below">
         test
     </div> -->
-<!-- 
+
     <div class="green">
         test
-    </div> -->
+    </div>
 
     <script src="js/main.js"></script>
 
