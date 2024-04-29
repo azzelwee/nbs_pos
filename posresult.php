@@ -78,10 +78,15 @@ $row = $product->fetch_assoc()
                 <p>Quantity</p>
                 <p> <span class="highlight">F3</span></p>
                 </div>
-                <div class="button" style="background-color: red">
-                <p>Payment</p>
-                <p> <span class="highlight">F4</span></p>
-                </div>
+
+                <a href="posPayment.php">
+                    <div class="button" style="background-color: red">
+                    <p>Payment</p>
+                    <p> <span class="highlight">F4</span></p>
+                    </div>
+                </a>
+            
+
                 <div class="button">
                 <p>Option</p>
                 <p> <span class="highlight">F5</span></p>
@@ -115,7 +120,7 @@ $row = $product->fetch_assoc()
                 <div class="scan">
                     <div class="scan-element">
                         <label>Scan or Enter UPC</label>
-                        <form action="posresult.php" method="get">
+                        <form action="posResult.php" method="get">
                         <input type="text" name="search" id="search">
                         </form>
                     </div>
@@ -147,11 +152,11 @@ $row = $product->fetch_assoc()
             </div>  
             
                 <div class="column-2">
-                    <p> <span style="color: red;">Subtotal:</span> 0</p>
-                    <p> <span class="qty">Quantity: 0</span></p>
-                    <p> <span class="unit">Unit Price: 0</span> 
-                <div class="price">
-                        0.00</p> 
+                    <p> <span style="color: blue;">Subtotal:</span></p>
+                    <p> <span class="qty">Quantity:</span></p>
+                    <p> <span style="color: green;">Unit Price:</span> 
+                    <div class="price">
+                            0.00</p> 
                 </div>
             </div> 
 

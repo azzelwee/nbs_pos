@@ -145,12 +145,12 @@ $row = $product->fetch_assoc();
             </div>  
             
                 <div class="column-2">
-                    <p> <span style="color: red;">Subtotal:</span> 0</p>
-                    <p> <span class="qty">Quantity: 0</span></p>
-                    <p> <span class="unit">Unit Price: 0</span> 
-                <div class="price">
-                        0.00</p> 
-                </div>
+                    <p> <span style="color: blue;">Subtotal:</span></p>
+                    <p> <span class="qty">Quantity:</span></p>
+                    <p> <span style="color: green;">Unit Price:</span> 
+                    <div class="price">
+                            0.00</p> 
+                    </div>
             </div> 
 
 

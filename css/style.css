@@ -283,8 +283,18 @@ body {
 
 
 .column-2 p{
-    font-size: 25px;
+    margin-left: 40px;
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
 
+.price{
+    position: block;
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 400px;
+    color: green;
 }
 
 .column-3{
@@ -295,7 +305,10 @@ body {
     display: flex;
     flex-direction: column;
     /* transform: translate(0px, 120px); */
+}
 
+.reds a{
+    text-decoration: none;
 }
 
 .button{
@@ -324,12 +337,7 @@ body {
 }
 
 
-.price{
-    font-size: 50px;
-    font-weight: bold;
-    margin-left: 70%;
-    color: green;
-}
+
 
   
 .column-4{
