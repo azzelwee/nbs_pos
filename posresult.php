@@ -6,9 +6,11 @@ if(!isset($_SESSION)){
 
 include_once("connections/connection.php");
 $con = connection();
-$sql = "SELECT * FROM product_list";
+$search = $_GET['search'];
+
+$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln DESC";
 $product = $con->query($sql) or die ($con->error);
-$row = $product->fetch_assoc();
+$row = $product->fetch_assoc()
 
 ?>
 
@@ -113,7 +115,7 @@ $row = $product->fetch_assoc();
                 <div class="scan">
                     <div class="scan-element">
                         <label>Scan or Enter UPC</label>
-                        <form action="result.php" method="get">
+                        <form action="posresult.php" method="get">
                         <input type="text" name="search" id="search">
                         </form>
                     </div>
@@ -197,7 +199,7 @@ $row = $product->fetch_assoc();
     </tbody>
             
     </table>
-
+    <script src="js/main.js"></script>
     
 </body>
 </html>
