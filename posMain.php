@@ -150,7 +150,7 @@ $row = $product->fetch_assoc();
                     <p> <span style="color: green;">Unit Price:</span> 
                     <div class="price">
                             0.00</p> 
-                    </div>
+                </div>
             </div> 
 
 
