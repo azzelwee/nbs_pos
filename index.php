@@ -70,7 +70,7 @@ if(isset($_POST['login'])){
                 </div>
 
                 <button type="submit" name="login" class="btn-ok">Ok</button>
-                <button type="submit" name="cancel" class="btn-cancel">Cancel</button>
+                <button type="cancel" name="cancel" class="btn-cancel">Cancel</button>
             </form>
         </div>
     </div>

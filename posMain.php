@@ -21,6 +21,11 @@ $row = $product->fetch_assoc();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <a href="logout.php" class="logout">
+        Logout
+    </a>
+
 <div class="whole-container">
 
     <div class="form-logo">

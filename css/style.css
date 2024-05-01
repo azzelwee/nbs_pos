@@ -22,6 +22,14 @@ body {
 
 /* LOGIN SECTION */
 
+.logout{
+    position: absolute;
+    top: 0;
+    margin-top: 20px;
+    text-decoration: none;
+    color: blue;
+}
+
 
 .form-logo {
     width: auto;
@@ -295,10 +303,6 @@ body {
     font-weight: bold;
     margin-left: 400px;
     color: green;
-}
-
-.column-3{
-
 }
 
 .reds{
