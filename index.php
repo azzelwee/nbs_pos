@@ -23,9 +23,9 @@ if(isset($_POST['login'])){
         $_SESSION['Name'] = $row['name'];
         $_SESSION['Trx'] = $row['trx'];
         $_SESSION['Access'] = $row['access'];
-        echo header("Location: pos.php");
+        echo header("Location: posMain.php");
     } else {
-
+        echo "<div class='message-warning'> No user found. </div>";
     }
 }
 ?>
@@ -40,6 +40,11 @@ if(isset($_POST['login'])){
 
 </head>
 <body>
+
+<div class="login-info">
+    UserName: admin </br>
+    Password: admin1
+</div>
 <div class="whole-container">
 
     <div class="form-logo">
@@ -55,7 +60,7 @@ if(isset($_POST['login'])){
     <div class= "main-container">
     <h2>USER LOGIN</h2>
         <div class="login-container">
-            <form action="posMain.php" method="post" id="">
+            <form action="" method="post" id="">
                 <div class="form-element">
                     <label>Enter Information</label>
                 </div>

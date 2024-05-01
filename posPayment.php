@@ -21,6 +21,9 @@ $row = $product->fetch_assoc();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a href="logout.php" class="logout">
+        Logout
+    </a>
 <div class="whole-container">
 
     <div class="form-logo">
@@ -71,7 +74,7 @@ $row = $product->fetch_assoc();
 
     <div class="outer-container">
         <div class="container">
-            <div class="column-1x">
+            <div class="column-1xz">
             </div>
 
 
@@ -79,8 +82,8 @@ $row = $product->fetch_assoc();
             <h2>Choose Option</h2>
             <div class="center-container">
 
-                <a href="receipt.php">
-                        <p>1. None</p>
+                <a href="posReceipt.php">
+                <p>1. None</p>
                 </a>
 
                 <p>2. Laking National Card</p>

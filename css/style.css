@@ -13,6 +13,13 @@ body {
     margin: 0;
 }
 
+.login-info{
+    padding: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 /* Style the container */
 .whole-container {
     width: 1100px;
@@ -92,13 +99,14 @@ body {
 
 .main-container1{
     position: absolute;
-    margin-top: 30px;
+    margin-top: 70px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 400px;
-    width: 600px;
-    background-color: green;       
+    height: 330px;
+    width: 500px;
+    background-color: green;
+    text-align: center;
 }
 
 .main-container1 h2{
@@ -107,22 +115,22 @@ body {
 }
 
 .center-container{
-    display: flex;
-    flex-direction: column;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 300px;
-    width: 550px;
+    height: 250px;
+    width: 450px;
     background-color: darkgrey;
-    justify-content: center;
-    align-items: center;
 }
 
 .center-container p{
-    margin-bottom: 25px;
-    font-size: 25px;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -223,6 +231,13 @@ body {
 
 }
 
+.column-1xz{
+    background-color: #fff36b;
+    width: 100%;
+    height: 60px;
+
+}
+
 .scan{
     display: flex;
     position: absolute;
@@ -316,7 +331,7 @@ body {
 }
 
 .button{
-    background-color: gray;
+    background-color: darkgray;
     justify-content: center;
     align-content: center;
     border: 1px solid white;
@@ -341,7 +356,12 @@ body {
 }
 
 
-
+.message-warning{
+    font-weight: bold;
+    position: fixed;
+    margin-top: 30px;
+    top: 0;
+}
 
   
 .column-4{
@@ -396,7 +416,7 @@ th {
 
 .scrollable-container {
     width: 450px; /* Set the width */
-    height: 550px; /* Set the height */
+    height: 465px; /* Set the height */
     border: 10px solid lightgray; /* Add border for visual separation */
     overflow-y: auto; /* Enable vertical scrolling */
     overflow-x: hidden; /* Disable horizontal scrolling */
@@ -444,52 +464,52 @@ th {
 .compute{
     background-color: green;
     width: 100%;
-    height: 240px;
+    height: 220px;
 }
 
 .units{
     position: absolute;
-    transform: translate(100%, 50%);
-    width: 560px;
-    height: 50px;
+    transform: translate(60%, 100%);
+    width: 300px;
+    height: 40px;
     background-color: white;
 }
 
 .sales{
     position: absolute;
-    transform: translate(100%, 170%);
-    width: 560px;
-    height: 50px;
+    transform: translate(60%, 230%);
+    width: 300px;
+    height: 40px;
     background-color: white;
 }
 
 .tendered{
     position: absolute;
-    transform: translate(100%, 290%);
-    width: 560px;
-    height: 50px;
+    transform: translate(60%, 360%);
+    width: 300px;
+    height: 40px;
     background-color: white;
 }
 
 .textes{
-    position: absolute;
-    margin-top: 4vh;
-    margin-left: 5vw;
+    position: absolute; 
+    margin-top: 50px;
+    margin-left: 50px;
     color: white;
-    font-size: 27px;
+    font-size: 22px;
 }
 
 .payment-details{
-    background-color: blue;
+    background-color: rgb(0, 160, 214);
     width: 100%;
-    height: 60px;
+    height: 45px;
     align-content: center;
     text-align: center;
 }
 
 .payment-details p{
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .amount{
