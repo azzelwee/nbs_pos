@@ -21,6 +21,11 @@ $row = $product->fetch_assoc();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="note-info">
+    Note:
+    </br>
+    Scan UPC 1-30 Only </br>
+</div>
 
     <a href="logout.php" class="logout">
         Logout

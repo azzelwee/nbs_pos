@@ -20,6 +20,7 @@ $row = $product->fetch_assoc();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <a href="logout.php" class="logout">
         Logout
     </a>
@@ -73,40 +74,39 @@ $row = $product->fetch_assoc();
             <div class="gray-text">
                 <span id="date"></span>
             </div>
-    </div>
 
     <div class="e">
-    <div class="column-3">
+    <div class="column-3z">
             <div class="reds">
-                <div class="button">
+                <div class="button-adjust">
                 <p>Help</p>
                 <p>F3</p>
                 </div>
-                <div class="button" style="background-color: yellow">
+                <div class="button-adjust" style="background-color: yellow">
                 <p>Cash</p>
                 <p>F4</p>
                 </div>
-                <div class="button">
+                <div class="button-adjust">
                 <p>Bank Card</p>
                 <p>F5</p>
                 </div>
-                <div class="button" style="background-color: red">
+                <div class="button-adjust" style="background-color: red">
                 <p>Check</p>
                 <p>F6</p>
                 </div>
-                <div class="button">
+                <div class="button-adjust">
                 <p>Gift Cert.</p>
                 <p>F7</p>
                 </div>
-                <div class="button">
+                <div class="button-adjust">
                 <p>Coupon</p>
                 <p>F8</p>
                 </div>
-                <div class="button" style="background-color: red">
+                <div class="button-adjust" style="background-color: red">
                 <p>E-Purse</p>
                 <p>F9</p>
                 </div>
-                <div class="button">
+                <div class="button-adjust">
                 <p>Credit</p>
                 <p>Memo</p>
                 <p>F9</span></p>
@@ -114,6 +114,10 @@ $row = $product->fetch_assoc();
             </div>
         </div>
     </div>
+    </div>
+
+
+    
 
     <div class="outer-container">
         <div class="container">
@@ -159,6 +163,24 @@ $row = $product->fetch_assoc();
             <p>Cash Payment Details</p>
         </div>
 
+        <div class="try">
+            <p>Enter Amount:</p>
+        <input type="text" name="search" id="search" placeholder="0.00">
+        </div>
+    </div>
+
+
+        <div class="bottomx">
+            <div class="bottom-1x">
+
+            </div>
+            
+        <div class="bottom-2x">
+            <p>Total Sales:</p>
+
+        </div>
+       
+    </div>
    
 <script src="js/main.js"></script>
 </body>

@@ -13,7 +13,7 @@ body {
     margin: 0;
 }
 
-.login-info{
+.note-info{
     padding: 30px;
     position: absolute;
     left: 0;
@@ -51,6 +51,7 @@ body {
 
 .gray {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: darkgray;
@@ -341,10 +342,28 @@ body {
     height: 75px;
     color: black;
     text-decoration: none;
-
 }
 
 .button p{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+.button-adjust{
+    background-color: darkgray;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid white;
+    text-align: center;
+    width: 120px;
+    height: 77.5px;
+    color: black;
+    text-decoration: none;
+
+}
+
+.button-adjust p{
     font-weight: bold;
     font-size: 14px;
 }
@@ -506,9 +525,11 @@ th {
     height: 45px;
     align-content: center;
     text-align: center;
+
 }
 
 .payment-details p{
+    margin-right: 100px;
     font-weight: bold;
     font-size: 25px;
 }
@@ -540,7 +561,12 @@ th {
 }
 
 .e{
+    position: relative;
     float: right;
+}
+
+.column-3z{
+    margin-top: 570px;
 }
 
 .bottom{
@@ -554,6 +580,18 @@ th {
     grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
     /* Adjust the gap between columns */
 }
+
+.bottomx{
+    position: absolute;
+    bottom: 0;
+    background-color: darkgray;
+    width: 100%;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 0.7fr 1fr; /* Three equal columns */
+    /* Adjust the gap between columns */
+}
+
 
 .bottom-payment{
     border: 1px solid white;
@@ -574,6 +612,16 @@ th {
     align-items: center;
 }
 
+.bottom-1x {
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray; /* Just for visualization */
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+}
+
 .bottom-1 p{
     margin-left: 40px;
     margin-top: 8px;
@@ -588,6 +636,15 @@ th {
 }
 
 .bottom-2 {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(0, 179, 0); /* Just for visualization */
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bottom-2x {
     display: flex;
     flex-direction: row;
     background-color: rgb(0, 179, 0); /* Just for visualization */
@@ -617,4 +674,26 @@ th {
 }
 .bottom-3 p{
     margin-top: 8px;
+}
+
+.try{
+    align-content: center;
+    text-align: center;
+    height: 250px;
+    width: auto;
+    background-color: darkgray;
+}
+
+.try p {
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 100px;
+}
+
+.try input{
+    text-align: center;
+    font-size: 22px;
+    margin-right: 100px;
+    height: 40px;
+    width: 400px;
 }

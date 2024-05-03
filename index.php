@@ -41,7 +41,7 @@ if(isset($_POST['login'])){
 </head>
 <body>
 
-<div class="login-info">
+<div class="note-info">
     Note:
     </br>
     UserName: admin </br>
