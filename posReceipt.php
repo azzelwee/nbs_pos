@@ -69,6 +69,10 @@ $row = $product->fetch_assoc();
                 }        
                 ?>
             </div>
+
+            <div class="gray-text">
+                <span id="date"></span>
+            </div>
     </div>
 
     <div class="e">
@@ -152,11 +156,10 @@ $row = $product->fetch_assoc();
 
         </div>
         <div class="payment-details">
-                    <p>Cash Payment Details</p>
-                </div>
+            <p>Cash Payment Details</p>
+        </div>
 
    
-
-    
+<script src="js/main.js"></script>
 </body>
 </html>

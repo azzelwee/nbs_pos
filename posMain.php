@@ -72,6 +72,7 @@ $row = $product->fetch_assoc();
                 }        
                 ?>
             </div>
+
     </div>
 
     <div class="e">
@@ -185,6 +186,26 @@ $row = $product->fetch_assoc();
             
     </table>
 
-    
+    <div class="bottom">
+        <div class="bottom-1">
+            <p>Total Qty</p>
+                <div class="bar1">
+                    
+                </div>
+
+        </div>
+        
+        <div class="bottom-2">
+            <p>Total Sales:</p>
+                <div class="bar2">
+                        
+                </div>
+        </div>
+        <div class="bottom-3">
+        <p><span id="date"></span>  &nbsp;&nbsp;&nbsp; <span id="time"></span></p>
+        </div>
+    </div>
+
+<script src="js/main.js"></script>
 </body>
 </html>
