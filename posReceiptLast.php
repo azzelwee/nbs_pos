@@ -204,11 +204,13 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             </div>
             
             <div class="bottom-2xz">
-            <form action="posMain.php" method="post">
+            <form action="handle_form.php" method="post">
                 <button type="submit" name="search" class="btn-ok2">Ok</button>
+                
             </form>
             <p><span id="time"></span></p>
         </div>
+
        
     </div>
    

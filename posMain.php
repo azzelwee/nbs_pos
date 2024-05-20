@@ -10,6 +10,7 @@ $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
 
+
 ?>
 
 
