@@ -24,7 +24,8 @@ $row = $product->fetch_assoc();
 <div class="note-info">
     Note:
     </br>
-    Scan UPC 1-30 Only </br>
+    The range of UPC scan on DB is 1-30. </br>
+    Test scan only.
 </div>
 
     <a href="logout.php" class="logout">
@@ -37,48 +38,7 @@ $row = $product->fetch_assoc();
         <img src="img/nbslogo.png" alt="">
     </div>
 
-    <div class= "gray">
-            <div class ="gray-text"> 
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Trx.: ".$_SESSION['Trx'];
-                } else {
-                    echo "Trx.:";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Clerk: ".$_SESSION['Name'];
-                } else {
-                    echo "Guest";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Str No.: 1000";
-                } else {
-                    echo "Str No.:";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Reg No.: 0001";
-                } else {
-                    echo "Reg No.:";
-                }        
-                ?>
-            </div>
-
-    </div>
+    <?php include 'header.php'; ?>
 
     <div class="e">
     <div class="column-3">

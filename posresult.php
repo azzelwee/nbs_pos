@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
 
@@ -9,8 +9,26 @@ $con = connection();
 $search = $_GET['search'];
 
 $sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln DESC";
-$product = $con->query($sql) or die ($con->error);
-$row = $product->fetch_assoc()
+$product = $con->query($sql) or die($con->error);
+$results = $product->fetch_all(MYSQLI_ASSOC);
+
+// Check if session variable for searches exists
+if (!isset($_SESSION['search_results'])) {
+    $_SESSION['search_results'] = [];
+}
+
+// Add new search results to the session variable
+if ($results) {
+    $_SESSION['search_results'] = array_merge($_SESSION['search_results'], $results);
+}
+
+// Calculate the total amount
+$totalAmount = 0;
+if (!empty($_SESSION['search_results'])) {
+    foreach ($_SESSION['search_results'] as $row) {
+        $totalAmount += $row['amount'];
+    }
+}
 
 ?>
 
@@ -23,6 +41,12 @@ $row = $product->fetch_assoc()
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="note-info">
+    Note:
+    </br>
+    The range of UPC scan on DB is 1-30. </br>
+    Test scan only.
+</div>
 <a href="logout.php" class="logout">
         Logout
     </a>
@@ -32,47 +56,7 @@ $row = $product->fetch_assoc()
         <img src="img/nbslogo.png" alt="">
     </div>
 
-    <div class= "gray">
-            <div class ="gray-text"> 
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Trx.: ".$_SESSION['Trx'];
-                } else {
-                    echo "Trx.:";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Clerk: ".$_SESSION['Name'];
-                } else {
-                    echo "Guest";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Str No.: 1000";
-                } else {
-                    echo "Str No.:";
-                }        
-                ?>
-            </div>
-
-            <div class="gray-text">
-                <?php
-                if(isset($_SESSION['UserLogin'])){
-                    echo "Reg No.: 0001";
-                } else {
-                    echo "Reg No.:";
-                }        
-                ?>
-            </div>
-    </div>
+    <?php include 'header.php'; ?>
 
     <div class="e">
     <div class="column-3">
@@ -83,13 +67,11 @@ $row = $product->fetch_assoc()
                 </div>
 
                 <a href="posPayment.php">
-                    <div class="button" style="background-color: red">
+                    <div class="button">
                     <p>Payment</p>
                     <p> <span class="highlight">F4</span></p>
                     </div>
                 </a>
-            
-
                 <div class="button">
                 <p>Option</p>
                 <p> <span class="highlight">F5</span></p>
@@ -98,15 +80,15 @@ $row = $product->fetch_assoc()
                 <p>Non Mdse</p>
                 <p> <span class="highlight">F6</span></p>
                 </div>
-                <div class="button" style="background-color: red">
+                <div class="button">
                 <p>Item Void</p>
                 <p> <span class="highlight">F7</span></p>
                 </div>
-                <div class="button" style="background-color: red">
+                <div class="button">
                 <p>Trx Void</p>
                 <p> <span class="highlight">F8</span></p>
                 </div>
-                <div class="button" style="background-color: red">
+                <div class="button">
                 <p>Suspend</p>
                 <p> <span class="highlight">F9</span></p>
                 </div>
@@ -157,9 +139,11 @@ $row = $product->fetch_assoc()
                 <div class="column-2">
                     <p> <span style="color: blue;">Subtotal:</span></p>
                     <p> <span class="qty">Quantity:</span></p>
-                    <p> <span style="color: green;">Unit Price:</span> 
+                    <p> <span style="color: green;">Unit Price: </span> 
+                    
+            <!-- Display total amount -->
                     <div class="price">
-                            0.00</p> 
+                    <?php echo $totalAmount; ?>
                 </div>
             </div> 
 
@@ -172,22 +156,24 @@ $row = $product->fetch_assoc()
 
 
 
+    <div class="scrollable-table-container">
     <table class="products">
-        <tr>
-            <th>LN</th>
-            <th>UPC</th>
-            <th>Description</th>
-            <th>Qty</th>
-            <th>SRP</th>
-            <th>Amount</th>
-            <th>Type</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>LN</th>
+                <th>UPC</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>SRP</th>
+                <th>Amount</th>
+                <th>Type</th>
+            </tr>
         </thead>
         <tbody>
-        <?php 
-        if ($product && $product->num_rows > 0) {
-            foreach ($product as $row) {
-        ?>
+            <?php 
+            if (!empty($_SESSION['search_results'])) {
+                foreach ($_SESSION['search_results'] as $row) {
+            ?>
                 <tr>
                     <td class="centered"><?php echo $row['ln']; ?></td>
                     <td class="centered"><?php echo $row['upc']; ?></td>
@@ -197,16 +183,16 @@ $row = $product->fetch_assoc()
                     <td class="centered"><?php echo $row['amount']; ?></td>
                     <td class="centered"><?php echo $row['type']; ?></td>
                 </tr>
-
-        <?php 
+            <?php 
                 }
             } else {
                 echo "<tr><td colspan='7'>No product found.</td></tr>";
             }
-        ?>
-    </tbody>
-            
+            ?>
+        </tbody>
     </table>
+</div>
+
     
     <div class="bottom">
         <div class="bottom-1">
@@ -220,7 +206,7 @@ $row = $product->fetch_assoc()
         <div class="bottom-2">
             <p>Total Sales:</p>
                 <div class="bar2">
-                        
+                <?php echo $totalAmount; ?>
                 </div>
         </div>
         <div class="bottom-3">

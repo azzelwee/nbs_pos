@@ -31,12 +31,15 @@ $row = $product->fetch_assoc();
     </div>
 
     <div class= "gray">
-            <div class ="gray-text"> 
+            <div class="gray-text"> 
                 <?php
+                // Get the current date in mm/dd/yyyy format
+                $currentDate = date("mdY");
+
                 if(isset($_SESSION['UserLogin'])){
-                    echo "Trx.: ".$_SESSION['Trx'];
+                    echo "Trx.: " . $currentDate . "" . $_SESSION['Trx'];
                 } else {
-                    echo "Trx.:";
+                    echo "Trx.: " . $currentDate;
                 }        
                 ?>
             </div>
@@ -54,7 +57,7 @@ $row = $product->fetch_assoc();
             <div class="gray-text">
                 <?php
                 if(isset($_SESSION['UserLogin'])){
-                    echo "Str No.: 1000";
+                    echo "Str No.: 2999";
                 } else {
                     echo "Str No.:";
                 }        

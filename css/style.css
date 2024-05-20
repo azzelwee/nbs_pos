@@ -212,8 +212,6 @@ body {
 }
 
 
-  
-
 .container{
     display: flex;
 }
@@ -697,3 +695,27 @@ th {
     height: 40px;
     width: 400px;
 }
+
+/* Search table */
+.scrollable-table-container {
+    max-height: 415px; /* Set the maximum height for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: add a border for better visibility */
+}
+
+.products {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.products th, .products td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.products th {
+    background-color: #f2f2f2;
+}
+
+/* end of search table */
