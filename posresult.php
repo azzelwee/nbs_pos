@@ -30,6 +30,10 @@ if (!empty($_SESSION['search_results'])) {
     }
 }
 
+setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+
+
 ?>
 
 

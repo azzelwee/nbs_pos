@@ -34,3 +34,13 @@ function search() {
         }
     });
 }
+
+function submitForm() {
+    setTimeout(function() {
+        document.getElementById("myForm").submit();
+    }, 4000); // 5000 milliseconds = 5 seconds
+}
+
+// Call the submitForm function when the page loads
+window.onload = submitForm;
+

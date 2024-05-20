@@ -7,6 +7,9 @@ if(!isset($_SESSION)){
 include_once("connections/connection.php");
 $con = connection();
 
+// Get the current date in mm/dd/yyyy format
+$currentDate = date("mdY");
+
 ?>
 
 <div class="receipt1">
@@ -32,7 +35,7 @@ $con = connection();
     </br>
         04/21/2024 11:34:16   </br> 
         
-        TrxNo : 0421202429990002000014          </br>
+        TrxNo : 29990001000001          </br>
         Clerk: 110366 Term. No.: 0002  </br>
         </br>
         No. of Items 0</br>

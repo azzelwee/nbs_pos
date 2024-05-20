@@ -11,6 +11,27 @@ $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
 
+if (isset($_GET['amount'])) {
+    $inputAmount = floatval($_GET['amount']);
+} else {
+    $inputAmount = 0;
+}
+
+// Retrieve the total amount from the cookie
+if (isset($_COOKIE['total_amount'])) {
+    $totalAmount = floatval($_COOKIE['total_amount']);
+} else {
+    $totalAmount = 0;
+}
+
+// Perform the subtraction
+$remainingAmount = $inputAmount - $totalAmount;
+
+// Store the values in the session
+$_SESSION['totalAmount'] = $totalAmount;
+$_SESSION['inputAmount'] = $inputAmount;
+$_SESSION['remainingAmount'] = $remainingAmount;
+
 
 ?>
 
@@ -152,7 +173,7 @@ $row = $product->fetch_assoc();
                     </br>
                     <p>Sales</p>
                     </br>
-                    <p>Tendered</p>
+                    <p style="color: red;">Change</p>
                     </div>
             <div class="units">   
             </div>
@@ -162,19 +183,27 @@ $row = $product->fetch_assoc();
             </div>
                     
             <div class="tendered">   
-            
+            <p><?php echo number_format($remainingAmount, 2); ?></p>
 
             </div>
 
         </div>
         <div class="payment-details">
+
             <p>Cash Payment Details</p>
         </div>
 
         <div class="try">
+                <p style="font-size: 18px; margin-bottom: 10px; color: red;"> 
+                Don't press any key.. 
+                </br>
+                Please wait...</p>
+            
             <p>Enter Amount:</p>
-            <form action="posReceiptFinal.php" method="get">
-                 <input type="text" name="amount" id="amount" placeholder="0.00">  
+            <form id="myForm" action="posReceiptLast.php" method="get">
+                <input type="text" name="amount" id="amount" placeholder="0.00">
+            </form>
+            
         </div>
     </div>
 
@@ -185,12 +214,11 @@ $row = $product->fetch_assoc();
             </div>
             
         <div class="bottom-2xy">
-            
         <button type="submit" name="search" class="btn-ok2">Ok</button>
         <button type="reset" name="search" class="btn-cancel2">Cancel</button>
         <p><span id="time"></span></p>
-        </div>  
-        </form>
+        </div>
+       
     </div>
    
 <script src="js/main.js"></script>
