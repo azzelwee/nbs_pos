@@ -828,14 +828,4 @@ th {
     border-collapse: collapse;
 }
 
-.products th, .products td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.products th {
-    background-color: #f2f2f2;
-}
-
 /* end of search table */
