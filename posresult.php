@@ -65,11 +65,27 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <div class="e">
     <div class="column-3">
             <div class="reds">
-                <div class="button">
-                <p>Quantity</p>
-                <p> <span class="highlight">F3</span></p>
-                </div>
 
+            <a href="#" id="popupButton">
+                <div class="popup-button">
+                    <p>Quantity</p>
+                    <p><span class="popup-highlight">F3</span></p>
+                </div>
+            </a>
+
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close">&times;</span>
+                    <p>Please Enter Quantity</p>
+                    <input type="number" id="quantityInput">
+                    <div class="popup-buttons">
+                        <button id="cancelButton">Cancel</button>
+                        <button id="okButton">OK</button>
+                    </div>
+                </div>
+            </div>
+
+            
                 <a href="posPayment.php">
                     <div class="button">
                     <p>Payment</p>

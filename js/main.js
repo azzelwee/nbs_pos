@@ -44,3 +44,32 @@ function submitForm() {
 // Call the submitForm function when the page loads
 window.onload = submitForm;
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    const popupButton = document.getElementById('popupButton');
+    const popup = document.getElementById('popup');
+    const closeButton = document.querySelector('.close');
+    const submitButton = document.getElementById('submit');
+
+    popupButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        popup.style.display = 'flex';
+    });
+
+    closeButton.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+
+    submitButton.addEventListener('click', function() {
+        const quantity = document.getElementById('quantityInput').value;
+        console.log('Quantity entered:', quantity);
+        popup.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+});
+
+
