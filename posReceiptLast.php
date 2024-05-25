@@ -205,9 +205,8 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             
             <div class="bottom-2xz">
             <form action="handle_form.php" method="post">
-                <form id="incrementForm">
-                    <button type="submit" class="btn-ok2">Ok</button>
-                </form>
+                <button type="submit" name="search" class="btn-ok2">Ok</button>
+                
             </form>
             <p><span id="time"></span></p>
         </div>
