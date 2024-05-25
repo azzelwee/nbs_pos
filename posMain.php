@@ -63,7 +63,7 @@ $row = $product->fetch_assoc();
                 </div>
             </div>
 
-                <div class="button" style="background-color: red">
+                <div class="button" style="background-color: red; color: white;">
                 <p>Payment</p>
                 <p> <span class="highlight">F4</span></p>
                 </div>
@@ -75,20 +75,20 @@ $row = $product->fetch_assoc();
                 <p>Non Mdse</p>
                 <p> <span class="highlight">F6</span></p>
                 </div>
-                <div class="button" style="background-color: red">
+                <div class="button" style="background-color: red; color: white;">
                 <p>Item Void</p>
                 <p> <span class="highlight">F7</span></p>
                 </div>
-                <div class="button" style="background-color: red">
+                <div class="button" style="background-color: red; color: white;">
                 <p>Trx Void</p>
                 <p> <span class="highlight">F8</span></p>
                 </div>
-                <div class="button" style="background-color: red">
+                <div class="button" style="background-color: re; color: white;">
                 <p>Suspend</p>
                 <p> <span class="highlight">F9</span></p>
                 </div>
                 <div class="button" style = "width: 120px; height: 50px;">
-                <p>Page: 0/1</p>
+                <p>Page: 0/0</p>
                 </div>
             </div>
         </div>

@@ -113,7 +113,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p> <span class="highlight">F9</span></p>
                 </div>
                 <div class="button" style = "width: 120px; height: 50px;">
-                <p>Page: 0/1</p>
+                <p>Page: 1/1</p>
                 </div>
             </div>
         </div>

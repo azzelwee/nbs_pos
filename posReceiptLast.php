@@ -93,35 +93,35 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
     <div class="e">
     <div class="column-3z">
             <div class="reds">
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Help</p>
                 <p>F3</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Cash</p>
                 <p>F4</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Bank Card</p>
                 <p>F5</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Check</p>
                 <p>F6</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Gift Cert.</p>
                 <p>F7</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Coupon</p>
                 <p>F8</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>E-Purse</p>
                 <p>F9</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Credit</p>
                 <p>Memo</p>
                 <p>F9</span></p>

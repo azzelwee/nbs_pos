@@ -85,36 +85,36 @@ $row = $product->fetch_assoc();
             <div class="reds">
                 <div class="button-adjust">
                 <p>Help</p>
-                <p>F3</p>
+                <p>F1</p>
                 </div>
-                <div class="button-adjust" style="background-color: yellow">
+                <div class="button-adjust" style="background-color: yellow; color: black;">
                 <p>Cash</p>
-                <p>F4</p>
+                <p>F2</p>
                 </div>
                 <div class="button-adjust">
                 <p>Bank Card</p>
-                <p>F5</p>
+                <p>F3</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Check</p>
-                <p>F6</p>
+                <p>F4</p>
                 </div>
                 <div class="button-adjust">
                 <p>Gift Cert.</p>
-                <p>F7</p>
+                <p>F5</p>
                 </div>
                 <div class="button-adjust">
                 <p>Coupon</p>
-                <p>F8</p>
+                <p>F6</p>
                 </div>
-                <div class="button-adjust" style="background-color: red">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>E-Purse</p>
-                <p>F9</p>
+                <p>F7</p>
                 </div>
                 <div class="button-adjust">
                 <p>Credit</p>
                 <p>Memo</p>
-                <p>F9</span></p>
+                <p>F8</span></p>
                 </div>
             </div>
         </div>
