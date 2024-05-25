@@ -199,26 +199,28 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
             </tr>
         </thead>
         <tbody>
-            <?php 
-            if (!empty($_SESSION['search_results'])) {
-                foreach ($_SESSION['search_results'] as $row) {
-            ?>
-                <tr>
-                    <td class="centered"><?php echo $row['ln']; ?></td>
-                    <td class="centered"><?php echo $row['upc']; ?></td>
-                    <td><?php echo $row['item']; ?></td>
-                    <td class="centered"><?php echo $row['qty']; ?></td>
-                    <td class="centered"><?php echo $row['srp']; ?></td>
-                    <td class="centered"><?php echo $row['amount']; ?></td>
-                    <td class="centered"><?php echo $row['type']; ?></td>
-                </tr>
-            <?php 
-                }
-            } else {
-                echo "<tr><td colspan='7'>No product found.</td></tr>";
-            }
-            ?>
-        </tbody>
+    <?php 
+    if (!empty($_SESSION['search_results'])) {
+        foreach ($_SESSION['search_results'] as $row) {
+    ?>
+        <tr data-ln="<?php echo $row['ln']; ?>">
+            <td class="centered"><?php echo $row['ln']; ?></td>
+            <td class="centered"><?php echo $row['upc']; ?></td>
+            <td><?php echo $row['item']; ?></td>
+            <td class="centered qty"><?php echo $row['qty']; ?></td>
+            <td class="centered"><?php echo $row['srp']; ?></td>
+            <td class="centered"><?php echo $row['amount']; ?></td>
+            <td class="centered"><?php echo $row['type']; ?></td>
+            <td class="centered"><button class="editQuantityButton">Edit</button></td>
+        </tr>
+    <?php 
+        }
+    } else {
+        echo "<tr><td colspan='8'>No product found.</td></tr>";
+    }
+    ?>
+</tbody>
+
     </table>
 </div>
 

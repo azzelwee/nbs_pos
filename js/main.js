@@ -44,38 +44,41 @@ function submitForm() {
 // Call the submitForm function when the page loads
 window.onload = submitForm;
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const popupButton = document.getElementById('popupButton');
+document.addEventListener('DOMContentLoaded', function() {
     const popup = document.getElementById('popup');
-    const closeButton = document.querySelector('.close');
-    const submitButton = document.getElementById('submit');
+    const quantityInput = document.getElementById('quantityInput');
+    let currentRowIndex;
 
-    popupButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        popup.style.display = 'flex';
+    document.querySelectorAll('.editQuantityButton').forEach((button, index) => {
+        button.addEventListener('click', () => {
+            currentRowIndex = index;
+            popup.style.display = 'block';
+        });
     });
 
-    closeButton.addEventListener('click', function() {
+    document.querySelector('.close').addEventListener('click', () => {
         popup.style.display = 'none';
     });
 
-    submitButton.addEventListener('click', function() {
-        const quantity = document.getElementById('quantityInput').value;
-        console.log('Quantity entered:', quantity);
+    document.getElementById('cancelButton').addEventListener('click', () => {
         popup.style.display = 'none';
     });
 
-    window.addEventListener('click', function(event) {
-        if (event.target === popup) {
-            popup.style.display = 'none';
-        }
+    document.getElementById('okButton').addEventListener('click', () => {
+        const newQuantity = quantityInput.value;
+        const ln = document.querySelectorAll('tbody tr')[currentRowIndex].dataset.ln;
+
+        // Send the updated quantity to the server via AJAX
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'update_quantity.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Update the displayed quantity
+                document.querySelectorAll('tbody tr')[currentRowIndex].querySelector('.qty').textContent = newQuantity;
+                popup.style.display = 'none';
+            }
+        };
+        xhr.send(`ln=${ln}&qty=${newQuantity}`);
     });
 });
-
-let count = 0;
-
-        document.getElementById('incrementForm').addEventListener('submited', function(event) {
-            event.preventDefault(); // Prevent the form from submitting
-            count++;
-            document.getElementById('counter').textContent = count;
-        });
