@@ -87,7 +87,7 @@ $row = $product->fetch_assoc();
                 <p>Suspend</p>
                 <p> <span class="highlight">F9</span></p>
                 </div>
-                <div class="button" style = "width: 120px; height: 50px;">
+                <div class="button2" style = "width: 120px; height: 50px;">
                 <p>Page: 0/0</p>
                 </div>
             </div>
@@ -136,13 +136,13 @@ $row = $product->fetch_assoc();
                     <p> <span class="qty">Quantity:</span></p>
                     <p> <span style="color: rgb(85, 255, 85);">Unit Price:</span> 
                     <div class="sub">
-                            0.00</p> 
+                            0.00 
                     </div>
                     <div class="qtyy">
-                            0.00</p> 
+                            0
                     </div>
                     <div class="price">
-                            0.00</p> 
+                            0.00
                     </div>
             </div> 
 

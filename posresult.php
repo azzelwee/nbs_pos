@@ -162,10 +162,10 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     <p> <span style="color: rgb(85, 255, 85);">Unit Price:</span> 
                     
                     <div class="sub">
-                            0.00</p> 
+                            0.00
                     </div>
                     <div class="qtyy">
-                            0.00</p> 
+                            0
                     </div>
             <!-- Display total amount -->
                     <div class="price">

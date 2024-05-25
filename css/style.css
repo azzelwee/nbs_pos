@@ -329,7 +329,7 @@ body {
     font-weight: bold;
     color: white;
     top: 225px; /* Adjust this value to specify the distance from the top of the page */
-    left: 900px; /* Adjust this value to specify the distance from the left of the page */
+    left: 928px; /* Adjust this value to specify the distance from the left of the page */
 }
 
 .price{
@@ -363,6 +363,19 @@ body {
     cursor: pointer;
 }
 
+.button2{
+    background-color: darkgray;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid white;
+    text-align: center;
+    width: 120px;
+    height: 75px;
+    color: black;
+    text-decoration: none;
+}
+
+
 .button:hover{
     background-color: rgb(56, 146, 237);
     color: white;
@@ -374,6 +387,11 @@ body {
 }
 
 .button p{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.button2 p{
     font-weight: bold;
     font-size: 14px;
 }
