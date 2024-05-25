@@ -135,12 +135,15 @@ $row = $product->fetch_assoc();
                     <p> <span style="color: rgb(47, 241, 255);">Subtotal:</span></p>
                     <p> <span class="qty">Quantity:</span></p>
                     <p> <span style="color: rgb(85, 255, 85);">Unit Price:</span> 
+                    
+                    <div class="unity">
                     <div class="sub">
                             0.00 
                     </div>
                     <div class="qtyy">
                             0
                     </div>
+</div>
                     <div class="price">
                             0.00
                     </div>

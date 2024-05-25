@@ -314,22 +314,17 @@ body {
     font-weight: bold;
 }
 
-.sub {
+.unity{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     position: absolute;
-    font-size: 20px;
-    font-weight: bold;
-    color: rgb(47, 241, 255);
-    top: 195px; /* Adjust this value to specify the distance from the top of the page */
-    left: 900px; /* Adjust this value to specify the distance from the left of the page */
-}
-
-.qtyy{
-    position: absolute;
+    text-align: right;
     font-size: 20px;
     font-weight: bold;
     color: white;
-    top: 225px; /* Adjust this value to specify the distance from the top of the page */
-    left: 928px; /* Adjust this value to specify the distance from the left of the page */
+    top: 198px; /* Adjust this value to specify the distance from the top of the page */
+    left: 860px; /
 }
 
 .price{

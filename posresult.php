@@ -112,7 +112,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p>Suspend</p>
                 <p> <span class="highlight">F9</span></p>
                 </div>
-                <div class="button" style = "width: 120px; height: 50px;">
+                <div class="button2" style = "width: 120px; height: 50px;">
                 <p>Page: 1/1</p>
                 </div>
             </div>
@@ -161,15 +161,18 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     <p> <span class="qty">Quantity:</span></p>
                     <p> <span style="color: rgb(85, 255, 85);">Unit Price:</span> 
                     
-                    <div class="sub">
-                            0.00
+                    <div class="unity">
+                        <div class="sub">
+                        <?php echo $row['srp']; ?>
+                        </div>
+                        <div class="qtyy">
+                        <?php echo $row['qty']; ?>
+                        </div>
                     </div>
-                    <div class="qtyy">
-                            0
-                    </div>
+
             <!-- Display total amount -->
                     <div class="price">
-                    <?php echo $totalAmount; ?>
+                    <?php echo $row['amount']; ?>
                 </div>
             </div> 
 
