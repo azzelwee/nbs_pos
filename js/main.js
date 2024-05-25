@@ -72,5 +72,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+let count = 0;
 
-
+        document.getElementById('incrementForm').addEventListener('submited', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            count++;
+            document.getElementById('counter').textContent = count;
+        });
