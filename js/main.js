@@ -70,9 +70,26 @@ cancelButton.addEventListener('click', function() {
 // Handle the 'OK' button click
 okButton.addEventListener('click', function() {
     const quantity = document.getElementById('quantityInput').value;
-    console.log('Quantity entered:', quantity);
+    const search = document.getElementById('search').value; // Get the search value
+
+    if (quantity && search) {
+        // Send an AJAX request to update the quantity
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "update_quantity.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log('Quantity updated:', quantity);
+                // Optionally, refresh the page or update the displayed results
+                location.reload();
+            }
+        };
+        xhr.send("quantity=" + quantity + "&search=" + search);
+    }
+
     popup.style.display = 'none';
 });
+
 
 function showNoProductPopup() {
     const popupOverlay = document.getElementById('popup-overlay-custom');

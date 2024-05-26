@@ -1018,9 +1018,10 @@ th {
 }
 
 .popup-content-custom p {
+    font-weight: normal;
     text-align: left;
     margin-left: 15px;
-    font-size: 19px;
+    font-size: 18px;
     margin-top: 15px;
 }
 
