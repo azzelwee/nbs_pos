@@ -81,7 +81,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
             <div id="popup" class="popup">
                 <div class="popup-content">
                     <span class="close">&times;</span>
-                    <p>Please Enter Quantity</p>
+                    <p>Please enter quantity</p>
                     <input type="number" id="quantityInput">
                     <div class="popup-buttons">
                         <button id="cancelButton">Cancel</button>
@@ -236,8 +236,8 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     
     <div id="popup-overlay-custom" class="popup-overlay-custom">
         <div class="popup-content-custom">
-            <h2>No product found.</h2>
-            <button onclick="closePopup()">Close</button>
+            <p>Item[] Not Found!</p>
+            <button onclick="closePopup()">OK</button>
         </div>
     </div>
 </div>

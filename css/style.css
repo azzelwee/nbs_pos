@@ -874,6 +874,41 @@ th {
 
 /* for qty button on posMain.php */
 
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 20px;
+    z-index: 1000;
+    width: 400px; /* Set the width of the popup content */
+    height: 170px; /* Set the height of the popup content */
+}
+.popup-content {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+.close {
+    display: none;
+    align-self: flex-end;
+    cursor: pointer;
+}
+.popup-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end; /* Move buttons to the right */
+    gap: 10px; /* Add space between the buttons */
+}
+
+/* quantity button */
+
 .popup-button {
     background-color: darkgray;
     justify-content: center;
@@ -886,6 +921,11 @@ th {
     text-decoration: none;
 }
 
+.popup-button:hover{
+    background-color: rgb(56, 146, 237);
+    color: white;
+}
+
 .popup-button p {
     font-weight: bold;
     font-size: 14px;
@@ -895,50 +935,6 @@ th {
     color: blue;
     font-weight: bold;
     margin-bottom: 10px;
-}
-
-.popup-button:hover {
-    background-color: rgb(56, 146, 237);
-    color: white;
-}
-
-.popup {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.0);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure the popup is above other content */
-}
-
-.popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    text-align: left;;
-    position: relative; /* Make the close button positioning relative to this container */
-    width: 400px; /* Set the width of the popup content */
-    height: 150px; /* Set the height of the popup content */
-}
-
-.popup-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: flex-end; /* Move buttons to the right */
-    gap: 10px; /* Add space between the buttons */
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
 }
 
  /* Modal styles */
@@ -1003,35 +999,41 @@ th {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+
 }
 
 .popup-content-custom {
     background: #fff;
+    width: 450px;
+    height: 150px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 4px;
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.popup-content-custom h2 {
-    margin-top: 0;
-    color: #333;
+.popup-content-custom p {
+    text-align: left;
+    margin-left: 15px;
+    font-size: 19px;
+    margin-top: 15px;
 }
 
 .popup-content-custom button {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    background: lightgray;
+    position: relative;
+    width: 120px;
+    height: 30px; /* Adjust height as needed */
+    border: 1px solid #888;
+    top: 35px;
+    left: 140px;
+    color: black;
+    padding: 0; /* Remove padding to prevent stretching the button */
+    border-radius: 4px;
     cursor: pointer;
-}
-
-.popup-content-custom button:hover {
-    background: #0056b3;
 }
