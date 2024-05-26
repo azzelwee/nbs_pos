@@ -97,14 +97,15 @@ $row = $product->fetch_assoc();
     <div class="outer-container">
         <div class="container">
             <div class="column-1">
-                <div class="scan">
-                    <div class="scan-element">
-                        <label>Scan or Enter UPC</label>
-                        <form action="posResult.php" method="get">
+            <div class="scan">
+                <div class="scan-element">
+                    <label>Scan or Enter UPC</label>
+                    <form action="posResult.php" method="get">
                         <input type="text" name="search" id="search">
-                        </form>
-                    </div>
+                    </form>
                 </div>
+            </div>
+
 
                 <div class="grays">
                     <div class="box">

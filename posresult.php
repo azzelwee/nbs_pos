@@ -8,6 +8,7 @@ include_once("connections/connection.php");
 $con = connection();
 $search = $_GET['search'];
 
+// Fetch new search results
 $sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln DESC";
 $product = $con->query($sql) or die($con->error);
 $results = $product->fetch_all(MYSQLI_ASSOC);
@@ -34,9 +35,11 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
 
 ?>
 
-<?php if (empty($_SESSION['search_results'])): ?>
+<!-- Only add the trigger if no new search results were found -->
+<?php if (empty($results)): ?>
     <span id="no-product-popup-trigger"></span>
 <?php endif; ?>
+
 
 
 <!DOCTYPE html>
@@ -211,35 +214,32 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
             </tr>
         </thead>
         <tbody>
-    <?php 
-    if (!empty($_SESSION['search_results'])) {
-        foreach ($_SESSION['search_results'] as $row) {
-    ?>
-        <tr data-ln="<?php echo $row['ln']; ?>">
-            <td class="centered"><?php echo $row['ln']; ?></td>
-            <td class="centered"><?php echo $row['upc']; ?></td>
-            <td><?php echo $row['item']; ?></td>
-            <td class="centered qty"><?php echo $row['qty']; ?></td>
-            <td class="centered"><?php echo $row['srp']; ?></td>
-            <td class="centered"><?php echo $row['amount']; ?></td>
-            <td class="centered"><?php echo $row['type']; ?></td>
-        </tr>
-    <?php 
-        }
-    } else {
-        echo '<span id="no-product-popup-trigger"></span>'; // This will trigger the popup
-    }
-    ?>
-    </tbody>
+        <?php 
+        if (!empty($_SESSION['search_results'])) {
+            foreach ($_SESSION['search_results'] as $row) {
+        ?>
+            <tr data-ln="<?php echo $row['ln']; ?>">
+                <td class="centered"><?php echo $row['ln']; ?></td>
+                <td class="centered"><?php echo $row['upc']; ?></td>
+                <td><?php echo $row['item']; ?></td>
+                <td class="centered qty"><?php echo $row['qty']; ?></td>
+                <td class="centered"><?php echo $row['srp']; ?></td>
+                <td class="centered"><?php echo $row['amount']; ?></td>
+                <td class="centered"><?php echo $row['type']; ?></td>
+            </tr>
+        <?php 
+            }
+        } 
+        ?>
+        </tbody>
     </table>
     
     <div id="popup-overlay-custom" class="popup-overlay-custom">
-    <div class="popup-content-custom">
-        <h2>No product found.</h2>
-        <button onclick="closePopup()">Close</button>
+        <div class="popup-content-custom">
+            <h2>No product found.</h2>
+            <button onclick="closePopup()">Close</button>
+        </div>
     </div>
-</div>
-
 </div>
 
     
