@@ -44,41 +44,51 @@ function submitForm() {
 // Call the submitForm function when the page loads
 window.onload = submitForm;
 
-document.addEventListener('DOMContentLoaded', function() {
-    const popup = document.getElementById('popup');
-    const quantityInput = document.getElementById('quantityInput');
-    let currentRowIndex;
+// Get elements
+const popupButton = document.getElementById('popupButton');
+const popup = document.getElementById('popup');
+const closeBtn = document.querySelector('.close');
+const cancelButton = document.getElementById('cancelButton');
+const okButton = document.getElementById('okButton');
 
-    document.querySelectorAll('.editQuantityButton').forEach((button, index) => {
-        button.addEventListener('click', () => {
-            currentRowIndex = index;
-            popup.style.display = 'block';
-        });
-    });
+// Open the popup when the button is clicked
+popupButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    popup.style.display = 'block';
+});
 
-    document.querySelector('.close').addEventListener('click', () => {
-        popup.style.display = 'none';
-    });
+// Close the popup when the 'x' button is clicked
+closeBtn.addEventListener('click', function() {
+    popup.style.display = 'none';
+});
 
-    document.getElementById('cancelButton').addEventListener('click', () => {
-        popup.style.display = 'none';
-    });
+// Close the popup when the 'Cancel' button is clicked
+cancelButton.addEventListener('click', function() {
+    popup.style.display = 'none';
+});
 
-    document.getElementById('okButton').addEventListener('click', () => {
-        const newQuantity = quantityInput.value;
-        const ln = document.querySelectorAll('tbody tr')[currentRowIndex].dataset.ln;
+// Handle the 'OK' button click
+okButton.addEventListener('click', function() {
+    const quantity = document.getElementById('quantityInput').value;
+    console.log('Quantity entered:', quantity);
+    popup.style.display = 'none';
+});
 
-        // Send the updated quantity to the server via AJAX
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'update_quantity.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                // Update the displayed quantity
-                document.querySelectorAll('tbody tr')[currentRowIndex].querySelector('.qty').textContent = newQuantity;
-                popup.style.display = 'none';
-            }
-        };
-        xhr.send(`ln=${ln}&qty=${newQuantity}`);
-    });
+function showNoProductPopup() {
+    const popupOverlay = document.getElementById('popup-overlay-custom');
+    popupOverlay.style.display = 'flex';
+}
+
+function closePopup() {
+    const popupOverlay = document.getElementById('popup-overlay-custom');
+    popupOverlay.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const noProductTrigger = document.getElementById('no-product-popup-trigger');
+    if (noProductTrigger) {
+        showNoProductPopup();
+        // Remove the trigger element after showing the popup to reset state
+        noProductTrigger.parentNode.removeChild(noProductTrigger);
+    }
 });

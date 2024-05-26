@@ -32,9 +32,11 @@ if (!empty($_SESSION['search_results'])) {
 
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 
-
-
 ?>
+
+<?php if (empty($_SESSION['search_results'])): ?>
+    <span id="no-product-popup-trigger"></span>
+<?php endif; ?>
 
 
 <!DOCTYPE html>
@@ -163,28 +165,38 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     
                     <div class="unity">
                         <div class="sub">
-                        <?php echo $row['srp']; ?>
+                        <?php
+                            if (isset($row['srp']) && !empty($row['srp'])) {
+                                echo $row['srp'];
+                            } else {
+                                echo '0.00';
+                            }
+                        ?>
+
                         </div>
                         <div class="qtyy">
-                        <?php echo $row['qty']; ?>
+                        <?php
+                            if (isset($row['qty']) && !empty($row['qty'])) {
+                                echo $row['qty'];
+                            } else {
+                                echo '0';
+                            }
+                        ?>
                         </div>
                     </div>
 
             <!-- Display total amount -->
                     <div class="price">
-                    <?php echo $row['amount']; ?>
+                    <?php
+                            if (isset($row['amount']) && !empty($row['amount'])) {
+                                echo $row['amount'];
+                            } else {
+                                echo '0.00';
+                            }
+                        ?>
                 </div>
-            </div> 
-
-
-
-            <!-- <div class="thelefty">
-                asd
-            </div> -->          
+            </div>     
     </div>
-
-
-
     <div class="scrollable-table-container">
     <table class="products">
         <thead>
@@ -211,17 +223,23 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
             <td class="centered"><?php echo $row['srp']; ?></td>
             <td class="centered"><?php echo $row['amount']; ?></td>
             <td class="centered"><?php echo $row['type']; ?></td>
-            <td class="centered"><button class="editQuantityButton">Edit</button></td>
         </tr>
     <?php 
         }
     } else {
-        echo "<tr><td colspan='8'>No product found.</td></tr>";
+        echo '<span id="no-product-popup-trigger"></span>'; // This will trigger the popup
     }
     ?>
-</tbody>
-
+    </tbody>
     </table>
+    
+    <div id="popup-overlay-custom" class="popup-overlay-custom">
+    <div class="popup-content-custom">
+        <h2>No product found.</h2>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
 </div>
 
     
