@@ -1,11 +1,14 @@
 <?php
-
+// PHP code to handle quantity input
 if (!isset($_SESSION)) {
     session_start();
 }
 
 include_once("connections/connection.php");
 $con = connection();
+
+// Fetch quantity input if specified, default to 1 if not provided
+$quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
 $search = $_GET['search'];
 
 // Fetch new search results
@@ -20,6 +23,10 @@ if (!isset($_SESSION['search_results'])) {
 
 // Add new search results to the session variable
 if ($results) {
+    foreach ($results as &$result) {
+        $result['qty'] = $quantity; // Add the specified quantity to each result
+        $result['amount'] = $result['srp'] * $quantity; // Calculate the amount based on the quantity and SRP
+    }
     $_SESSION['search_results'] = array_merge($_SESSION['search_results'], $results);
 }
 
@@ -32,7 +39,6 @@ if (!empty($_SESSION['search_results'])) {
 }
 
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
-
 ?>
 
 <!-- Only add the trigger if no new search results were found -->
@@ -77,19 +83,6 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     <p><span class="popup-highlight">F3</span></p>
                 </div>
             </a>
-
-            <div id="popup" class="popup">
-                <div class="popup-content">
-                    <span class="close">&times;</span>
-                    <p>Please enter quantity</p>
-                    <input type="number" id="quantityInput">
-                    <div class="popup-buttons">
-                        <button id="cancelButton">Cancel</button>
-                        <button id="okButton">OK</button>
-                    </div>
-                </div>
-            </div>
-
             
                 <a href="posPayment.php">
                     <div class="button">
@@ -128,12 +121,26 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <div class="container">
             <div class="column-1">
                 <div class="scan">
-                    <div class="scan-element">
-                        <label>Scan or Enter UPC</label>
-                        <form action="posResult.php" method="get">
-                        <input type="text" name="search" id="search">
-                        </form>
+                <div class="scan-element">
+                    <label>Scan or Enter UPC</label>
+                    <form action="posResult.php" method="get">
+                    <input type="text" name="search" id="search">  
+                    
+                    <div id="popup" class="popup">
+                        <div class="popup-content">
+                            <span class="close">&times;</span>
+                            <p>Please Enter Quantity</p>
+                            <input type="number" id="quantityInput">
+                            <div class="popup-buttons">
+                                <button id="">Cancel</button>
+                                <button id="">OK</button>
+                            </div>
+                        </div>
                     </div>
+
+                    </form>
+                </div>
+
                 </div>
 
                 <div class="grays">

@@ -1038,3 +1038,15 @@ th {
     border-radius: 4px;
     cursor: pointer;
 }
+
+.okbutts {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .okbutts:hover {
+    background-color: #0056b3;
+  }
