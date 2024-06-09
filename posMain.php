@@ -67,14 +67,21 @@ $row = $product->fetch_assoc();
                 <p>Payment</p>
                 <p> <span class="highlight">F4</span></p>
                 </div>
-                <div class="button">
-                <p>Option</p>
-                <p> <span class="highlight">F5</span></p>
-                </div>
-                <div class="button">
-                <p>Non Mdse</p>
-                <p> <span class="highlight">F6</span></p>
-                </div>
+                
+                <a href="posOption.php">
+                    <div class="button">
+                    <p>Option</p>
+                    <p> <span class="highlight">F5</span></p>
+                    </div>
+                </a>
+
+                <a href="posNonMdse.php">
+                    <div class="button">
+                    <p>Non Mdse</p>
+                    <p> <span class="highlight">F6</span></p>
+                    </div>
+                </a>
+
                 <div class="button" style="background-color: red; color: white;">
                 <p>Item Void</p>
                 <p> <span class="highlight">F7</span></p>
@@ -83,7 +90,7 @@ $row = $product->fetch_assoc();
                 <p>Trx Void</p>
                 <p> <span class="highlight">F8</span></p>
                 </div>
-                <div class="button" style="background-color: re; color: white;">
+                <div class="button" style="background-color: red; color: white;">
                 <p>Suspend</p>
                 <p> <span class="highlight">F9</span></p>
                 </div>
@@ -124,10 +131,14 @@ $row = $product->fetch_assoc();
                         <p> <span class="highlight">F10</span></p>
                     </div>
 
-                    <div class="box">
-                        <p>Lookup</br></p>
-                        <p> <span class="highlight">F2</span></p>
-                    </div>
+                    <a href="posLookup.php">
+                        <div class="box">
+                        
+                            <p style="color: black;">Lookup</br></p>
+                            <p> <span class="highlight">F2</span></p>
+                        </a>
+                        </div>
+                   
                 </div>
 
             </div>  
@@ -171,8 +182,23 @@ $row = $product->fetch_assoc();
         </tr>
         </thead>
         <tbody>
-        <tr>
-        </tr>
+        <?php 
+        if (!empty($_SESSION['search_results'])) {
+            foreach ($_SESSION['search_results'] as $row) {
+        ?>
+            <tr data-ln="<?php echo $row['ln']; ?>">
+                <td class="centered"><?php echo $row['ln']; ?></td>
+                <td class="centered"><?php echo $row['upc']; ?></td>
+                <td><?php echo $row['item']; ?></td>
+                <td class="centered qty"><?php echo $row['qty']; ?></td>
+                <td class="centered"><?php echo $row['srp']; ?></td>
+                <td class="centered"><?php echo $row['amount']; ?></td>
+                <td class="centered"><?php echo $row['type']; ?></td>
+            </tr>
+        <?php 
+            }
+        } 
+        ?>
         </tbody>
             
     </table>

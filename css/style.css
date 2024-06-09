@@ -111,9 +111,68 @@ body {
     text-align: center;
 }
 
+.nonmerchant{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
+}
+
+
+.nonmerchant input,
+.nonmerchant select{
+    width: 80%;
+    height: 30px;
+}
+
+.center-container5{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 250px;
+    width: 450px;
+    background-color: darkgrey;
+}
+
+.center-container5 p{
+    text-align: left;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
+.btn-ok5 {
+    font-weight: bold;
+    margin-top: 50px;
+    background-color: gray;
+    font-size: 24px;
+    width: 49%;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    color: rgb(223, 223, 223)
+}
+
+.btn-cancel5 {
+    font-weight: bold;
+    margin-top: 50px;
+    background-color: gray;
+    font-size: 24px;
+    width: 50%;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    color: rgb(223, 223, 223)
+}
+
+
 .main-container1 h2{
     text-align: center;
     margin-top: 10px;
+    color: white;
 }
 
 .center-container{
@@ -138,6 +197,10 @@ body {
 
 .center-container a{
     color: black;
+    text-decoration: none;
+}
+
+a{
     text-decoration: none;
 }
 
@@ -238,6 +301,25 @@ body {
     width: 100%;
     height: 60px;
 
+
+}
+
+.column-1xz h2{
+    margin-top: 5px;
+    text-align: center;
+}
+
+.in{
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    color: blue;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.in p{
+
 }
 
 .scan{
@@ -273,6 +355,12 @@ body {
 
 }
 
+.grays2{
+    width: 100%;
+    display: flex;
+
+}
+
 .box{
     background-color: #c2c2c2;;
     justify-content: center;
@@ -281,6 +369,42 @@ body {
     height: 80px;
     width: 40%;
     cursor: pointer;
+}
+
+.boxLook{
+    display: flex;
+    justify-content: center;
+    background-color: #c2c2c2;;
+    border: 1px solid white;
+    height: 80px;
+    width: 40%;
+}
+
+.boxLook {
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boxLook label {
+    font-weight: bold;
+    order: -1;
+}
+
+.boxLook input {
+    width: 380px;
+    height: 28px;
+    order: 1;
+}
+
+.grays a{
+    text-decoration: none;
+}
+
+.box:hover{
+    background-color: rgb(56, 146, 237);
+    color: white;
 }
 
 .box p{
@@ -454,7 +578,7 @@ td {
 
 th {
     background-color: #c2c2c2;
-    height: 30px;
+    height: 35px;
     font-weight: normal;
 
 }
@@ -1050,3 +1174,55 @@ th {
   .okbutts:hover {
     background-color: #0056b3;
   }
+
+  /* table modification */
+  .bold-row {
+    font-weight: bold;
+    /* You can add more styles here */
+}
+
+/* end of table modification */
+
+.bottom-payment2{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid white;
+    position: absolute;
+    bottom: 0;
+    background-color: green;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    gap: 65px;
+    align-items: center;
+}
+
+
+.bottom-buttons{
+    background-color: lightgray;
+    height: 46px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bottom-buttons p{
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bottom-buttons h3{
+    color: blue;
+    text-align: center;
+}
+
+
+.bottom-page{
+    position: absolute;
+    right: 15px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+

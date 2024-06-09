@@ -7,28 +7,11 @@ if (!isset($_SESSION)) {
 include_once("connections/connection.php");
 $con = connection();
 
-// Fetch quantity input if specified, default to 1 if not provided
-$quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
-$search = $_GET['search'];
 
 // Fetch new search results
-$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln DESC";
-$product = $con->query($sql) or die($con->error);
-$results = $product->fetch_all(MYSQLI_ASSOC);
+$sql = "SELECT * FROM product_list";
+$product = $con->query($sql) or die ($con->error);
 
-// Check if session variable for searches exists
-if (!isset($_SESSION['search_results'])) {
-    $_SESSION['search_results'] = [];
-}
-
-// Add new search results to the session variable
-if ($results) {
-    foreach ($results as &$result) {
-        $result['qty'] = $quantity; // Add the specified quantity to each result
-        $result['amount'] = $result['srp'] * $quantity; // Calculate the amount based on the quantity and SRP
-    }
-    $_SESSION['search_results'] = array_merge($_SESSION['search_results'], $results);
-}
 
 // Calculate the total amount
 $totalAmount = 0;
@@ -71,57 +54,91 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <img src="img/nbslogo.png" alt="">
     </div>
 
-    <?php include 'header.php'; ?>
+    <div class= "gray">
+            <div class="gray-text"> 
+                <?php
+                // Get the current date in mm/dd/yyyy format
+                $currentDate = date("mdY");
+
+                if(isset($_SESSION['UserLogin'])){
+                    echo "Trx.: " . $currentDate . "" . $_SESSION['Trx'];
+                } else {
+                    echo "Trx.: " . $currentDate;
+                }        
+                ?>
+            </div>
+
+            <div class="gray-text">
+                <?php
+                if(isset($_SESSION['UserLogin'])){
+                    echo "Clerk: ".$_SESSION['Name'];
+                } else {
+                    echo "Guest";
+                }        
+                ?>
+            </div>
+
+            <div class="gray-text">
+                <?php
+                if(isset($_SESSION['UserLogin'])){
+                    echo "Str No.: 2999";
+                } else {
+                    echo "Str No.:";
+                }        
+                ?>
+            </div>
+
+            <div class="gray-text">
+                <?php
+                if(isset($_SESSION['UserLogin'])){
+                    echo "Reg No.: 0001";
+                } else {
+                    echo "Reg No.:";
+                }        
+                ?>
+            </div>
 
     <div class="e">
-    <div class="column-3">
+    <div class="column-3z">
             <div class="reds">
-
-            <a href="#" id="popupButton">
-                <div class="popup-button">
-                    <p>Quantity</p>
-                    <p><span class="popup-highlight">F3</span></p>
+                <div class="button-adjust" style="background-color: red; color: white;">
+                <p>Price</br>Change</p>
+                <p><span class="popup-highlight">F3</span></p>
                 </div>
-            </a>
-            
-                <a href="posPayment.php">
-                    <div class="button">
-                    <p>Payment</p>
-                    <p> <span class="highlight">F4</span></p>
+                <div class="button-adjust" style="background-color: red; color: white;">
+                <p>Item</br>Disc</p>
+                <p><span class="popup-highlight">F4</span></p>
+                </div>
+                <a href="posNextOption.php">
+                    <div class="button-adjust">
+                    <p>Next</br>Option</p>
+                    <p><span class="popup-highlight">F5</span></p>
                     </div>
                 </a>
+                <div class="button-adjust">
+                <p>Trx Disc</p>
+                <p><span class="popup-highlight">F6</span></p>
+                </div>
+                <div class="button-adjust">
+                <p>Recall</p>
+                <p><span class="popup-highlight">F7</span></p>
+                </div>
+                <div class="button-adjust">
+                <p>Logout</p>
+                <p><span class="popup-highlight">F8</span></p>
+                </div>
+                <div class="button-adjust">
+                <p>No Sale</p>
+                <p><span class="popup-highlight">F8</span></p>
+                </div>
+                <div class="button-adjust" style="background-color: red; color: white;">
+                <p>ON/OFF</br>DISCOUNT</p>
+                <p><span class="popup-highlight">F10</span></p>
+                </div>
 
-                <a href="posOption.php">
-                    <div class="button">
-                    <p>Option</p>
-                    <p> <span class="highlight">F5</span></p>
-                    </div>
-                </a>
-
-                <a href="posNonMdse.php">
-                    <div class="button">
-                    <p>Non Mdse</p>
-                    <p> <span class="highlight">F6</span></p>
-                    </div>
-                </a>
-
-                <div class="button">
-                <p>Item Void</p>
-                <p> <span class="highlight">F7</span></p>
-                </div>
-                <div class="button">
-                <p>Trx Void</p>
-                <p> <span class="highlight">F8</span></p>
-                </div>
-                <div class="button">
-                <p>Suspend</p>
-                <p> <span class="highlight">F9</span></p>
-                </div>
-                <div class="button2" style = "width: 120px; height: 50px;">
-                <p>Page: 1/1</p>
-                </div>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="outer-container">
@@ -131,18 +148,17 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <div class="scan-element">
                     <label>Scan or Enter UPC</label>
                     <form action="posResult.php" method="get">
-                    <input type="text" name="search" id="search">  
-                    <input type="submit" name="submit" style="display: none">
+                    <input type="text" name="search" id="search" disabled>  
                     
                     <div id="popup" class="popup">
                         <div class="popup-content">
                             <span class="close">&times;</span>
                             <p>Please Enter Quantity</p>
                             <input type="number" id="quantityInput">
-                        </div>
-                        <div class="popup-buttons">
-                            <button id="cancelButton">Cancel</button>
-                            <button id="okButton">OK</button>
+                            <div class="popup-buttons">
+                                <button id="">Cancel</button>
+                                <button id="">OK</button>
+                            </div>
                         </div>
                     </div>
 
@@ -162,14 +178,14 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                         <p>F12</p>
                     </div>
 
-                    <div class="box">
-                        <p>CSA</br>
-                        ON/OFF</br></p>
-                        <p> <span class="highlight">F10</span></p>
+                    <div class="box" style="background-color: red; color: white;">
+                        <p>
+                        Help</br></p>
+                        <p> <span class="highlight">F1</span></p>
                     </div>
 
                     <div class="box">
-                        <p>Lookup</br></p>
+                        <p>Reprint</br></br></p>
                         <p> <span class="highlight">F2</span></p>
                     </div>
                 </div>
