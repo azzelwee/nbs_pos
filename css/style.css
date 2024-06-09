@@ -119,6 +119,15 @@ body {
     align-content:center;
 }
 
+
+
+.nonmerchant input,
+.nonmerchant select{
+
+    width: 80%;
+    height: 30px;
+}
+
 .nonmerchant2{
     margin-top: 80px;
     display: flex;
@@ -129,13 +138,6 @@ body {
 }
 
 
-.nonmerchant input,
-.nonmerchant select{
-
-    width: 80%;
-    height: 30px;
-}
-
 .nonmerchant2 input,
 .nonmerchant2 select{
     width: 30%;
@@ -145,6 +147,52 @@ body {
 .nonmerchant2 p{
     margin-right: 10px;
     font-size: 18px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
+.nonmerchant3{
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
+}
+
+
+.nonmerchant3 input,
+.nonmerchant3 select{
+    width: 80%;
+    height: 80px;
+}
+
+.nonmerchant3 p{
+    margin-right: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
+.nonmerchant1{
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
+}
+
+
+.nonmerchant1 input,
+.nonmerchant1 select{
+    width: 80%;
+    height: 30px;
+}
+
+.nonmerchant1 p{
+    margin-bottom: 8px;
+    font-size: 22px;
     font-weight: bold;
     color: rgb(61, 61, 61);
 }
