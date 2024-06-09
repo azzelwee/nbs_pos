@@ -157,10 +157,51 @@ body {
 
 .center-container4 p{
     text-align: center;
-margin-top: 18px;
+    margin-top: 18px;
     font-size: 18px;
     font-weight: bold;
     color: rgb(61, 61, 61);
+}
+
+.center-container3{
+    position: absolute;
+    align-items: center;
+    align-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 250px;
+    width: 450px;
+    background-color: darkgrey;
+}
+
+.center-container3 p{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
+.thebuttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-ok10 {
+    font-weight: bold;
+    margin-top: 50px;
+    margin-right: 2px;
+    background-color: gray;
+    font-size: 24px;
+    width: 225px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    color: black
 }
 
 .btn-ok5 {
@@ -172,7 +213,7 @@ margin-top: 18px;
     height: 35px;
     border: none;
     cursor: pointer;
-    color: rgb(223, 223, 223)
+    color: black
 }
 
 .btn-cancel5 {
@@ -184,7 +225,7 @@ margin-top: 18px;
     height: 35px;
     border: none;
     cursor: pointer;
-    color: rgb(223, 223, 223)
+    color: black
 }
 
 

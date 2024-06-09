@@ -204,8 +204,8 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             </div>
             
             <div class="bottom-2xz">
-            <form action="handle_form.php" method="post">
-                <button type="submit" name="search" class="btn-ok2">Ok</button>
+            <form action="handle_form.php" method="post" class="btn-ok2">
+                <button type="submit" name="search" >Ok</button>
                 
             </form>
             <p><span id="time"></span></p>

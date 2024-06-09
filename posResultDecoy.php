@@ -10,9 +10,16 @@ $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
 
+// Calculate the total amount
+$totalAmount = 0;
+if (!empty($_SESSION['search_results'])) {
+    foreach ($_SESSION['search_results'] as $row) {
+        $totalAmount += $row['amount'];
+    }
+}
 
+setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,11 +35,9 @@ $row = $product->fetch_assoc();
     The range of UPC scan on DB is 1-30. </br>
     Test scan only.
 </div>
-
-    <a href="logout.php" class="logout">
+<a href="logout.php" class="logout">
         Logout
     </a>
-
 <div class="whole-container">
 
     <div class="form-logo">
@@ -44,30 +49,21 @@ $row = $product->fetch_assoc();
     <div class="e">
     <div class="column-3">
             <div class="reds">
+
             <a href="#" id="popupButton">
                 <div class="popup-button">
                     <p>Quantity</p>
                     <p><span class="popup-highlight">F3</span></p>
                 </div>
             </a>
-
-            <div id="popup" class="popup">
-                <div class="popup-content">
-                    <span class="close">&times;</span>
-                    <p>Please Enter Quantity</p>
-                    <input type="number" id="quantityInput">
-                    <div class="popup-buttons">
-                        <button id="cancelButton">Cancel</button>
-                        <button id="okButton">OK</button>
+            
+                <a href="posPayment.php">
+                    <div class="button">
+                    <p>Payment</p>
+                    <p> <span class="highlight">F4</span></p>
                     </div>
-                </div>
-            </div>
+                </a>
 
-                <div class="button" style="background-color: red; color: white;">
-                <p>Payment</p>
-                <p> <span class="highlight">F4</span></p>
-                </div>
-                
                 <a href="posOption.php">
                     <div class="button">
                     <p>Option</p>
@@ -82,22 +78,31 @@ $row = $product->fetch_assoc();
                     </div>
                 </a>
 
-                <div class="button" style="background-color: red; color: white;">
-                <p>Item Void</p>
-                <p> <span class="highlight">F7</span></p>
-                </div>
-                
-                <div class="button" style="background-color: red; color: white;">
+                <a href="posItemVoid.php">
+                    <div class="button">
+                    <p>Item Void</p>
+                    <p> <span class="highlight">F7</span></p>
+                    </div>
+                </a>
+
+               
+                <a href="posTrxVoid.php">
+                <div class="button">
                 <p>Trx Void</p>
                 <p> <span class="highlight">F8</span></p>
                 </div>
+                </a>
 
-                <div class="button" style="background-color: red; color: white;">
-                <p>Suspend</p>
-                <p> <span class="highlight">F9</span></p>
-                </div>
+
+                <a href="posSuspend.php">
+                    <div class="button">
+                    <p>Suspend</p>
+                    <p> <span class="highlight">F9</span></p>
+                    </div>
+                </a>
+
                 <div class="button2" style = "width: 120px; height: 50px;">
-                <p>Page: 0/0</p>
+                <p>Page: 1/1</p>
                 </div>
             </div>
         </div>
@@ -106,15 +111,29 @@ $row = $product->fetch_assoc();
     <div class="outer-container">
         <div class="container">
             <div class="column-1">
-            <div class="scan">
+                <div class="scan">
                 <div class="scan-element">
                     <label>Scan or Enter UPC</label>
                     <form action="posResult.php" method="get">
-                        <input type="text" name="search" id="search">
+                    <input type="text" name="search" id="search">  
+                    <input type="submit" name="submit" style="display: none">
+                    
+                    <div id="popup" class="popup">
+                        <div class="popup-content">
+                            <span class="close">&times;</span>
+                            <p>Please Enter Quantity</p>
+                            <input type="number" id="quantityInput">
+                        </div>
+                        <div class="popup-buttons">
+                            <button id="cancelButton">Cancel</button>
+                            <button id="okButton">OK</button>
+                        </div>
+                    </div>
+
                     </form>
                 </div>
-            </div>
 
+                </div>
 
                 <div class="grays">
                     <div class="box">
@@ -140,48 +159,63 @@ $row = $product->fetch_assoc();
                             <p> <span class="highlight">F2</span></p>
                         </a>
                         </div>
-                   
                 </div>
 
             </div>  
             
                 <div class="column-2">
-                    <p> <span style="color: rgb(47, 241, 255);">Subtotal:</span></p>
+                <p> <span style="color: rgb(47, 241, 255);">Subtotal:</span></p>
                     <p> <span class="qty">Quantity:</span></p>
                     <p> <span style="color: rgb(85, 255, 85);">Unit Price:</span> 
                     
                     <div class="unity">
-                    <div class="sub">
-                            0.00 
+                        <div class="sub">
+                        <?php
+                            if (isset($row['srp']) && !empty($row['srp'])) {
+                                echo $row['srp'];
+                            } else {
+                                echo '0.00';
+                            }
+                        ?>
+
+                        </div>
+                        <div class="qtyy">
+                        <?php
+                            if (isset($row['qty']) && !empty($row['qty'])) {
+                                echo $row['qty'];
+                            } else {
+                                echo '0';
+                            }
+                        ?>
+                        </div>
                     </div>
-                    <div class="qtyy">
-                            0
-                    </div>
-</div>
+
+            <!-- Display total amount -->
                     <div class="price">
-                            0.00
-                    </div>
-            </div> 
-
-
-
-            <!-- <div class="thelefty">
-                asd
-            </div> -->          
+                    <?php
+                            if (isset($row['amount']) && !empty($row['amount'])) {
+                                echo $row['amount'];
+                            } else {
+                                echo '0.00';
+                            }
+                        ?>
+                </div>
+            </div>     
     </div>
 
-
-
-    <table>
-        <tr>
-            <th>LN</th>
-            <th>UPC</th>
-            <th>Description</th>
-            <th>Qty</th>
-            <th>SRP</th>
-            <th>Amount</th>
-            <th>Type</th>
-        </tr>
+    
+    <div class="scrollable-table-container">
+    <table class="products">
+        <thead>
+            <tr>
+                <th>LN</th>
+                <th>UPC</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>SRP</th>
+                <th>Amount</th>
+                <th>Type</th>
+            </tr>
         </thead>
         <tbody>
         <?php 
@@ -202,14 +236,13 @@ $row = $product->fetch_assoc();
         } 
         ?>
         </tbody>
-            
     </table>
 
     <div class="bottom">
         <div class="bottom-1">
             <p>Total Qty</p>
                 <div class="bar1">
-                    0
+                    
                 </div>
 
         </div>
@@ -217,7 +250,7 @@ $row = $product->fetch_assoc();
         <div class="bottom-2">
             <p>Total Sales:</p>
                 <div class="bar2">
-                        0.00
+                <?php echo $totalAmount; ?>
                 </div>
         </div>
         <div class="bottom-3">
@@ -225,6 +258,7 @@ $row = $product->fetch_assoc();
         </div>
     </div>
 
-<script src="js/main.js"></script>
+    <script src="js/main.js"></script>
+    
 </body>
 </html>

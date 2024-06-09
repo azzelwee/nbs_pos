@@ -86,34 +86,21 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>NON-MERCHANDISE</h2>
-            <div class="center-container5">
-            <form action="" method="post" id="">
+            <h2>MANAGER OVERRIDE</h2>
+            <div class="center-container3">
+            
+            <p>Are you sure you want to
+            </br>suspend this transaction?
+            </p>
 
-            <div class="nonmerchant">
-            </br>
-                <p>Select Charge</p>
-                    <select id="" name="">
-                        <option value="">SODEXHO VARIANCE</option>
-                        <option value="">RETURN / EXCHANGE VARIANCE</option>
-                        <option value="">PASABUY VOUCHER VARIANCE</option>
-                        <option value="">NBSFI DONATION</option>
-                        <option value="">COUPON VARIANCE</option>
-                        <option value="">LNQR PLUS FEE P500</option>
-                        <option value="">ILLY SERVICE CHARGE</option>
-                    </select>
-
-                <p>Enter Price</p>
-                    <input type="text">
-                </div>
-      
-                    <button type="submit" name="login" class="btn-ok5">Ok</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
-
-                <option></option>
-                </select>            
-            </form>
-        </div>
+            <div class="thebuttons">
+                <form action="handle_form.php" method="post">
+                    <button type="submit" name="" class="btn-ok10">Yes</button> 
+                </form>
+            
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
+                    </div>
+            </div>
     </div>
    
         <div class="bottom-payment">
