@@ -144,6 +144,25 @@ body {
     color: rgb(61, 61, 61);
 }
 
+
+.center-container4{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 250px;
+    width: 450px;
+    background-color: darkgrey;
+}
+
+.center-container4 p{
+    text-align: center;
+margin-top: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
 .btn-ok5 {
     font-weight: bold;
     margin-top: 50px;

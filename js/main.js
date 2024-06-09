@@ -91,4 +91,3 @@ document.addEventListener('DOMContentLoaded', () => {
         noProductTrigger.parentNode.removeChild(noProductTrigger);
     }
 });
-

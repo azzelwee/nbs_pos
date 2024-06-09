@@ -47,7 +47,6 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
 <?php endif; ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,9 +104,12 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     </div>
                 </a>
 
-                <div class="button">
-                <p>Item Void</p>
-                <p> <span class="highlight">F7</span></p>
+                <a href="posItemVoid.php">
+                    <div class="button">
+                    <p>Item Void</p>
+                    <p> <span class="highlight">F7</span></p>
+                </a>
+
                 </div>
                 <div class="button">
                 <p>Trx Void</p>
@@ -168,10 +170,13 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                         <p> <span class="highlight">F10</span></p>
                     </div>
 
-                    <div class="box">
-                        <p>Lookup</br></p>
-                        <p> <span class="highlight">F2</span></p>
-                    </div>
+                    <a href="posLookup.php">
+                        <div class="box">
+                        
+                            <p style="color: black;">Lookup</br></p>
+                            <p> <span class="highlight">F2</span></p>
+                        </a>
+                        </div>
                 </div>
 
             </div>  
