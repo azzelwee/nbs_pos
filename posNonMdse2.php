@@ -86,23 +86,35 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>Choose Option</h2>
-            <div class="center-container">
+            <h2>NON-MERCHANDISE</h2>
+            <div class="center-container5">
+            <form action="" method="post" id="">
 
-                <a href="posReceipt.php">
-                <p>1. None</p>
-                </a>
+            <div class="nonmerchant">
+            </br>
+                <p>Select Charge</p>
+                    <select id="" name="">
+                        <option value="">SODEXHO VARIANCE</option>
+                        <option value="">RETURN / EXCHANGE VARIANCE</option>
+                        <option value="">PASABUY VOUCHER VARIANCE</option>
+                        <option value="">NBSFI DONATION</option>
+                        <option value="">COUPON VARIANCE</option>
+                        <option value="">LNQR PLUS FEE P500</option>
+                        <option value="">ILLY SERVICE CHARGE</option>
+                    </select>
 
-                <a href="posLakingNational.php">
-                <p>2. Laking National Card</p>
-                </a>
+                <p>Enter Price</p>
+                    <input type="text">
+                </div>
+      
+                    <button type="submit" name="login" class="btn-ok5">Ok</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posMain.php';">Cancel</button>
 
-                <a href="posLNQR.php">
-                <p>3. LNQR / LNQR PLUS </p>
-                </a>
-            </div>
-
+                <option></option>
+                </select>            
+            </form>
         </div>
+    </div>
    
         <div class="bottom-payment">
             

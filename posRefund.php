@@ -86,23 +86,30 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>Choose Option</h2>
-            <div class="center-container">
+            <h2>MANAGER OVERRIDE</h2>
+            <div class="center-container4">
+            <form action="" method="post" id="">
+            
+            <p>Sorry, you dont have permission to do this
+            </br>operation. Please perform Manager Override.
+            </p>
 
-                <a href="posReceipt.php">
-                <p>1. None</p>
-                </a>
+            <div class="form-element">
+                    <label>Username</label>
+                    <input type="username" name="username" id="username">
+                </div>
 
-                <a href="posLakingNational.php">
-                <p>2. Laking National Card</p>
-                </a>
-
-                <a href="posLNQR.php">
-                <p>3. LNQR / LNQR PLUS </p>
-                </a>
+                <div class="form-element">
+                    <label>Password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+      
+                    <button type="submit" name="" class="btn-ok5">Yes</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
+       
+            </form>
             </div>
-
-        </div>
+    </div>
    
         <div class="bottom-payment">
             

@@ -109,28 +109,42 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p>Item</br>Disc</p>
                 <p><span class="popup-highlight">F4</span></p>
                 </div>
+
                 <a href="posNextOption.php">
                     <div class="button-adjust">
                     <p>Next</br>Option</p>
                     <p><span class="popup-highlight">F5</span></p>
                     </div>
                 </a>
-                <div class="button-adjust">
-                <p>Trx Disc</p>
-                <p><span class="popup-highlight">F6</span></p>
-                </div>
-                <div class="button-adjust">
-                <p>Recall</p>
-                <p><span class="popup-highlight">F7</span></p>
-                </div>
+
+                <a href="">
+                    <div class="button-adjust">
+                    <p>Trx Disc</p>
+                    <p><span class="popup-highlight">F6</span></p>
+                    </div>
+                </a>
+
+                <a href="posRecall.php">
+                    <div class="button-adjust">
+                    <p>Recall</p>
+                    <p><span class="popup-highlight">F7</span></p>
+                    </div>
+                </a>
+
+                <a href="">
                 <div class="button-adjust">
                 <p>Logout</p>
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
+                </a>
+
+                <a href="posNoSale.php">
                 <div class="button-adjust">
                 <p>No Sale</p>
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
+                </a>
+
                 <div class="button-adjust" style="background-color: red; color: white;">
                 <p>ON/OFF</br>DISCOUNT</p>
                 <p><span class="popup-highlight">F10</span></p>

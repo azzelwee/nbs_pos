@@ -8,7 +8,7 @@ include_once("connections/connection.php");
 $con = connection();
 $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
-$row = $product->fetch_assoc();
+
 
 // Calculate the total amount
 $totalAmount = 0;
@@ -154,7 +154,6 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
 
                     <a href="posLookup.php">
                         <div class="box">
-                        
                             <p style="color: black;">Lookup</br></p>
                             <p> <span class="highlight">F2</span></p>
                         </a>

@@ -162,7 +162,7 @@ $row = $product->fetch_assoc();
                 <p>&lt;Right-Arrow&gt;</p>
             </div>
 
-            <a href="posResultDecoy.php">
+            <a href="posMain.php">
             <div class="bottom-buttons">
                 <h3>CANCEL</h3>
                 <p style="color: black;">&lt;Alt-B&gt;</p>

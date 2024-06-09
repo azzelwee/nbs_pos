@@ -119,12 +119,49 @@ body {
     align-content:center;
 }
 
+.nonmerchant2{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
+}
+
 
 .nonmerchant input,
 .nonmerchant select{
+
     width: 80%;
     height: 30px;
 }
+
+.nonmerchant2 input,
+.nonmerchant2 select{
+    width: 30%;
+    height: 30px;
+}
+
+.nonmerchant2 p{
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
+
+.center-container6{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 250px;
+    width: 450px;
+    background-color: darkgrey;
+}
+
+
+
 
 .center-container5{
     position: absolute;
@@ -178,6 +215,27 @@ body {
 .center-container3 p{
     text-align: center;
     margin-top: 80px;
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
+.center-container2{
+    position: absolute;
+    align-items: center;
+    align-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 250px;
+    width: 450px;
+    background-color: darkgrey;
+}
+
+.center-container2 p{
+    text-align: center;
+    margin-top: 90px;
     margin-bottom: 30px;
     font-size: 22px;
     font-weight: bold;
@@ -364,6 +422,10 @@ a{
 
 }
 
+.column-1xz h1{
+    margin-top: 15px;
+    text-align: center;
+}
 .column-1xz h2{
     margin-top: 5px;
     text-align: center;
@@ -1254,6 +1316,36 @@ th {
     height: 50px;
     justify-content: center;
     gap: 65px;
+    align-items: center;
+}
+
+.lnqr{
+    margin-top: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lnqr input{
+    height: 35px;
+    width: 50%;
+}
+
+.lnqr p{
+    font-size: 20px;
+}
+
+.bottom-payment3{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid white;
+    position: absolute;
+    bottom: 0;
+    background-color: green;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    gap: 2px;
     align-items: center;
 }
 

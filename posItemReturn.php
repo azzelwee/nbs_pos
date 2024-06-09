@@ -86,23 +86,30 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>Choose Option</h2>
-            <div class="center-container">
+            <h2>Item Return</h2>
+            <div class="center-container6">
+            <form action="" method="post" id="">
 
-                <a href="posReceipt.php">
-                <p>1. None</p>
-                </a>
+            <div class="nonmerchant2">
+            </br>
+                <p>Select store</p>
+                    <select id="" name="">
+                        <option value="">Own Store</option>
+                    </select>
+                    
+                </div>
+            </br>
+                <p style="color: red; font-weight: bold;">Please press Alt+Enter to Continue otherwise</br>
+                         ESC.</p>
+      
+                    <button type="submit" name="login" class="btn-ok5">Ok</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
 
-                <a href="posLakingNational.php">
-                <p>2. Laking National Card</p>
-                </a>
-
-                <a href="posLNQR.php">
-                <p>3. LNQR / LNQR PLUS </p>
-                </a>
-            </div>
-
+                <option></option>
+                </select>            
+            </form>
         </div>
+    </div>
    
         <div class="bottom-payment">
             

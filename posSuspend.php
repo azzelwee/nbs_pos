@@ -86,7 +86,7 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>MANAGER OVERRIDE</h2>
+            <h2>SUSPEND</h2>
             <div class="center-container3">
             
             <p>Are you sure you want to

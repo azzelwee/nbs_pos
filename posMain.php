@@ -75,7 +75,7 @@ $row = $product->fetch_assoc();
                     </div>
                 </a>
 
-                <a href="posNonMdse.php">
+                <a href="posNonMdse2.php">
                     <div class="button">
                     <p>Non Mdse</p>
                     <p> <span class="highlight">F6</span></p>
@@ -133,9 +133,8 @@ $row = $product->fetch_assoc();
                         <p> <span class="highlight">F10</span></p>
                     </div>
 
-                    <a href="posLookup.php">
+                    <a href="posLookup2.php">
                         <div class="box">
-                        
                             <p style="color: black;">Lookup</br></p>
                             <p> <span class="highlight">F2</span></p>
                         </a>

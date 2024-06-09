@@ -82,31 +82,30 @@ $row = $product->fetch_assoc();
     <div class="outer-container">
         <div class="container">
             <div class="column-1xz">
+                <h1>LNQR / LNQR PLUS</h1>
             </div>
-
-
-        <div class= "main-container1">
-            <h2>Choose Option</h2>
-            <div class="center-container">
-
-                <a href="posReceipt.php">
-                <p>1. None</p>
-                </a>
-
-                <a href="posLakingNational.php">
-                <p>2. Laking National Card</p>
-                </a>
-
-                <a href="posLNQR.php">
-                <p>3. LNQR / LNQR PLUS </p>
-                </a>
-            </div>
-
-        </div>
-   
-        <div class="bottom-payment">
             
         </div>
+
+        <div class="lnqr">
+    <p>Scan Customer QR&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p>
+    <input type="text" name="" id="qr-input">
+</div>
+
+<div class="bottom-payment3">
+    <a href="" id="ok-button">
+        <div class="bottom-buttons">
+            <h3>OK</h3>
+        </div>
+    </a>
+
+    <a href="posResultDecoy.php">
+        <div class="bottom-buttons">
+            <h3>CANCEL</h3>
+        </div>
+    </a>
+</div>
+
 
 <script src="js/main.js"></script>
 </body>

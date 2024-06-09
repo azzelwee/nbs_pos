@@ -91,3 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
         noProductTrigger.parentNode.removeChild(noProductTrigger);
     }
 });
+
+
+// lnqr
+document.getElementById('ok-button').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    
+    var inputElement = document.getElementById('qr-input');
+    var newParagraph = document.createElement('p');
+    newParagraph.textContent = 'Below the input field';
+    
+    // Insert the new paragraph after the input element
+    inputElement.parentNode.insertBefore(newParagraph, inputElement.nextSibling);
+});
+
+
+
+//end lnqr
