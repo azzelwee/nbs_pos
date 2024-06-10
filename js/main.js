@@ -92,19 +92,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+let currentIndex = -1;
+const rows = document.querySelectorAll(".products tbody tr");
 
-// lnqr
-document.getElementById('ok-button').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default anchor behavior
-    
-    var inputElement = document.getElementById('qr-input');
-    var newParagraph = document.createElement('p');
-    newParagraph.textContent = 'Below the input field';
-    
-    // Insert the new paragraph after the input element
-    inputElement.parentNode.insertBefore(newParagraph, inputElement.nextSibling);
+// Automatically highlight the first row if it exists
+if (rows.length > 0) {
+    currentIndex = 0;
+    rows[currentIndex].classList.add("row-highlight");
+}
+
+document.getElementById("box2").addEventListener("click", () => {
+    if (currentIndex < rows.length - 1) {
+        if (currentIndex >= 0) {
+            rows[currentIndex].classList.remove("row-highlight");
+        }
+        currentIndex++;
+        rows[currentIndex].classList.add("row-highlight");
+    }
 });
 
-
-
-//end lnqr
+document.getElementById("box1").addEventListener("click", () => {
+    if (currentIndex > 0) {
+        rows[currentIndex].classList.remove("row-highlight");
+        currentIndex--;
+        rows[currentIndex].classList.add("row-highlight");
+    }
+});

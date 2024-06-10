@@ -1,14 +1,11 @@
 <?php
-// PHP code to handle quantity input
+
 if (!isset($_SESSION)) {
     session_start();
 }
 
 include_once("connections/connection.php");
 $con = connection();
-
-
-// Fetch new search results
 $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 
@@ -23,13 +20,6 @@ if (!empty($_SESSION['search_results'])) {
 
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 ?>
-
-<!-- Only add the trigger if no new search results were found -->
-<?php if (empty($results)): ?>
-    <span id="no-product-popup-trigger"></span>
-<?php endif; ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -182,13 +172,13 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 </div>
 
                 <div class="grays">
-                    <div class="box">
-                        <img src="img/green-triangle-up.png">
+                    <div class="box" id="box1">
+                        <img src="img/green-triangle-up.png" alt="Up">
                         <p>F11</p>
                     </div>
 
-                    <div class="box">
-                        <img src="img/green-triangle-down.png">
+                    <div class="box" id="box2">
+                        <img src="img/green-triangle-down.png" alt="Down">
                         <p>F12</p>
                     </div>
 
@@ -281,14 +271,6 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         </tbody>
     </table>
     
-    <div id="popup-overlay-custom" class="popup-overlay-custom">
-        <div class="popup-content-custom">
-            <p>Item[] Not Found!</p>
-            <button onclick="closePopup()">OK</button>
-        </div>
-    </div>
-</div>
-
     
     <div class="bottom">
         <div class="bottom-1">

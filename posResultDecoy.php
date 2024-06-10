@@ -136,15 +136,16 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 </div>
 
                 <div class="grays">
-                    <div class="box">
-                        <img src="img/green-triangle-up.png">
+                    <div class="box" id="box1">
+                        <img src="img/green-triangle-up.png" alt="Up">
                         <p>F11</p>
                     </div>
 
-                    <div class="box">
-                        <img src="img/green-triangle-down.png">
+                    <div class="box" id="box2">
+                        <img src="img/green-triangle-down.png" alt="Down">
                         <p>F12</p>
                     </div>
+
 
                     <div class="box">
                         <p>CSA</br>
@@ -154,10 +155,11 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
 
                     <a href="posLookup.php">
                         <div class="box">
-                            <p style="color: black;">Lookup</br></p>
-                            <p> <span class="highlight">F2</span></p>
-                        </a>
+                        <p style="color: black;">Lookup</br></p>
+                        <p> <span class="highlight">F2</span></p>
+                    </a>
                         </div>
+
                 </div>
 
             </div>  

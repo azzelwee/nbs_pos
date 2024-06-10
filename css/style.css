@@ -711,6 +711,10 @@ a{
     margin-bottom: 10px;
 }
 
+.row-highlight {
+    background-color: rgb(148, 192, 82);
+    color: white;
+}
 
 .message-warning{
     font-weight: bold;
@@ -741,8 +745,10 @@ table {
 
 
 td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    color: red;
+    font-weight: bold;
+    border: 1.5px solid #b8b8b8;
+    padding: 6px;
     text-align: left;
 }
 
