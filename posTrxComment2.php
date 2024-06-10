@@ -86,29 +86,25 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>MANAGER OVERRIDE</h2>
-            <div class="center-container4">
+            <h2>TRANSACTION COMMENT</h2>
+            <div class="center-container6">
             <form action="" method="post" id="">
-            
-            <p>Sorry, you dont have permission to do this
-            </br>operation. Please perform Manager Override.
-            </p>
 
-            <div class="form-element">
-                    <label>UserName</label>
-                    <input type="username" name="username" id="username">
-                </div>
+            <div class="nonmerchant1">
+            </br>
+                <p>Enter Comment.</p>
+                    <input type="text">
+                    <input type="text">
+                    <input type="text">
+                    
+                </div>     
+                    <button type="submit" name="login" class="btn-ok5">Ok</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posNextOption.php';">Cancel</button>
 
-                <div class="form-element">
-                    <label>Password</label>
-                    <input type="password" name="password" id="password">
-                </div>
-      
-                    <button type="submit" name="" class="btn-ok5">Yes</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
-       
+                <option></option>
+                </select>            
             </form>
-            </div>
+        </div>
     </div>
    
         <div class="bottom-payment">

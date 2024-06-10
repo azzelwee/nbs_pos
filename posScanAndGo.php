@@ -82,43 +82,30 @@ $row = $product->fetch_assoc();
     <div class="outer-container">
         <div class="container">
             <div class="column-1xz">
+                <h1>Scan and Go Scanning QR</h1>
             </div>
-
-
-        <div class= "main-container1">
-            <h2>NON-MERCHANDISE</h2>
-            <div class="center-container5">
-            <form action="" method="post" id="">
-
-            <div class="nonmerchant">
-            </br>
-                <p>Select Charge</p>
-                    <select id="" name="">
-                        <option value="">SODEXHO VARIANCE</option>
-                        <option value="">RETURN / EXCHANGE VARIANCE</option>
-                        <option value="">PASABUY VOUCHER VARIANCE</option>
-                        <option value="">NBSFI DONATION</option>
-                        <option value="">COUPON VARIANCE</option>
-                        <option value="">LNQR PLUS FEE P500</option>
-                        <option value="">ILLY SERVICE CHARGE</option>
-                    </select>
-
-                <p>Enter Price</p>
-                    <input type="text">
-                </div>
-      
-                    <button type="submit" name="login" class="btn-ok5">Ok</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
-
-                <option></option>
-                </select>            
-            </form>
-        </div>
-    </div>
-   
-        <div class="bottom-payment">
             
         </div>
+
+        <div class="lnqr">
+    <p>Scan Customer QR&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</p>
+    <input type="text" name="" id="qr-input">
+</div>
+
+<div class="bottom-payment3">
+    <a href="" id="ok-button">
+        <div class="bottom-buttons">
+            <h3>OK</h3>
+        </div>
+    </a>
+
+    <a href="posMain.php">
+        <div class="bottom-buttons">
+            <h3>CANCEL</h3>
+        </div>
+    </a>
+</div>
+
 
 <script src="js/main.js"></script>
 </body>

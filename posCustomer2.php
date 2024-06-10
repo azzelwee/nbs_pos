@@ -86,29 +86,20 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>NON-MERCHANDISE</h2>
-            <div class="center-container5">
+            <h2>CUSTOMER INFORMATION</h2>
+            <div class="center-container6">
             <form action="" method="post" id="">
 
-            <div class="nonmerchant">
+            <div class="nonmerchant3">
             </br>
-                <p>Select Charge</p>
-                    <select id="" name="">
-                        <option value="">SODEXHO VARIANCE</option>
-                        <option value="">RETURN / EXCHANGE VARIANCE</option>
-                        <option value="">PASABUY VOUCHER VARIANCE</option>
-                        <option value="">NBSFI DONATION</option>
-                        <option value="">COUPON VARIANCE</option>
-                        <option value="">LNQR PLUS FEE P500</option>
-                        <option value="">ILLY SERVICE CHARGE</option>
-                    </select>
-
-                <p>Enter Price</p>
+                <p>Please swipe the customer's card.</p>
                     <input type="text">
+                    
                 </div>
+            </br>
       
-                    <button type="submit" name="login" class="btn-ok5">Ok</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
+                    <button type="submit" name="login" class="btn-ok5">Yes</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
 
                 <option></option>
                 </select>            

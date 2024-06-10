@@ -96,42 +96,59 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <div class="e">
     <div class="column-3z">
             <div class="reds">
-                <div class="button-adjust" style="background-color: red; color: white;">
-                <p>Cash</br>Count</p>
+
+                <a href="posTrxComment.php">
+                <div class="button-adjust">
+                <p>Trx</br>Comment</p>
                 <p><span class="popup-highlight">F3</span></p>
                 </div>
-                <div class="button-adjust" style="background-color: red; color: white;">
-                <p>Trx</br>Journal</p>
+                </a>
+
+
+                <a href="posNonSales.php">
+                <div class="button-adjust">
+                <p>Non</br>Sales</p>
                 <p><span class="popup-highlight">F4</span></p>
                 </div>
+                </a>
 
-                <a href="posLastOption2.php">
-                    <div class="button-adjust">
-                    <p>Next</br>Option</p>
-                    <p><span class="popup-highlight">F5</span></p>
-                    </div>
+                <a href="posCustomer.php">
+                <div class="button-adjust">
+                <p>Customer</p>
+                <p><span class="popup-highlight">F5</span></p>
+                </div>
                 </a>
 
                 <div class="button-adjust"  style="background-color: red; color: white;">
-                <p>Sales</br>Journal</p>
+                <p>Store</br>Opening</p>
                 <p><span class="popup-highlight">F6</span></p>
                 </div>
-                <div class="button-adjust"  style="background-color: red; color: white;">
-                <p>Scan</br>and Go</p>
+
+                <a href="posZeroRated.php">
+                <div class="button-adjust">
+                <p>Zero</br>Rated</p>
                 <p><span class="popup-highlight">F7</span></p>
                 </div>
-                <div class="button-adjust"  style="background-color: red; color: white;">
-                <p>Cashier</br>Reading</p>
+                </a>
+
+                <a href="posReturn.php">
+                <div class="button-adjust">
+                <p>Return</p>
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
+                </a>
+
                 <div class="button-adjust"  style="background-color: red; color: white;">
-                <p>Terminal</br>Reading</p>
+                <p>Reserved</br>Trx</p>
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
-                <div class="button-adjust"  style="background-color: red; color: white;">
-                <p>SDV</p>
+
+                <a href="posRefund.php">
+                <div class="button-adjust">
+                <p>Refund</p>
                 <p><span class="popup-highlight">F10</span></p>
                 </div>
+                </a>
 
             </div>
         </div>
@@ -181,8 +198,8 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                         <p> <span class="highlight">F1</span></p>
                     </div>
 
-                    <div class="box" style="background-color: red; color: white;">
-                        <p>Post</br>Void</p>
+                    <div class="box">
+                        <p>BONUS</br>BUY</p>
                         <p> <span class="highlight">F2</span></p>
                     </div>
                 </div>

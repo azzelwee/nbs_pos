@@ -86,29 +86,31 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>NON-MERCHANDISE</h2>
-            <div class="center-container5">
+            <h2>Item Return</h2>
+            <div class="center-container6">
             <form action="" method="post" id="">
 
-            <div class="nonmerchant">
-            </br>
+            <div class="nonmerchant1">
                 <p>Select Charge</p>
                     <select id="" name="">
-                        <option value="">SODEXHO VARIANCE</option>
-                        <option value="">RETURN / EXCHANGE VARIANCE</option>
-                        <option value="">PASABUY VOUCHER VARIANCE</option>
-                        <option value="">NBSFI DONATION</option>
-                        <option value="">COUPON VARIANCE</option>
-                        <option value="">LNQR PLUS FEE P500</option>
-                        <option value="">ILLY SERVICE CHARGE</option>
+                        <option value="">--SELECT--</option>
+                        <option value="">DOWN PAYMENT--</option>
+                        <option value="">E-GIFT CARD RELOADING</option>
+                        <option value="">E-GIFT CARD PURCHASED</option>
+                        <option value="">NBS GIFT CERTIFICATE P100</option>
+                        <option value="">NBS GIFT CERTIFICATE P50</option>
+                        <option value="">NBS GIFT CERTIFICATE P500</option>
                     </select>
-
-                <p>Enter Price</p>
-                    <input type="text">
+            </br></br>
+                    <p>Enter Price</p>
+                <input type="text">
+                    
                 </div>
+            </br>
+                
       
-                    <button type="submit" name="login" class="btn-ok5">Ok</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
+                    <button type="submit" name="login" class="btn-ok1">Ok</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel1" onclick="window.location.href = 'posMain.php';">Cancel</button>
 
                 <option></option>
                 </select>            

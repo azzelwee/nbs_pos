@@ -21,9 +21,6 @@ $row = $product->fetch_assoc();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<a href="logout.php" class="logout">
-        Logout
-    </a>
 <div class="whole-container">
 
     <div class="form-logo">
@@ -86,32 +83,18 @@ $row = $product->fetch_assoc();
 
 
         <div class= "main-container1">
-            <h2>NON-MERCHANDISE</h2>
+            <h2>LOGOUT</h2>
             <div class="center-container5">
             <form action="" method="post" id="">
 
-            <div class="nonmerchant">
-            </br>
-                <p>Select Charge</p>
-                    <select id="" name="">
-                        <option value="">SODEXHO VARIANCE</option>
-                        <option value="">RETURN / EXCHANGE VARIANCE</option>
-                        <option value="">PASABUY VOUCHER VARIANCE</option>
-                        <option value="">NBSFI DONATION</option>
-                        <option value="">COUPON VARIANCE</option>
-                        <option value="">LNQR PLUS FEE P500</option>
-                        <option value="">ILLY SERVICE CHARGE</option>
-                    </select>
-
-                <p>Enter Price</p>
-                    <input type="text">
+            <div class="nonmerchant4">
+                    <p>Are you sure you
+                    </br> want to LOGOUT?</p>
                 </div>
       
-                    <button type="submit" name="login" class="btn-ok5">Ok</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
-
-                <option></option>
-                </select>            
+                    <button type="button" name="login" class="btn-ok6" onclick="window.location.href = 'logout.php';">Yes</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel6" onclick="window.location.href = 'posMain.php';">No</button>
+           
             </form>
         </div>
     </div>

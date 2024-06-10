@@ -39,12 +39,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="note-info">
-    Note:
-    </br>
-    The range of UPC scan on DB is 1-30. </br>
-    Test scan only.
-</div>
+
 <a href="logout.php" class="logout">
         Logout
     </a>
@@ -105,30 +100,60 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p>Cash</br>Count</p>
                 <p><span class="popup-highlight">F3</span></p>
                 </div>
+
+                <a href="posTrxJournal.php">
                 <div class="button-adjust">
                 <p>Trx</br>Journal</p>
                 <p><span class="popup-highlight">F4</span></p>
                 </div>
+            </a>
+
+                <a href="posLastOption.php">
                 <div class="button-adjust">
                 <p>Next</br>Option</p>
                 <p><span class="popup-highlight">F5</span></p>
                 </div>
+                </a>
+
+                <a href="posSalesJournal.php">
                 <div class="button-adjust">
                 <p>Sales</br>Journal</p>
                 <p><span class="popup-highlight">F6</span></p>
                 </div>
+                </a>
+
+                <a href="posScanAndGo.php">
                 <div class="button-adjust">
                 <p>Scan</br>and Go</p>
                 <p><span class="popup-highlight">F7</span></p>
                 </div>
+                </a>
+
+                <a href="posCashierReading.php">
                 <div class="button-adjust">
                 <p>Cashier</br>Reading</p>
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
+                </a>
+
+                <a href="" id="popupButton">
                 <div class="button-adjust">
                 <p>Terminal</br>Reading</p>
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
+                </a>
+
+                        <div id="popup" class="popup">
+                        <div class="popup-content">
+                            <span class="close">&times;</span>
+                             </br>
+                            <p style="font-size: 18px;">Please Perform SDV.</p>
+                            <div class="popup-buttons">
+                                <button id="cancelButton">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                
                 <div class="button-adjust">
                 <p>SDV</p>
                 <p><span class="popup-highlight">F10</span></p>
@@ -182,9 +207,11 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                         <p> <span class="highlight">F1</span></p>
                     </div>
 
+                    <a href="postVoid.php">
                     <div class="box">
                         <p>Post</br>Void</p>
                         <p> <span class="highlight">F2</span></p>
+                        </a>
                     </div>
                 </div>
 

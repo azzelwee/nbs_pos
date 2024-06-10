@@ -99,7 +99,7 @@ $row = $product->fetch_assoc();
             </br>
       
                     <button type="submit" name="login" class="btn-ok5">Yes</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posMain.php';">No</button>
 
                 <option></option>
                 </select>            

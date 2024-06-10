@@ -39,12 +39,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="note-info">
-    Note:
-    </br>
-    The range of UPC scan on DB is 1-30. </br>
-    Test scan only.
-</div>
+
 <a href="logout.php" class="logout">
         Logout
     </a>
@@ -114,7 +109,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p><span class="popup-highlight">F4</span></p>
                 </div>
 
-                <a href="posCustomer.php">
+                <a href="posCustomer2.php">
                 <div class="button-adjust">
                 <p>Customer</p>
                 <p><span class="popup-highlight">F5</span></p>
@@ -130,7 +125,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p><span class="popup-highlight">F7</span></p>
                 </div>
 
-                <a href="posItemReturn.php">
+                <a href="posReturn2.php">
                 <div class="button-adjust">
                 <p>Return</p>
                 <p><span class="popup-highlight">F8</span></p>
@@ -142,7 +137,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
 
-                <a href="posRefund.php">
+                <a href="posRefund2.php">
                 <div class="button-adjust">
                 <p>Refund</p>
                 <p><span class="popup-highlight">F10</span></p>

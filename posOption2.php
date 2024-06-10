@@ -39,12 +39,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="note-info">
-    Note:
-    </br>
-    The range of UPC scan on DB is 1-30. </br>
-    Test scan only.
-</div>
+
 <a href="logout.php" class="logout">
         Logout
     </a>
@@ -182,13 +177,13 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 </div>
 
                 <div class="grays">
-                    <div class="box">
-                        <img src="img/green-triangle-up.png">
+                    <div class="box" id="box1">
+                        <img src="img/green-triangle-up.png" alt="Up">
                         <p>F11</p>
                     </div>
 
-                    <div class="box">
-                        <img src="img/green-triangle-down.png">
+                    <div class="box" id="box2">
+                        <img src="img/green-triangle-down.png" alt="Down">
                         <p>F12</p>
                     </div>
 
@@ -247,8 +242,8 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     </div>
 
     
-    <div class="scrollable-table-container">
-    <table class="products">
+    <div class="scrollable-table-container2">
+    <table class="products2">
         <thead>
             <tr>
                 <th>LN</th>

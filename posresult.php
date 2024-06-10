@@ -12,7 +12,7 @@ $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
 $search = $_GET['search'];
 
 // Fetch new search results
-$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln DESC";
+$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln ASC";
 $product = $con->query($sql) or die($con->error);
 $results = $product->fetch_all(MYSQLI_ASSOC);
 
@@ -71,7 +71,6 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     </div>
 
     <?php include 'header.php'; ?>
-
     <div class="e">
     <div class="column-3">
             <div class="reds">
@@ -97,7 +96,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     </div>
                 </a>
 
-                <a href="posNonMdse.php">
+                <a href="posNonMdse2.php">
                     <div class="button">
                     <p>Non Mdse</p>
                     <p> <span class="highlight">F6</span></p>
@@ -160,15 +159,15 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 </div>
 
                 <div class="grays">
-                <div class="box" id="box1">
-                    <img src="img/green-triangle-up.png" alt="Up">
-                    <p>F11</p>
-                </div>
+                    <div class="box" id="box1">
+                        <img src="img/green-triangle-up.png" alt="Up">
+                        <p>F11</p>
+                    </div>
 
-                <div class="box" id="box2">
-                    <img src="img/green-triangle-down.png" alt="Down">
-                    <p>F12</p>
-                </div>
+                    <div class="box" id="box2">
+                        <img src="img/green-triangle-down.png" alt="Down">
+                        <p>F12</p>
+                    </div>
 
                     <div class="box">
                         <p>CSA</br>

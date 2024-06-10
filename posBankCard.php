@@ -83,51 +83,35 @@ $row = $product->fetch_assoc();
     <div class="e">
     <div class="column-3z">
             <div class="reds">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Help</p>
                 <p>F1</p>
                 </div>
-
-                <div class="button-adjust" style="background-color: #fff36b; color: black;">
+                <div class="button-adjust" style="background-color: red; color: black;">
                 <p>Cash</p>
                 <p>F2</p>
                 </div>
-
-                <a href="posBankCard.php">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: #fff36b; color: black;">
                 <p>Bank Card</p>
                 <p>F3</p>
-
                 </div>
-                </a>
-
                 <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Check</p>
                 <p>F4</p>
                 </div>
-
-                <a href="posGiftCert.php">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Gift Cert.</p>
                 <p>F5</p>
-                
                 </div>
-                </a>
-
-                <a href="posCoupon.php">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Coupon</p>
                 <p>F6</p>
-                
                 </div>
-                </a>
-
                 <div class="button-adjust" style="background-color: red; color: white;">
                 <p>E-Purse</p>
                 <p>F7</p>
                 </div>
-                
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Credit</p>
                 <p>Memo</p>
                 <p>F8</span></p>
@@ -184,13 +168,69 @@ $row = $product->fetch_assoc();
 
         </div>
         <div class="payment-details">
-            <p>Cash Payment Details</p>
+            <p>Card Payment Details</p>
         </div>
 
-        <div class="try">
-            <p>Enter Amount:</p>
+        <div class="try3">
+            <p>Please Select Card Type</p>
             <form action="posReceiptFinal.php" method="get">
-                 <input type="text" name="amount" id="amount" placeholder="0.00">  
+                 <select name="" id="">
+                    <option value="">-SELECT-</option>
+                    <option value="">CREDIT CARD</option>
+                    <option value="">SODEXHO</option>
+                    <option value="">SWEEP</option>
+                    <option value="">DEPOSIT</option>
+                    <option value="">TAX WITHHELD</option>
+                    <option value="">ATOME</option>
+                    <option value="">Globe Rewards</option>
+                    <option value="">GCASH</option>
+                    <option value="">LNQR Sulit Coins</option>
+                    <option value="">SM Online Pickup BDO EPS</option>
+                    <option value="">SM Online Pickup GCASH</option>
+                    <option value="">PICKAROO PAYMENT</option>
+                    <option value="">PAYMAYA</option>
+                    <option value="">SM Online Pickup PAYMAYA</option>
+                    <option value="">REBATE-Teacher Incentive</option>
+                    <option value="">SM Online Pickup BDO</option>
+                    <option value="">Sodexho Mobile App</option>
+                    <option value="">SM Online Pickup CASH</option>
+                    <option value="">SM Online Delivery</option>
+                    <option value="">Shopee Pay</option>
+                    <option value="">Customer QR Code-eWallet</option>
+                    <option value="">ZINGMALL</option>
+                    <option value="">BDO Discount Promo</option>
+                    <option value="">PREORDER BTS PH VOUCHER</option>
+                    <option value="">BTS Sorpresa Promo Voucher</option>
+                    <option value="">PREORDER BTS US VOUCHER</option>
+                    <option value="">SM CO-FUNDED PROMO</option>
+                    <option value="">SM 50% OFF PROMO ONLINE</option>
+                    <option value="">GCASH BTS PROMO</option>
+                    <option value="">GCASH Discount Promo</option>
+                    <option value="">Pagibig Disc Promo</option>
+                    <option value="">SM 50% OFF IN-STORE VOUCHER</option>
+                    <option value="">JCB Discount Promo</option>
+                    <option value="">MAYA Disc Promo</option>
+                    <option value="">SM ONLINE DISC PROMO</option>
+                    <option value="">Promo Shopee DiscP15</option>
+                    <option value="">Promo Shopee DiscP10</option>
+                    <option value="">Shopee P20 Voucher</option>
+                    <option value="">PLENTINA VOUCHER</option>
+                    <option value="">PAYMAYA Discount Promo</option>
+                    <option value="">Pick a Prize Voucher</option>
+                    <option value="">PHILSYS ID Voucher</option>
+                    <option value="">PASABUY Voucher</option>
+                    <option value="">PEZA Discount Promo</option>
+                    <option value="">Shopee P50 Voucher</option>
+                    <option value="">SM Online Evoucher Promo</option>
+                    <option value="">SM 50% OFF SUPPLIES</option>
+                    <option value="">SM 10% OFF BOOKS</option>
+                    <option value="">SM PROMO P222 VOUCHER</option>
+                    <option value="">NBS SURF PROMO P25</option>
+                    <option value="">NBS SURF PROMO P50</option>
+                    <option value="">UNIQLO DISCOUNT PROMO</option>
+                    <option value="">Vaccine Promo Voucher</option>
+
+                 </select> 
         </div>
     </div>
 

@@ -128,6 +128,30 @@ body {
     height: 30px;
 }
 
+.nonmerchant1{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
+}
+
+
+.nonmerchant1 input,
+.nonmerchant1 select{
+    text-align: center;
+    width: 30%;
+    height: 30px;
+}
+
+.nonmerchant1 p{
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
 .nonmerchant2{
     margin-top: 80px;
     display: flex;
@@ -174,6 +198,24 @@ body {
     color: rgb(61, 61, 61);
 }
 
+.nonmerchant4{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
+}
+
+
+.nonmerchant4 p{
+    margin-top: 60px;
+    margin-right: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
 .nonmerchant1{
     margin-top: 22px;
     display: flex;
@@ -184,7 +226,7 @@ body {
 }
 
 
-.nonmerchant1 input,
+/* .nonmerchant1 input,
 .nonmerchant1 select{
     width: 80%;
     height: 30px;
@@ -195,7 +237,7 @@ body {
     font-size: 22px;
     font-weight: bold;
     color: rgb(61, 61, 61);
-}
+} */
 
 
 .center-container6{
@@ -310,6 +352,30 @@ body {
     color: black
 }
 
+.btn-ok1 {
+    font-weight: bold;
+    margin-top: 48px;
+    background-color: gray;
+    font-size: 24px;
+    width: 49%;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    color: black
+}
+
+.btn-cancel1 {
+    font-weight: bold;
+    margin-top: 48px;
+    background-color: gray;
+    font-size: 24px;
+    width: 50%;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    color: black
+}
+
 .btn-ok5 {
     font-weight: bold;
     margin-top: 50px;
@@ -333,6 +399,31 @@ body {
     cursor: pointer;
     color: black
 }
+
+.btn-ok6 {
+    font-weight: bold;
+    margin-top: 88px;
+    background-color: gray;
+    font-size: 24px;
+    width: 49%;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    color: black
+}
+
+.btn-cancel6 {
+    font-weight: bold;
+    margin-top: 88px;
+    background-color: gray;
+    font-size: 24px;
+    width: 50%;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    color: black
+}
+
 
 
 .main-container1 h2{
@@ -569,7 +660,13 @@ a{
 }
 
 .grays a{
+    color: black;
     text-decoration: none;
+}
+
+.grays a:hover{
+    background-color: rgb(56, 146, 237);
+    color: white;
 }
 
 .box:hover{
@@ -714,6 +811,10 @@ a{
 .row-highlight {
     background-color: rgb(148, 192, 82);
     color: white;
+}
+
+.rows-highlight {
+    background-color: rgb(148, 192, 82);
 }
 
 .message-warning{
@@ -1130,6 +1231,29 @@ th {
     background-color: darkgray;
 }
 
+.try3{
+    align-content: center;
+    text-align: center;
+    height: 250px;
+    width: auto;
+    background-color: darkgray;
+}
+
+.try3 select{
+    font-size: 18px;
+    text-align: center;
+    width: 50%;
+    height: 40px;
+    margin-right: 80px;
+}
+
+.try3 p{
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 90px;
+}
+
+
 .try2{
 
     text-align: center;
@@ -1165,8 +1289,21 @@ th {
     border: 1px solid #ccc; /* Optional: add a border for better visibility */
 }
 
+.scrollable-table-container2 {
+    max-width: 1094px;
+    max-height: 415px; /* Set the maximum height for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: add a border for better visibility */
+}
+
+
 .products {
     width: 100%;
+    border-collapse: collapse;
+}
+
+.products2 {
+    max-width: 977.5px;
     border-collapse: collapse;
 }
 
@@ -1432,3 +1569,4 @@ th {
     margin-bottom: 20px;
 }
 
+/*  */

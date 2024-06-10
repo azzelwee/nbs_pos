@@ -83,51 +83,35 @@ $row = $product->fetch_assoc();
     <div class="e">
     <div class="column-3z">
             <div class="reds">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Help</p>
                 <p>F1</p>
                 </div>
-
-                <div class="button-adjust" style="background-color: #fff36b; color: black;">
+                <div class="button-adjust" style="background-color: red; color: black;">
                 <p>Cash</p>
                 <p>F2</p>
                 </div>
-
-                <a href="posBankCard.php">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Bank Card</p>
                 <p>F3</p>
-
                 </div>
-                </a>
-
                 <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Check</p>
                 <p>F4</p>
                 </div>
-
-                <a href="posGiftCert.php">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Gift Cert.</p>
                 <p>F5</p>
-                
                 </div>
-                </a>
-
-                <a href="posCoupon.php">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: #fff36b; color: black;">
                 <p>Coupon</p>
                 <p>F6</p>
-                
                 </div>
-                </a>
-
                 <div class="button-adjust" style="background-color: red; color: white;">
                 <p>E-Purse</p>
                 <p>F7</p>
                 </div>
-                
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Credit</p>
                 <p>Memo</p>
                 <p>F8</span></p>
@@ -184,13 +168,18 @@ $row = $product->fetch_assoc();
 
         </div>
         <div class="payment-details">
-            <p>Cash Payment Details</p>
+            <p>Coupon Payment Details</p>
         </div>
 
-        <div class="try">
-            <p>Enter Amount:</p>
+        <div class="try3">
+            <p>Please select type</p>
             <form action="posReceiptFinal.php" method="get">
-                 <input type="text" name="amount" id="amount" placeholder="0.00">  
+                 <select name="" id="">
+                    <option value="">-SELECT-</option>
+                    <option value="">Without Series</option>
+                    <option value="">With Series</option>
+                    <option value="">Specialty Store GC</option>
+                 </select> 
         </div>
     </div>
 

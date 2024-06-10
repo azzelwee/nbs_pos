@@ -72,6 +72,7 @@ okButton.addEventListener('click', function() {
     popup.style.display = 'none';
 });
 
+
 // No Product Found
 function showNoProductPopup() {
     const popupOverlay = document.getElementById('popup-overlay-custom');
@@ -118,3 +119,38 @@ document.getElementById("box1").addEventListener("click", () => {
         rows[currentIndex].classList.add("row-highlight");
     }
 });
+
+function highlightUp() {
+    let table = document.getElementById('myTable');
+    let rows = table.getElementsByTagName('tr');
+    let highlightedRow = table.querySelector('.rows-highlight');
+    if (highlightedRow) {
+        highlightedRow.classList.remove('rows-highlight');
+        if (highlightedRow.previousElementSibling) {
+            highlightedRow.previousElementSibling.classList.add('rows-highlight');
+        } else {
+            rows[rows.length - 1].classList.add('rows-highlight'); // Wrap to the last row
+        }
+    } else {
+        rows[1].classList.add('rows-highlight');
+    }
+}
+
+function highlightDown() {
+    let table = document.getElementById('myTable');
+    let rows = table.getElementsByTagName('tr');
+    let highlightedRow = table.querySelector('.rows-highlight');
+    if (highlightedRow) {
+        highlightedRow.classList.remove('rows-highlight');
+        if (highlightedRow.nextElementSibling) {
+            highlightedRow.nextElementSibling.classList.add('rows-highlight');
+        } else {
+            rows[1].classList.add('rows-highlight'); // Wrap to the first row
+        }
+    } else {
+        rows[1].classList.add('rows-highlight');
+    }
+}
+
+
+// Terminal Reading Popup

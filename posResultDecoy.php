@@ -64,21 +64,21 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     </div>
                 </a>
 
-                <a href="posOption.php">
+                <a href="posOption2.php">
                     <div class="button">
                     <p>Option</p>
                     <p> <span class="highlight">F5</span></p>
                     </div>
                 </a>
 
-                <a href="posNonMdse.php">
+                <a href="posNonMdse2.php">
                     <div class="button">
                     <p>Non Mdse</p>
                     <p> <span class="highlight">F6</span></p>
                     </div>
                 </a>
 
-                <a href="posItemVoid.php">
+                <a href="posItemVoid2.php">
                     <div class="button">
                     <p>Item Void</p>
                     <p> <span class="highlight">F7</span></p>
@@ -86,7 +86,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 </a>
 
                
-                <a href="posTrxVoid.php">
+                <a href="posTrxVoid2.php">
                 <div class="button">
                 <p>Trx Void</p>
                 <p> <span class="highlight">F8</span></p>
@@ -94,7 +94,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 </a>
 
 
-                <a href="posSuspend.php">
+                <a href="posSuspend2.php">
                     <div class="button">
                     <p>Suspend</p>
                     <p> <span class="highlight">F9</span></p>

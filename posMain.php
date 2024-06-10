@@ -28,11 +28,6 @@ $row = $product->fetch_assoc();
     The range of UPC scan on DB is 1-30. </br>
     Test scan only.
 </div>
-
-    <a href="logout.php" class="logout">
-        Logout
-    </a>
-
 <div class="whole-container">
 
     <div class="form-logo">
@@ -75,7 +70,7 @@ $row = $product->fetch_assoc();
                     </div>
                 </a>
 
-                <a href="posNonMdse2.php">
+                <a href="posNonMdse.php">
                     <div class="button">
                     <p>Non Mdse</p>
                     <p> <span class="highlight">F6</span></p>
@@ -135,7 +130,7 @@ $row = $product->fetch_assoc();
 
                     <a href="posLookup2.php">
                         <div class="box">
-                            <p style="color: black;">Lookup</br></p>
+                            <p>Lookup</br></p>
                             <p> <span class="highlight">F2</span></p>
                         </a>
                         </div>

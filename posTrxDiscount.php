@@ -6,7 +6,7 @@ if(!isset($_SESSION)){
 
 include_once("connections/connection.php");
 $con = connection();
-$sql = "SELECT * FROM product_list";
+$sql = "SELECT * FROM trx_discount";
 $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
 
@@ -82,42 +82,64 @@ $row = $product->fetch_assoc();
     <div class="outer-container">
         <div class="container">
             <div class="column-1xz">
+                <h1>TRANSACTION DISCOUNT</h1>
             </div>
-
-
-        <div class= "main-container1">
-            <h2>NON-MERCHANDISE</h2>
-            <div class="center-container5">
-            <form action="" method="post" id="">
-
-            <div class="nonmerchant">
-            </br>
-                <p>Select Charge</p>
-                    <select id="" name="">
-                        <option value="">SODEXHO VARIANCE</option>
-                        <option value="">RETURN / EXCHANGE VARIANCE</option>
-                        <option value="">PASABUY VOUCHER VARIANCE</option>
-                        <option value="">NBSFI DONATION</option>
-                        <option value="">COUPON VARIANCE</option>
-                        <option value="">LNQR PLUS FEE P500</option>
-                        <option value="">ILLY SERVICE CHARGE</option>
-                    </select>
-
-                <p>Enter Price</p>
-                    <input type="text">
-                </div>
-      
-                    <button type="submit" name="login" class="btn-ok5">Ok</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
-
-                <option></option>
-                </select>            
-            </form>
         </div>
-    </div>
+
+        <div class="grays2">
+        <div class="box" onclick="highlightUp()">
+    <img src="img/green-triangle-up.png">
+    <p>F11</p>
+</div>
+
+<div class="box" onclick="highlightDown()">
+    <img src="img/green-triangle-down.png">
+    <p>F12</p>
+</div>
+                    <div class="box">
+                        <p>Help</p>
+                        <p>F2</p>
+                    </div>
+
+                        <div class="box">
+                            <p></p>
+                        </div>
+                    
+
+                        <div class="boxLook" style="width: 2100px;">
+                            <p>Select Discount Type:</p>
+                        </div>
+                   
+                </div>
+
+                <table id="myTable">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php 
+        if ($product->num_rows > 0) { 
+            do {
+    ?>
+        <tr>
+            <td style="text-align: center; color: black;"><?php echo $row['code'];?></td>
+            <td style="text-align: center; color: black;"><?php echo $row['description'];?></td>
+        </tr>
+    <?php 
+            } while($row = $product->fetch_assoc()); 
+        } else {
+            echo "<tr><td colspan='4'>No products found</td></tr>";
+        }
+    ?>
+    </tbody>
+</table>
    
-        <div class="bottom-payment">
+        <div class="bottom-payment2">
             
+
         </div>
 
 <script src="js/main.js"></script>
