@@ -229,21 +229,22 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         </thead>
         <tbody>
         <?php 
-        if (!empty($_SESSION['search_results'])) {
-            foreach ($_SESSION['search_results'] as $row) {
-        ?>
-            <tr data-ln="<?php echo $row['ln']; ?>">
-                <td class="centered"><?php echo $row['ln']; ?></td>
-                <td class="centered"><?php echo $row['upc']; ?></td>
-                <td><?php echo $row['item']; ?></td>
-                <td class="centered qty"><?php echo $row['qty']; ?></td>
-                <td class="centered"><?php echo $row['srp']; ?></td>
-                <td class="centered"><?php echo $row['amount']; ?></td>
-                <td class="centered"><?php echo $row['type']; ?></td>
-            </tr>
-        <?php 
-            }
-        } 
+            if (!empty($_SESSION['search_results'])) {
+                $counter = count($_SESSION['search_results']);
+                foreach (array_reverse($_SESSION['search_results']) as $row) {
+            ?>
+                <tr data-ln="<?php echo $row['ln']; ?>">
+                    <td class="centered"><?php echo $counter--; ?></td>
+                    <td class="centered"><?php echo $row['upc']; ?></td>
+                    <td><?php echo $row['item']; ?></td>
+                    <td class="centered qty"><?php echo $row['qty']; ?></td>
+                    <td class="centered"><?php echo $row['srp']; ?></td>
+                    <td class="centered"><?php echo $row['amount']; ?></td>
+                    <td class="centered"><?php echo $row['type']; ?></td>
+                </tr>
+            <?php 
+                }
+            } 
         ?>
         </tbody>
     </table>
