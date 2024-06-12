@@ -175,9 +175,17 @@ $_SESSION['remainingAmount'] = $remainingAmount;
                     </br>
                     <p style="color: red;">Change</p>
                     </div>
+                    <?php
+                // Check if the 'totalQty' cookie is set
+                if (isset($_COOKIE['totalQty'])) {
+                    $totalQty = $_COOKIE['totalQty'];
+                } else {
+                    $totalQty = 0; // Default value if the cookie is not set
+                }
+                ?>
             <div class="units">   
+                <p><?php echo $totalQty; ?></p>
             </div>
-
             <div class="sales">
             <p><?php echo $totalAmount = $_COOKIE['total_amount'];?></p>
             </div>

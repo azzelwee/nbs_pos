@@ -18,6 +18,15 @@ if (!empty($_SESSION['search_results'])) {
     }
 }
 
+$totalQty = 0;
+
+if (!empty($_SESSION['search_results'])) {
+    foreach ($_SESSION['search_results'] as $row) {
+        $totalQty += $row['qty'];
+    }
+}
+
+setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 ?>
 
@@ -111,29 +120,29 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <div class="outer-container">
         <div class="container">
             <div class="column-1">
-                <div class="scan">
+            <div class="scan">
                 <div class="scan-element">
                     <label>Scan or Enter UPC</label>
                     <form action="posResult.php" method="get">
-                    <input type="text" name="search" id="search">  
-                    <input type="submit" name="submit" style="display: none">
-                    
-                    <div id="popup" class="popup">
-                        <div class="popup-content">
-                            <span class="close">&times;</span>
-                            <p>Please Enter Quantity</p>
-                            <input type="number" id="quantityInput">
-                        </div>
-                        <div class="popup-buttons">
-                            <button id="cancelButton">Cancel</button>
-                            <button id="okButton">OK</button>
-                        </div>
-                    </div>
-
+                        <input type="text" name="search" id="search">
+                        <input type="hidden" name="quantity" id="quantityHidden">
+                        <input type="submit" name="submit" style="display: none">
                     </form>
                 </div>
+            </div>
 
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close">&times;</span>
+                    <p>Please Enter Quantity</p>
+                    <input type="number" id="quantityInput">
                 </div>
+
+                <div class="popup-buttons">
+                    <button id="cancelButton">Cancel</button>
+                    <button id="okButton">OK</button>
+                </div>
+            </div>
 
                 <div class="grays">
                     <div class="box" id="box1">
@@ -194,12 +203,12 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
             <!-- Display total amount -->
                     <div class="price">
                     <?php
-                            if (isset($row['amount']) && !empty($row['amount'])) {
-                                echo $row['amount'];
-                            } else {
-                                echo '0.00';
-                            }
-                        ?>
+                    if (isset($row['amount']) && !empty($row['amount'])) {
+                        echo number_format($row['amount'], 2);
+                    } else {
+                        echo '0.00';
+                    }
+                    ?>
                 </div>
             </div>     
     </div>
@@ -243,7 +252,9 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <div class="bottom-1">
             <p>Total Qty</p>
                 <div class="bar1">
-                    
+                <?php
+                    echo $totalQty;
+                    ?>
                 </div>
 
         </div>

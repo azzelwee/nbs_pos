@@ -39,6 +39,7 @@ $row = $product->fetch_assoc();
     <div class="e">
     <div class="column-3">
             <div class="reds">
+
             <a href="#" id="popupButton">
                 <div class="popup-button">
                     <p>Quantity</p>
@@ -51,10 +52,11 @@ $row = $product->fetch_assoc();
                     <span class="close">&times;</span>
                     <p>Please Enter Quantity</p>
                     <input type="number" id="quantityInput">
-                    <div class="popup-buttons">
-                        <button id="cancelButton">Cancel</button>
-                        <button id="okButton">OK</button>
-                    </div>
+                </div>
+
+                <div class="popup-buttons">
+                    <button id="cancelButton">Cancel</button>
+                    <button id="okButton">OK</button>
                 </div>
             </div>
 
@@ -106,10 +108,11 @@ $row = $product->fetch_assoc();
                     <label>Scan or Enter UPC</label>
                     <form action="posResult.php" method="get">
                         <input type="text" name="search" id="search">
+                        <input type="hidden" name="quantity" id="quantityHidden">
+                        <input type="submit" name="submit" style="display: none">
                     </form>
                 </div>
             </div>
-
 
                 <div class="grays">
                     <div class="box">

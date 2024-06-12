@@ -8,7 +8,7 @@ include_once("connections/connection.php");
 $con = connection();
 
 // Fetch quantity input if specified, default to 1 if not provided
-$quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
+$quantity = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
 $search = $_GET['search'];
 
 // Fetch new search results
@@ -38,8 +38,20 @@ if (!empty($_SESSION['search_results'])) {
     }
 }
 
+$totalQty = 0;
+
+if (!empty($_SESSION['search_results'])) {
+    foreach ($_SESSION['search_results'] as $row) {
+        $totalQty += $row['qty'];
+    }
+}
+
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
+setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
+
 ?>
+
+
 
 <!-- Only add the trigger if no new search results were found -->
 <?php if (empty($results)): ?>
@@ -103,21 +115,21 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     </div>
                 </a>
 
-                <a href="posItemVoid.php">
+                <a href="posItemVoid2.php">
                     <div class="button">
                     <p>Item Void</p>
                     <p> <span class="highlight">F7</span></p>
                     </div>
                 </a>
 
-                <a href="posTrxVoid.php">
+                <a href="posTrxVoid2.php">
                     <div class="button">
                     <p>Trx Void</p>
                     <p> <span class="highlight">F8</span></p>
                     </div>
                 </a>
 
-                <a href="posSuspend.php">
+                <a href="posSuspend2.php">
                     <div class="button">
                     <p>Suspend</p>
                     <p> <span class="highlight">F9</span></p>
@@ -134,29 +146,30 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <div class="outer-container">
         <div class="container">
             <div class="column-1">
-                <div class="scan">
+
+            <div class="scan">
                 <div class="scan-element">
                     <label>Scan or Enter UPC</label>
                     <form action="posResult.php" method="get">
-                    <input type="text" name="search" id="search">  
-                    <input type="submit" name="submit" style="display: none">
-                    
-                    <div id="popup" class="popup">
-                        <div class="popup-content">
-                            <span class="close">&times;</span>
-                            <p>Please Enter Quantity</p>
-                            <input type="number" id="quantityInput">
-                        </div>
-                        <div class="popup-buttons">
-                            <button id="cancelButton">Cancel</button>
-                            <button id="okButton">OK</button>
-                        </div>
-                    </div>
-
+                        <input type="text" name="search" id="search">
+                        <input type="hidden" name="quantity" id="quantityHidden">
+                        <input type="submit" name="submit" style="display: none">
                     </form>
                 </div>
+            </div>
 
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close">&times;</span>
+                    <p>Please Enter Quantity</p>
+                    <input type="number" id="quantityInput">
                 </div>
+
+                <div class="popup-buttons">
+                    <button id="cancelButton">Cancel</button>
+                    <button id="okButton">OK</button>
+                </div>
+            </div>
 
                 <div class="grays">
                     <div class="box" id="box1">
@@ -214,14 +227,14 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     </div>
 
             <!-- Display total amount -->
-                    <div class="price">
+            <div class="price">
                     <?php
-                            if (isset($row['amount']) && !empty($row['amount'])) {
-                                echo $row['amount'];
-                            } else {
-                                echo '0.00';
-                            }
-                        ?>
+                    if (isset($row['amount']) && !empty($row['amount'])) {
+                        echo number_format($row['amount'], 2);
+                    } else {
+                        echo '0.00';
+                    }
+                    ?>
                 </div>
             </div>     
     </div>
@@ -243,7 +256,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <tbody>
         <?php 
         if (!empty($_SESSION['search_results'])) {
-            foreach ($_SESSION['search_results'] as $row) {
+            foreach (array_reverse($_SESSION['search_results']) as $row) {
         ?>
             <tr data-ln="<?php echo $row['ln']; ?>">
                 <td class="centered"><?php echo $row['ln']; ?></td>
@@ -260,6 +273,8 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         ?>
         </tbody>
     </table>
+</div>
+
     
     <div id="popup-overlay-custom" class="popup-overlay-custom">
         <div class="popup-content-custom">
@@ -274,7 +289,9 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <div class="bottom-1">
             <p>Total Qty</p>
                 <div class="bar1">
-                    
+                    <?php
+                    echo $totalQty;
+                    ?>
                 </div>
 
         </div>

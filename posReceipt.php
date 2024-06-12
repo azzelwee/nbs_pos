@@ -170,7 +170,17 @@ $row = $product->fetch_assoc();
                     </br>
                     <p>Tendered</p>
                     </div>
+
+                    <?php
+                // Check if the 'totalQty' cookie is set
+                if (isset($_COOKIE['totalQty'])) {
+                    $totalQty = $_COOKIE['totalQty'];
+                } else {
+                    $totalQty = 0; // Default value if the cookie is not set
+                }
+                ?>
             <div class="units">   
+                <p><?php echo $totalQty; ?></p>
             </div>
 
             <div class="sales">
@@ -178,6 +188,7 @@ $row = $product->fetch_assoc();
             </div>
                     
             <div class="tendered">   
+                <p>0.00</p>
             
 
             </div>

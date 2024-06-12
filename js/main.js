@@ -44,33 +44,46 @@ function submitForm() {
 // Call the submitForm function when the page loads
 window.onload = submitForm;
 
-// Get elements
-const popupButton = document.getElementById('popupButton');
-const popup = document.getElementById('popup');
-const closeBtn = document.querySelector('.close');
-const cancelButton = document.getElementById('cancelButton');
-const okButton = document.getElementById('okButton');
+document.addEventListener('DOMContentLoaded', (event) => {
+    var popupButton = document.getElementById('popupButton');
+    var popup = document.getElementById('popup');
+    var close = document.getElementsByClassName('close')[0];
+    var okButton = document.getElementById('okButton');
+    var cancelButton = document.getElementById('cancelButton');
+    var quantityInput = document.getElementById('quantityInput');
+    var quantityHidden = document.getElementById('quantityHidden');
+    var searchForm = document.querySelector('form[action="posResult.php"]');
 
-// Open the popup when the button is clicked
-popupButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    popup.style.display = 'block';
+    popupButton.onclick = function() {
+        popup.style.display = "block";
+    }
+
+    close.onclick = function() {
+        popup.style.display = "none";
+    }
+
+    cancelButton.onclick = function() {
+        popup.style.display = "none";
+    }
+
+    okButton.onclick = function() {
+        quantityHidden.value = quantityInput.value || 1; // Set quantityHidden to input value or default to 1
+        popup.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == popup) {
+            popup.style.display = "none";
+        }
+    }
+
+    searchForm.onsubmit = function() {
+        if (!quantityHidden.value) {
+            quantityHidden.value = 1; // Default quantity if not set
+        }
+    }
 });
 
-// Close the popup when the 'x' button is clicked
-closeBtn.addEventListener('click', function() {
-    popup.style.display = 'none';
-});
-
-// Close the popup when the 'Cancel' button is clicked
-cancelButton.addEventListener('click', function() {
-    popup.style.display = 'none';
-});
-
-// Handle the 'OK' button click
-okButton.addEventListener('click', function() {
-    popup.style.display = 'none';
-});
 
 
 // No Product Found
@@ -94,7 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let currentIndex = -1;
-const rows = document.querySelectorAll(".products tbody tr");
+const rows = document.querySelectorAll(".products tbody tr, .products2 tbody tr");
+
+
 
 // Automatically highlight the first row if it exists
 if (rows.length > 0) {

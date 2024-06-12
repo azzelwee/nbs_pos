@@ -21,13 +21,19 @@ if (!empty($_SESSION['search_results'])) {
     }
 }
 
+$totalQty = 0;
+
+if (!empty($_SESSION['search_results'])) {
+    foreach ($_SESSION['search_results'] as $row) {
+        $totalQty += $row['qty'];
+    }
+}
+
+setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 ?>
 
 <!-- Only add the trigger if no new search results were found -->
-<?php if (empty($results)): ?>
-    <span id="no-product-popup-trigger"></span>
-<?php endif; ?>
 
 
 
@@ -177,7 +183,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 </div>
 
                 <div class="grays">
-                    <div class="box" id="box1">
+                <div class="box" id="box1">
                         <img src="img/green-triangle-up.png" alt="Up">
                         <p>F11</p>
                     </div>
@@ -229,14 +235,14 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     </div>
 
             <!-- Display total amount -->
-                    <div class="price">
+                    <div class="price2">
                     <?php
-                            if (isset($row['amount']) && !empty($row['amount'])) {
-                                echo $row['amount'];
-                            } else {
-                                echo '0.00';
-                            }
-                        ?>
+                    if (isset($row['amount']) && !empty($row['amount'])) {
+                        echo number_format($row['amount'], 2);
+                    } else {
+                        echo '0.00';
+                    }
+                    ?>
                 </div>
             </div>     
     </div>
@@ -258,7 +264,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <tbody>
         <?php 
         if (!empty($_SESSION['search_results'])) {
-            foreach ($_SESSION['search_results'] as $row) {
+            foreach (array_reverse($_SESSION['search_results']) as $row) {
         ?>
             <tr data-ln="<?php echo $row['ln']; ?>">
                 <td class="centered"><?php echo $row['ln']; ?></td>
@@ -289,7 +295,9 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <div class="bottom-1">
             <p>Total Qty</p>
                 <div class="bar1">
-                    
+                <?php
+                    echo $totalQty;
+                    ?>
                 </div>
 
         </div>

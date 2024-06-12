@@ -141,11 +141,12 @@ body {
 .nonmerchant1 input,
 .nonmerchant1 select{
     text-align: center;
-    width: 30%;
+    width: 76%;
     height: 30px;
 }
 
 .nonmerchant1 p{
+    margin-bottom: 13px;
     margin-right: 10px;
     font-size: 18px;
     font-weight: bold;
@@ -706,8 +707,6 @@ a{
 }
 
 .unity{
-    display: flex;
-    flex-direction: column;
     justify-content: flex-end;
     position: absolute;
     text-align: right;
@@ -719,10 +718,22 @@ a{
 }
 
 .price{
-    position: block;
+    position: relative;
+    bottom: 10px;
+    text-align: right;
     font-size: 40px;
     font-weight: bold;
-    margin-left: 400px;
+    margin-right: 100px;
+    color: rgb(85, 255, 85);
+}
+
+.price2{
+    position: relative;
+    bottom: 10px;
+    text-align: right;
+    font-size: 40px;
+    font-weight: bold;
+    margin-right: 200px;
     color: rgb(85, 255, 85);
 }
 
@@ -809,7 +820,7 @@ a{
 }
 
 .row-highlight {
-    background-color: rgb(148, 192, 82);
+    background-color: rgb(161, 229, 60);
     color: white;
 }
 
@@ -949,7 +960,8 @@ th {
     margin-top: 5px;
     font-weight: bold;
     font-size: 24px;
-    text-align: center;
+    text-align: right;
+    margin-right: 20px;
 }
 
 .sales{
@@ -964,7 +976,8 @@ th {
     margin-top: 5px;
     font-weight: bold;
     font-size: 24px;
-    text-align: center;
+    text-align: right;
+    margin-right: 20px;
 }
 
 .tendered{
@@ -979,7 +992,8 @@ th {
     margin-top: 5px;
     font-weight: bold;
     font-size: 24px;
-    text-align: center;
+    text-align: right;
+    margin-right: 20px;
 }
 
 .change{
@@ -994,7 +1008,8 @@ th {
     margin-top: 5px;
     font-weight: bold;
     font-size: 24px;
-    text-align: center;
+    text-align: right;
+    margin-right: 20px;
 }
 
 
