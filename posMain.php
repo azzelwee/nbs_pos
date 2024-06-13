@@ -65,14 +65,14 @@ $row = $product->fetch_assoc();
                 <p> <span class="highlight">F4</span></p>
                 </div>
                 
-                <a href="posOption.php">
+                <a href="posOption.php" id="f5">
                     <div class="button">
                     <p>Option</p>
                     <p> <span class="highlight">F5</span></p>
                     </div>
                 </a>
 
-                <a href="posNonMdse.php">
+                <a href="posNonMdse.php" id="f6">
                     <div class="button">
                     <p>Non Mdse</p>
                     <p> <span class="highlight">F6</span></p>
@@ -114,11 +114,11 @@ $row = $product->fetch_assoc();
                 </div>
             </div>
 
-                <div class="grays">
-                    <div class="box">
-                        <img src="img/green-triangle-up.png">
-                        <p>F11</p>
-                    </div>
+    <div class="grays">
+        <div class="box">
+            <img src="img/green-triangle-up.png" alt="Triangle">
+            <p>F11</p>
+        </div>
 
                     <div class="box">
                         <img src="img/green-triangle-down.png">
@@ -131,12 +131,15 @@ $row = $product->fetch_assoc();
                         <p> <span class="highlight">F10</span></p>
                     </div>
 
-                    <a href="posLookup2.php">
-                        <div class="box">
-                            <p>Lookup</br></p>
-                            <p> <span class="highlight">F2</span></p>
-                        </a>
-                        </div>
+                    <a href="posLookup2.php" id="f2">
+                    <div class="box">
+                        <p>Lookup</br></p>
+                        <p> <span class="highlight">F2</span></p>
+                    </a>
+                    </div>
+
+
+                    
                    
                 </div>
 
@@ -222,7 +225,9 @@ $row = $product->fetch_assoc();
         <p><span id="date"></span>  &nbsp;&nbsp;&nbsp; <span id="time"></span></p>
         </div>
     </div>
+<script>
 
+    </script>
 <script src="js/main.js"></script>
 </body>
 </html>
