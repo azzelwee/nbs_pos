@@ -19,9 +19,10 @@ $time = date("H:i:s");
 $totalQty = $_COOKIE['totalQty'];
 $totalAmount = $_COOKIE['total_amount'];
 
-
-
 $results = $_SESSION['search_results'];
+
+$remainingAmount = $_SESSION['remainingAmount'];
+$inputAmount = $_SESSION['inputAmount'];
 
 
 // Get the current date in mm/dd/yyyy format
@@ -32,6 +33,7 @@ $results = $_SESSION['search_results'];
 <div class="receipt1">
 <?php
     $longText1 = "<p>
+    
                ABACUS BOOK AND CARD CORP.   </br>       
                    NBS OUTLET STORE       </br>        
         2nd Floor National Book Store Superbranch   </br>
@@ -70,7 +72,6 @@ $results = $_SESSION['search_results'];
  echo $longText2;
 ?>        
 </div>
-
 <div class="productGenerated">
     <?php
     foreach ($results as $row) {
@@ -105,16 +106,20 @@ $results = $_SESSION['search_results'];
     $longText3 =                                    
      "      
         <div class=\"apart3\">
-            <p>No. of Items: </p> 
-            <p>$totalQty </p>
+            <p>No. of Items</p> 
+            <p>$totalQty</p>
         </div>
 
         <div class=\"apart3\">
-            <p> Amount Due: </p>
-            <p> $totalAmount </p>
-            
+            <p>Amount Due</p>
+            <p>$totalAmount</p>
         </div>
-        <p>Change -> 0.00</br>
+        <p>Change -> $remainingAmount</br>
+        
+        <div class=\"apart3\">
+            <p>Cash</p>
+            <p>$inputAmount</p>
+        </div>
    
         </br>
         ***********************************************************

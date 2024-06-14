@@ -901,19 +901,6 @@ th {
     padding: 20px; /* Add padding for spacing */
 }
 
-.receipt1{
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-}
-
-.receipt2{
-    font-family: 'Times New Roman', Times, serif;
-}
-.receipt3{
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-}
-
 .outer-container1 {
     display: flex;
     flex-direction: column;
@@ -1623,7 +1610,84 @@ th {
 }
 
 /* resibo */
-.apart{
+.receipt1{
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.receipt2{
+    font-size: 14px;
+    text-align: left;
+    line-height: 1.3;
+}
+.receipt3{
+    font-size: 14px;
+    text-align: left;
+    line-height: 1.3;
+}
+.receipt4{
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.productGenerated{
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.apart {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 625px;/* Optional: for some spacing around the content */
+}
+
+.apart2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 538px;/* Optional: for some spacing around the content */
+}
+
+.apart3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 370px;/* Optional: for some spacing around the content */
+}
+
+.taxApart1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 370px;/* Optional: for some spacing around the content */
+}
+
+.productReceipt {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.receiptItem {
+    display: flex;
+    align-items: flex-start; /* Align items at the start of the flex container */
+}
+
+.columnReceipt1 {
+    margin-right: 43px; /* Adjust spacing between columns if needed */
+}
+
+.columnReceipt2 {
+    flex: 1; /* Let this column take remaining space */
+}
+
+.columnReceipt3 {
+    text-align: left; /* Ensure text inside columnReceipt3 is left-aligned */
+}
+
+.columnReceipt3 p {
+    margin: 0; /* Reset default margin for paragraphs */
 }

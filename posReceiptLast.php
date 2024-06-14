@@ -149,7 +149,7 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include 'receipt-text.php'; ?>
+                    <?php include 'receipt-text2.php'; ?>
                  </div>
             </div>
 
@@ -180,7 +180,7 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             </div>
 
             <div class="sales">
-            <p><?php echo $totalAmount = $_COOKIE['total_amount'];?></p>
+            <p><?php echo number_format($totalAmount, 2);?></p>
             </div>
                     
             <div class="tendered">   

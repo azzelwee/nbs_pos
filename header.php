@@ -2,6 +2,7 @@
             <div class="gray-text"> 
                 <?php
                 // Get the current date in mm/dd/yyyy format
+                date_default_timezone_set('Asia/Manila');
                 $currentDate = date("mdY");
 
                 if(isset($_SESSION['UserLogin'])){

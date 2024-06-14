@@ -187,7 +187,7 @@ $_SESSION['remainingAmount'] = $remainingAmount;
                 <p><?php echo $totalQty; ?></p>
             </div>
             <div class="sales">
-            <p><?php echo $totalAmount = $_COOKIE['total_amount'];?></p>
+            <p><?php echo number_format($totalAmount, 2);?></p>
             </div>
                     
             <div class="tendered">   

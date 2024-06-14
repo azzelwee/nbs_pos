@@ -211,6 +211,7 @@ function highlightDown() {
 }
 
 
-// Terminal Reading Popup
+// Store table data on cookie
+
 
 
