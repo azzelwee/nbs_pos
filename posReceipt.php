@@ -200,8 +200,8 @@ $row = $product->fetch_assoc();
 
         <div class="try">
             <p>Enter Amount:</p>
-            <form action="posReceiptFinal.php" method="get">
-                 <input type="text" name="amount" id="amount" placeholder="0.00">  
+            <form id="paymentForm" action="posReceiptFinal.php" method="get">
+            <input type="text" name="amount" id="amount" placeholder="0.00"> 
         </div>
     </div>
 
@@ -213,13 +213,50 @@ $row = $product->fetch_assoc();
             
         <div class="bottom-2xy">
             
-        <button type="submit" name="search" class="btn-ok2">Ok</button>
+        <button type="submit" name="search" class="btn-ok2" onclick="return validateAmount()">Ok</button>
         <button type="reset" name="search" class="btn-cancel2">Cancel</button>
         <p><span id="time"></span></p>
         </div>  
         </form>
+
+        
+        <div class="unique-popup" id="popup">
+            <div class="popup-content2">
+            <p>Cannot perform this transaction.</br>
+            Cash must be equal or higher to total transaction amount.
+            </br></br>
+            If you have GC, coupon, credit card, etc.,</br>
+            please use this payment before tendering cash.</p>
+            </div>
+            <div class="closePopers">
+            <button class="popup-close" onclick="closePopup()">OK</button>
+            </div>
+        </div>
+
     </div>
+
+    
    
 <script src="js/main.js"></script>
+<script>
+     function validateAmount() {
+            const totalAmount = <?php echo $totalAmount; ?>;
+            const userAmount = parseFloat(document.getElementById('amount').value);
+
+            if (isNaN(userAmount) || userAmount < totalAmount) {
+                showPopup();
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+</script>
 </body>
 </html>

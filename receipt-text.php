@@ -8,7 +8,7 @@ include_once("connections/connection.php");
 $con = connection();
 
 // Get the current date in mm/dd/yyyy format
-$currentDate = date("mdY");
+
 
 ?>
 
@@ -31,10 +31,17 @@ $currentDate = date("mdY");
 
 <div class="receipt2">
 <?php
+    date_default_timezone_set('Asia/Manila');
+
+    $currentDate = date("m/d/Y");
+    $time = date("H:i:s");
+
     $longText2 = "
+    <p>
     </br>
-        04/21/2024 11:34:16   </br> 
-        
+        <div class=\"apart\">
+        $currentDate &nbsp&nbsp&nbsp $time  </br> 
+        </div>
         TrxNo : 29990001000001          </br>
         Clerk: 110366 Term. No.: 0002  </br>
         </br>
@@ -67,7 +74,7 @@ $currentDate = date("mdY");
         ADDRESS : _________________________    </br>                              
         TIN : _____________________________    </br>                              
         </br>                                                 
-        ";
+        </p>";
     
  echo $longText2;
 ?>        

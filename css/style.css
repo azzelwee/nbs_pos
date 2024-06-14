@@ -936,13 +936,13 @@ th {
 }
 
 .compute{
-    background-color: green;
+    background-color: rgb(0, 179, 0);
     width: 100%;
     height: 220px;
 }
 
 .compute2{
-    background-color: green;
+    background-color: rgb(0, 179, 0);
     width: 100%;
     height: 270px;
 }
@@ -1584,4 +1584,46 @@ th {
     margin-bottom: 20px;
 }
 
-/*  */
+/* Payment Receipt Popup */
+.unique-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 180px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.popup-content2{
+    text-align: left;
+}
+
+.closePopers{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.popup-close{
+    background: lightgray;
+    position: relative;
+    width: 120px;
+    height: 30px; /* Adjust height as needed */
+    border: 1px solid #888;
+    top: 15px;
+    color: black;
+    padding: 0; /* Remove padding to prevent stretching the button */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* resibo */
+.apart{
+    display: flex;
+    justify-content: space-evenly;
+}
