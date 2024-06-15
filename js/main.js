@@ -6,9 +6,6 @@ document.addEventListener('keydown', function(event) {
     } else if (event.key === 'F2') {
         event.preventDefault();
         window.location.href = document.getElementById('f2').getAttribute('href');
-    } else if (event.key === 'F3') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f3').getAttribute('href');
     } else if (event.key === 'F4') {
         event.preventDefault();
         window.location.href = document.getElementById('f4').getAttribute('href');
@@ -30,16 +27,8 @@ document.addEventListener('keydown', function(event) {
     } else if (event.key === 'F10') {
         event.preventDefault();
         window.location.href = document.getElementById('f10').getAttribute('href');
-    } else if (event.key === 'F1s') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f11').getAttribute('href');
-    } else if (event.key === 'F12') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f12').getAttribute('href');
     }
 });
-
-
 
 function getFormattedDate(date) {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -160,55 +149,40 @@ if (rows.length > 0) {
     rows[currentIndex].classList.add("row-highlight");
 }
 
-document.getElementById("box2").addEventListener("click", () => {
-    if (currentIndex < rows.length - 1) {
+// Define a function to handle the keydown event
+// Function to handle row highlighting
+function highlightRow(direction) {
+    if (direction === 'prev' && currentIndex > 0) {
+        rows[currentIndex].classList.remove("row-highlight");
+        currentIndex--;
+        rows[currentIndex].classList.add("row-highlight");
+    } else if (direction === 'next' && currentIndex < rows.length - 1) {
         if (currentIndex >= 0) {
             rows[currentIndex].classList.remove("row-highlight");
         }
         currentIndex++;
         rows[currentIndex].classList.add("row-highlight");
     }
-});
+}
 
+// Click event listeners for box1 and box2
 document.getElementById("box1").addEventListener("click", () => {
-    if (currentIndex > 0) {
-        rows[currentIndex].classList.remove("row-highlight");
-        currentIndex--;
-        rows[currentIndex].classList.add("row-highlight");
+    highlightRow('prev');
+});
+
+document.getElementById("box2").addEventListener("click", () => {
+    highlightRow('next');
+});
+
+// Keydown event listener for document
+document.addEventListener("keydown", (event) => {
+    if (event.key === 'F11') {
+        highlightRow('prev');
+    } else if (event.key === 'F12') {
+        highlightRow('next');
     }
 });
 
-function highlightUp() {
-    let table = document.getElementById('myTable');
-    let rows = table.getElementsByTagName('tr');
-    let highlightedRow = table.querySelector('.rows-highlight');
-    if (highlightedRow) {
-        highlightedRow.classList.remove('rows-highlight');
-        if (highlightedRow.previousElementSibling) {
-            highlightedRow.previousElementSibling.classList.add('rows-highlight');
-        } else {
-            rows[rows.length - 1].classList.add('rows-highlight'); // Wrap to the last row
-        }
-    } else {
-        rows[1].classList.add('rows-highlight');
-    }
-}
-
-function highlightDown() {
-    let table = document.getElementById('myTable');
-    let rows = table.getElementsByTagName('tr');
-    let highlightedRow = table.querySelector('.rows-highlight');
-    if (highlightedRow) {
-        highlightedRow.classList.remove('rows-highlight');
-        if (highlightedRow.nextElementSibling) {
-            highlightedRow.nextElementSibling.classList.add('rows-highlight');
-        } else {
-            rows[1].classList.add('rows-highlight'); // Wrap to the first row
-        }
-    } else {
-        rows[1].classList.add('rows-highlight');
-    }
-}
 
 
 // Store table data on cookie

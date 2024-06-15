@@ -103,7 +103,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <div class="column-3z">
             <div class="reds">
                 
-            <a href="posPriceChange.php">
+            <a href="posPriceChange.php" >
                 <div class="button-adjust">
                 <p>Price</br>Change</p>
                 <p><span class="popup-highlight">F3</span></p>

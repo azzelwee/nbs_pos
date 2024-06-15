@@ -309,6 +309,20 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
         </div>
     </div>
 
+    <script>
+    document.addEventListener('keydown', function(event) {
+         if (event.key === 'F11') {
+             event.preventDefault();
+             const box1 = document.getElementById('box1');
+             box1.classList.add('highlight');
+         } else if (event.key === 'F12') {
+             event.preventDefault();
+             const box2 = document.getElementById('box2');
+             box2.classList.add('highlight');
+         }
+    });
+    </script>
+
     <script src="js/main.js"></script>
     
 </body>

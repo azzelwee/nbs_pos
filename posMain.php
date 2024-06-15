@@ -41,7 +41,7 @@ $row = $product->fetch_assoc();
             <div class="reds">
 
             <a href="#" id="popupButton">
-                <div class="popup-button">
+                <div class="popup-button" id="f3">
                     <p>Quantity</p>
                     <p><span class="popup-highlight">F3</span></p>
                 </div>
@@ -53,6 +53,7 @@ $row = $product->fetch_assoc();
                     <p>Please Enter Quantity</p>
                     <input type="number" id="quantityInput">
                 </div>
+
 
                 <div class="popup-buttons">
                     <button id="cancelButton">Cancel</button>
@@ -114,11 +115,11 @@ $row = $product->fetch_assoc();
                 </div>
             </div>
 
-    <div class="grays">
-        <div class="box">
-            <img src="img/green-triangle-up.png" alt="Triangle">
-            <p>F11</p>
-        </div>
+                <div class="grays">
+                    <div class="box" id="f11">
+                        <img src="img/green-triangle-up.png" alt="Triangle">
+                        <p>F11</p>
+                    </div>
 
                     <div class="box">
                         <img src="img/green-triangle-down.png">
@@ -225,9 +226,19 @@ $row = $product->fetch_assoc();
         <p><span id="date"></span>  &nbsp;&nbsp;&nbsp; <span id="time"></span></p>
         </div>
     </div>
-<script>
-
-    </script>
+    <script>
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'F11') {
+            event.preventDefault();
+            const box1 = document.getElementById('box1');
+            box1.classList.add('highlight');
+        } else if (event.key === 'F12') {
+            event.preventDefault();
+            const box2 = document.getElementById('box2');
+            box2.classList.add('highlight');
+        }
+    });
+                    </script>
 <script src="js/main.js"></script>
 </body>
 </html>
