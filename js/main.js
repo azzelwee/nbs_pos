@@ -1,35 +1,3 @@
-// Key Press from F1 to F12 on BROWSER
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'F1') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f1').getAttribute('href');
-    } else if (event.key === 'F2') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f2').getAttribute('href');
-    } else if (event.key === 'F4') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f4').getAttribute('href');
-    } else if (event.key === 'F5') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f5').getAttribute('href');
-    } else if (event.key === 'F6') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f6').getAttribute('href');
-    } else if (event.key === 'F7') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f7').getAttribute('href');
-    } else if (event.key === 'F8') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f8').getAttribute('href');
-    } else if (event.key === 'F9') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f9').getAttribute('href');
-    } else if (event.key === 'F10') {
-        event.preventDefault();
-        window.location.href = document.getElementById('f10').getAttribute('href');
-    }
-});
-
 function getFormattedDate(date) {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var day = date.getDate();
