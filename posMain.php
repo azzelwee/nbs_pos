@@ -126,11 +126,11 @@ $row = $product->fetch_assoc();
                         <p>F12</p>
                     </div>
 
-                    <div class="box">
-                        <p>CSA</br>
-                        ON/OFF</br></p>
+                    <div class="box" id="f10">
+                        <p id="status">CSA</br>ON/OFF</br></p>
                         <p> <span class="highlight">F10</span></p>
                     </div>
+
 
                     <a href="posLookup2.php" id="f2">
                     <div class="box">
@@ -227,18 +227,78 @@ $row = $product->fetch_assoc();
         </div>
     </div>
     <script>
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'F11') {
-            event.preventDefault();
-            const box1 = document.getElementById('box1');
-            box1.classList.add('highlight');
-        } else if (event.key === 'F12') {
-            event.preventDefault();
-            const box2 = document.getElementById('box2');
-            box2.classList.add('highlight');
-        }
+    document.addEventListener("DOMContentLoaded", function() {
+        var statusParagraph = document.getElementById("status");
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "F10") {
+                event.preventDefault();
+                // Toggle the status text
+                if (statusParagraph.innerHTML.includes("ON")) {
+                    statusParagraph.innerHTML = "CSA</br>OFF</br>";
+                } else {
+                    statusParagraph.innerHTML = "CSA</br>ON/OFF</br>";
+                }
+            }
+        });
     });
-                    </script>
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === 'F11') {
+                highlightRow('prev');
+                event.preventDefault();
+            } else if (event.key === 'F12') {
+                highlightRow('next');
+                event.preventDefault();
+            }
+            switch(event.keyCode) {
+                case 112: // F1 key
+                    event.preventDefault();
+                    document.getElementById('f1').click();
+                    break;
+                case 113: // F2 key
+                    event.preventDefault();
+                    document.getElementById('f2').click();
+                    break;
+                case 114: // F3 key
+                    event.preventDefault();
+                    document.getElementById('f3').click();
+                    break;
+                case 115: // F4 key
+                    event.preventDefault();
+                    document.getElementById('f4').click();
+                    break;
+                case 116: 
+                    event.preventDefault();
+                    document.getElementById('f5').click();
+                    break;
+                case 117: 
+                    event.preventDefault();
+                    document.getElementById('f6').click();
+                    break;
+                case 118: 
+                    event.preventDefault();
+                    document.getElementById('f7').click();
+                    break;
+                case 119: 
+                    event.preventDefault();
+                    document.getElementById('f8').click();
+                    break;
+                case 120: 
+                    event.preventDefault();
+                    document.getElementById('f9').click();
+                    break;
+                case 27:
+                    cancelButton.click();
+                    document.getElementById('esc').click();
+                    break;
+                case 13:
+                    okButton.click();
+                    document.getElementById('enter').click();
+                    break;
+            }
+    });
+    </script>
 <script src="js/main.js"></script>
 </body>
 </html>

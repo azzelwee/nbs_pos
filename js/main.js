@@ -142,18 +142,8 @@ document.getElementById("box2").addEventListener("click", () => {
     highlightRow('next');
 });
 
-// Keydown event listener for document
-document.addEventListener("keydown", (event) => {
-    if (event.key === 'F11') {
-        highlightRow('prev');
-    } else if (event.key === 'F12') {
-        highlightRow('next');
-    }
-});
 
 
-
-// Store table data on cookie
 
 
 

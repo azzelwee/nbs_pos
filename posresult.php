@@ -16,6 +16,7 @@ $sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln ASC";
 $product = $con->query($sql) or die($con->error);
 $results = $product->fetch_all(MYSQLI_ASSOC);
 
+
 // Check if session variable for searches exists
 if (!isset($_SESSION['search_results'])) {
     $_SESSION['search_results'] = [];
@@ -88,48 +89,48 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
             <div class="reds">
 
             <a href="#" id="popupButton">
-                <div class="popup-button">
+                <div class="popup-button" id="f3">
                     <p>Quantity</p>
                     <p><span class="popup-highlight">F3</span></p>
                 </div>
             </a>
             
-                <a href="posPayment.php">
+                <a href="posPayment.php" id="f4">
                     <div class="button">
                     <p>Payment</p>
                     <p> <span class="highlight">F4</span></p>
                     </div>
                 </a>
 
-                <a href="posOption2.php">
+                <a href="posOption2.php" id="f5">
                     <div class="button">
                     <p>Option</p>
                     <p> <span class="highlight">F5</span></p>
                     </div>
                 </a>
 
-                <a href="posNonMdse2.php">
+                <a href="posNonMdse2.php" id="f6">
                     <div class="button">
                     <p>Non Mdse</p>
                     <p> <span class="highlight">F6</span></p>
                     </div>
                 </a>
 
-                <a href="posItemVoid2.php">
+                <a href="posItemVoid2.php" id="f7">
                     <div class="button">
                     <p>Item Void</p>
                     <p> <span class="highlight">F7</span></p>
                     </div>
                 </a>
 
-                <a href="posTrxVoid2.php">
+                <a href="posTrxVoid2.php" id="f8">
                     <div class="button">
                     <p>Trx Void</p>
                     <p> <span class="highlight">F8</span></p>
                     </div>
                 </a>
 
-                <a href="posSuspend2.php">
+                <a href="posSuspend2.php" id="f9">
                     <div class="button">
                     <p>Suspend</p>
                     <p> <span class="highlight">F9</span></p>
@@ -182,13 +183,12 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                         <p>F12</p>
                     </div>
 
-                    <div class="box">
-                        <p>CSA</br>
-                        ON/OFF</br></p>
+                    <div class="box" id="f10">
+                        <p id="status">CSA</br>ON/OFF</br></p>
                         <p> <span class="highlight">F10</span></p>
                     </div>
 
-                    <a href="posLookup.php">
+                    <a href="posLookup.php" id="f2">
                         <div class="box">
                         
                             <p style="color: black;">Lookup</br></p>
@@ -285,7 +285,6 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
         </div>
     </div>
 </div>
-
     
     <div class="bottom">
         <div class="bottom-1">
@@ -295,7 +294,6 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                     echo $totalQty;
                     ?>
                 </div>
-
         </div>
         
         <div class="bottom-2">
@@ -310,16 +308,86 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     </div>
 
     <script>
-    document.addEventListener('keydown', function(event) {
-         if (event.key === 'F11') {
-             event.preventDefault();
-             const box1 = document.getElementById('box1');
-             box1.classList.add('highlight');
-         } else if (event.key === 'F12') {
-             event.preventDefault();
-             const box2 = document.getElementById('box2');
-             box2.classList.add('highlight');
-         }
+        // Function to redirect the page
+        function redirectToPosResult() {
+            window.location.href = 'posResult.php?search=0';
+        }
+
+        // Check if the page is being refreshed
+        if (performance.navigation.type === 1) {
+            redirectToPosResult(); // Call the redirect function
+        }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var statusParagraph = document.getElementById("status");
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "F10") {
+                event.preventDefault();
+                // Toggle the status text
+                if (statusParagraph.innerHTML.includes("ON")) {
+                    statusParagraph.innerHTML = "CSA</br>OFF</br>";
+                } else {
+                    statusParagraph.innerHTML = "CSA</br>ON/OFF</br>";
+                }
+            }
+        });
+    });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === 'F11') {
+                highlightRow('prev');
+                event.preventDefault();
+            } else if (event.key === 'F12') {
+                highlightRow('next');
+                event.preventDefault();
+            }
+            switch(event.keyCode) {
+                case 112: // F1 key
+                    event.preventDefault();
+                    document.getElementById('f1').click();
+                    break;
+                case 113: // F2 key
+                    event.preventDefault();
+                    document.getElementById('f2').click();
+                    break;
+                case 114: // F3 key
+                    event.preventDefault();
+                    document.getElementById('f3').click();
+                    break;
+                case 115: 
+                    event.preventDefault();
+                    document.getElementById('f4').click();
+                    break;
+                case 116: 
+                    event.preventDefault();
+                    document.getElementById('f5').click();
+                    break;
+                case 117: 
+                    event.preventDefault();
+                    document.getElementById('f6').click();
+                    break;
+                case 118: 
+                    event.preventDefault();
+                    document.getElementById('f7').click();
+                    break;
+                case 119: 
+                    event.preventDefault();
+                    document.getElementById('f8').click();
+                    break;
+                case 120: 
+                    event.preventDefault();
+                    document.getElementById('f9').click();
+                    break;
+                case 27:
+                    cancelButton.click();
+                    document.getElementById('esc').click();
+                    break;
+                case 13:
+                    okButton.click();
+                    document.getElementById('enter').click();
+                    break;
+                
+            }
     });
     </script>
 
