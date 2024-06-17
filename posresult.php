@@ -9,7 +9,7 @@ $con = connection();
 
 // Fetch quantity input if specified, default to 1 if not provided
 $quantity = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
-$search = $_GET['search'];
+$search = isset($_GET['search']) ? $_GET['search'] : '';
 
 // Fetch new search results
 $sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln ASC";
@@ -188,7 +188,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                         <p> <span class="highlight">F10</span></p>
                     </div>
 
-                    <a href="posLookup.php" id="f2">
+                    <a href="posLookup2.php" id="f2">
                         <div class="box">
                         
                             <p style="color: black;">Lookup</br></p>
@@ -310,7 +310,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     <script>
         // Function to redirect the page
         function redirectToPosResult() {
-            window.location.href = 'posResult.php?search=0';
+            window.location.href = 'posResult.php';
         }
 
         // Check if the page is being refreshed

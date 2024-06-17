@@ -132,7 +132,7 @@ $row = $product->fetch_assoc();
                     </div>
 
 
-                    <a href="posLookup2.php" id="f2">
+                    <a href="posLookup.php" id="f2">
                     <div class="box">
                         <p>Lookup</br></p>
                         <p> <span class="highlight">F2</span></p>

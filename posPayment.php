@@ -89,15 +89,15 @@ $row = $product->fetch_assoc();
             <h2>Choose Option</h2>
             <div class="center-container">
 
-                <a href="posReceipt.php">
+                <a href="posReceipt.php" id="1">
                 <p>1. None</p>
                 </a>
 
-                <a href="posLakingNational.php">
+                <a href="posLakingNational.php" id="2">
                 <p>2. Laking National Card</p>
                 </a>
 
-                <a href="posLNQR.php">
+                <a href="posLNQR.php" id="3">
                 <p>3. LNQR / LNQR PLUS </p>
                 </a>
             </div>
@@ -107,6 +107,25 @@ $row = $product->fetch_assoc();
         <div class="bottom-payment">
             
         </div>
+
+        <script>
+        document.addEventListener("keydown", (event) => {
+            switch(event.keyCode) {
+                case 49: // Number 2 key
+                    event.preventDefault();
+                    document.getElementById('1').click();
+                    break;
+                case 50: // Number 3 key
+                    event.preventDefault();
+                    document.getElementById('2').click();
+                    break;
+                case 51: // Enter key
+                    event.preventDefault();
+                    document.getElementById('3').click();
+                    break;
+                }
+    });
+    </script>
 
 <script src="js/main.js"></script>
 </body>

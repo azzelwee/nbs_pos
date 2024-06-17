@@ -112,7 +112,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p><span class="popup-highlight">F4</span></p>
                 </div>
 
-                <a href="posLastOption2.php">
+                <a href="posLastOption2.php" id="f5">
                     <div class="button-adjust">
                     <p>Next</br>Option</p>
                     <p><span class="popup-highlight">F5</span></p>
@@ -302,6 +302,39 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <p><span id="date"></span>  &nbsp;&nbsp;&nbsp; <span id="time"></span></p>
         </div>
     </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var statusParagraph = document.getElementById("status");
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "F10") {
+                event.preventDefault();
+                // Toggle the status text
+                if (statusParagraph.innerHTML.includes("ON")) {
+                    statusParagraph.innerHTML = "CSA</br>OFF</br>";
+                } else {
+                    statusParagraph.innerHTML = "CSA</br>ON/OFF</br>";
+                }
+            }
+        });
+    });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === 'F11') {
+                highlightRow('prev');
+                event.preventDefault();
+            } else if (event.key === 'F12') {
+                highlightRow('next');
+                event.preventDefault();
+            }
+            switch(event.keyCode) {
+                case 116: 
+                    event.preventDefault();
+                    document.getElementById('f5').click();
+                    break;
+            }
+    });
+    </script>
 
     <script src="js/main.js"></script>
     

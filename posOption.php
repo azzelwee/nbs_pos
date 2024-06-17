@@ -104,38 +104,38 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p><span class="popup-highlight">F4</span></p>
                 </div>
 
-                <a href="posNextOption.php">
+                <a href="posNextOption.php" id="f5">
                     <div class="button-adjust">
                     <p>Next</br>Option</p>
                     <p><span class="popup-highlight">F5</span></p>
                     </div>
                 </a>
 
-                <a href="posTrxDiscount.php">
+                <a href="posTrxDiscount.php" id="f6">
                     <div class="button-adjust">
                     <p>Trx Disc</p>
                     <p><span class="popup-highlight">F6</span></p>
                     </div>
                 </a>
 
-                <a href="posRecall.php">
+                <a href="posRecall.php" id="f7">
                     <div class="button-adjust">
                     <p>Recall</p>
                     <p><span class="popup-highlight">F7</span></p>
                     </div>
                 </a>
 
-                <a href="posLogout.php">
+                <a href="posLogout.php" id="f8">
                 <div class="button-adjust">
                 <p>Logout</p>
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
                 </a>
 
-                <a href="posNoSale.php">
+                <a href="posNoSale.php" id="f9">
                 <div class="button-adjust">
                 <p>No Sale</p>
-                <p><span class="popup-highlight">F8</span></p>
+                <p><span class="popup-highlight">F9</span></p>
                 </div>
                 </a>
 
@@ -193,7 +193,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     </div>
 
                     
-                    <a href="posReprint.php">
+                    <a href="posReprint.php" id="f2">
                     <div class="box">
                         <p>Reprint</br></br></p>
                         <p> <span class="highlight">F2</span></p>
@@ -302,6 +302,63 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <p><span id="date"></span>  &nbsp;&nbsp;&nbsp; <span id="time"></span></p>
         </div>
     </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var statusParagraph = document.getElementById("status");
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "F10") {
+                event.preventDefault();
+                // Toggle the status text
+                if (statusParagraph.innerHTML.includes("ON")) {
+                    statusParagraph.innerHTML = "CSA</br>OFF</br>";
+                } else {
+                    statusParagraph.innerHTML = "CSA</br>ON/OFF</br>";
+                }
+            }
+        });
+    });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === 'F11') {
+                highlightRow('prev');
+                event.preventDefault();
+            } else if (event.key === 'F12') {
+                highlightRow('next');
+                event.preventDefault();
+            }
+            switch(event.keyCode) {
+                case 113: // F2 key
+                    event.preventDefault();
+                    document.getElementById('f2').click();
+                    break;
+                case 114: 
+                    event.preventDefault();
+                    document.getElementById('f3').click();
+                    break;
+                case 116: 
+                    event.preventDefault();
+                    document.getElementById('f5').click();
+                    break;
+                case 117: 
+                    event.preventDefault();
+                    document.getElementById('f6').click();
+                    break;
+                case 118: 
+                    event.preventDefault();
+                    document.getElementById('f7').click();
+                    break;
+                case 119: 
+                    event.preventDefault();
+                    document.getElementById('f8').click();
+                    break;
+                case 120: 
+                    event.preventDefault();
+                    document.getElementById('f9').click();
+                    break;
+            }
+    });
+    </script>
 
     <script src="js/main.js"></script>
     

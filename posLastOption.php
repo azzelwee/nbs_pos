@@ -101,7 +101,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <div class="column-3z">
             <div class="reds">
 
-                <a href="posTrxComment.php">
+                <a href="posTrxComment.php" id="f3">
                 <div class="button-adjust">
                 <p>Trx</br>Comment</p>
                 <p><span class="popup-highlight">F3</span></p>
@@ -109,14 +109,14 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 </a>
 
 
-                <a href="posNonSales.php">
+                <a href="posNonSales.php" id="f4">
                 <div class="button-adjust">
                 <p>Non</br>Sales</p>
                 <p><span class="popup-highlight">F4</span></p>
                 </div>
                 </a>
 
-                <a href="posCustomer.php">
+                <a href="posCustomer.php" id="f5">
                 <div class="button-adjust">
                 <p>Customer</p>
                 <p><span class="popup-highlight">F5</span></p>
@@ -128,14 +128,14 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p><span class="popup-highlight">F6</span></p>
                 </div>
 
-                <a href="posZeroRated.php">
+                <a href="posZeroRated.php" id="f7">
                 <div class="button-adjust">
                 <p>Zero</br>Rated</p>
                 <p><span class="popup-highlight">F7</span></p>
                 </div>
                 </a>
 
-                <a href="posReturn2.php">
+                <a href="posReturn2.php" id="f8">
                 <div class="button-adjust">
                 <p>Return</p>
                 <p><span class="popup-highlight">F8</span></p>
@@ -144,10 +144,10 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
 
                 <div class="button-adjust"  style="background-color: red; color: white;">
                 <p>Reserved</br>Trx</p>
-                <p><span class="popup-highlight">F8</span></p>
+                <p><span class="popup-highlight">F9</span></p>
                 </div>
 
-                <a href="posRefund2.php">
+                <a href="posRefund2.php" id="f10">
                 <div class="button-adjust">
                 <p>Refund</p>
                 <p><span class="popup-highlight">F10</span></p>
@@ -315,6 +315,58 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <p><span id="date"></span>  &nbsp;&nbsp;&nbsp; <span id="time"></span></p>
         </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var statusParagraph = document.getElementById("status");
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "F10") {
+                event.preventDefault();
+                // Toggle the status text
+                if (statusParagraph.innerHTML.includes("ON")) {
+                    statusParagraph.innerHTML = "CSA</br>OFF</br>";
+                } else {
+                    statusParagraph.innerHTML = "CSA</br>ON/OFF</br>";
+                }
+            }
+        });
+    });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === 'F11') {
+                highlightRow('prev');
+                event.preventDefault();
+            } else if (event.key === 'F12') {
+                highlightRow('next');
+                event.preventDefault();
+            }
+            switch(event.keyCode) {
+                case 114: // F3 key
+                    event.preventDefault();
+                    document.getElementById('f3').click();
+                    break;
+                case 115: // F3 key
+                    event.preventDefault();
+                    document.getElementById('f4').click();
+                    break;
+                case 116: 
+                    event.preventDefault();
+                    document.getElementById('f5').click();
+                    break;
+                case 118: 
+                    event.preventDefault();
+                    document.getElementById('f7').click();
+                    break;
+                case 119: 
+                    event.preventDefault();
+                    document.getElementById('f8').click();
+                    break;
+                case 121: 
+                    event.preventDefault();
+                    document.getElementById('f10').click();
+                    break;
+            }
+    });
+    </script>
 
     <script src="js/main.js"></script>
     

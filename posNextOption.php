@@ -107,60 +107,60 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                 <p><span class="popup-highlight">F3</span></p>
                 </div>
 
-                <a href="posTrxJournal.php">
+                <a href="posTrxJournal.php" id="f4">
                 <div class="button-adjust">
                 <p>Trx</br>Journal</p>
                 <p><span class="popup-highlight">F4</span></p>
                 </div>
             </a>
 
-                <a href="posLastOption.php">
+                <a href="posLastOption.php" id="f5">
                 <div class="button-adjust">
                 <p>Next</br>Option</p>
                 <p><span class="popup-highlight">F5</span></p>
                 </div>
                 </a>
 
-                <a href="posSalesJournal.php">
+                <a href="posSalesJournal.php" id="f6">
                 <div class="button-adjust">
                 <p>Sales</br>Journal</p>
                 <p><span class="popup-highlight">F6</span></p>
                 </div>
                 </a>
 
-                <a href="posScanAndGo.php">
+                <a href="posScanAndGo.php" id="f7">
                 <div class="button-adjust">
                 <p>Scan</br>and Go</p>
                 <p><span class="popup-highlight">F7</span></p>
                 </div>
                 </a>
 
-                <a href="posCashierReading.php">
+                <a href="posCashierReading.php" id="f8">
                 <div class="button-adjust">
                 <p>Cashier</br>Reading</p>
                 <p><span class="popup-highlight">F8</span></p>
                 </div>
                 </a>
 
-                <a href="" id="popupButton">
-                <div class="button-adjust">
-                <p>Terminal</br>Reading</p>
-                <p><span class="popup-highlight">F8</span></p>
-                </div>
+                <a href="#" id="popupButton">
+                    <div class="button-adjust" id="f9">
+                        <p>Terminal</br>Reading</p>
+                        <p><span class="popup-highlight">F9</span></p>
+                    </div>
                 </a>
 
-                        <div id="popup" class="popup">
-                        <div class="popup-content">
-                            <span class="close">&times;</span>
-                             </br>
-                            <p style="font-size: 18px;">Please Perform SDV.</p>
-                            <div class="popup-buttons">
-                                <button id="cancelButton">OK</button>
-                            </div>
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        </br>
+                        <p style="font-size: 18px;">Please Perform SDV.</p>
+                        <div class="popup-buttons">
+                            <button id="cancelButton">OK</button> <!-- Added okButton here -->
                         </div>
                     </div>
+                </div>
+
                 
-                <div class="button-adjust">
+                <div class="button-adjust" id="f10">
                 <p>SDV</p>
                 <p><span class="popup-highlight">F10</span></p>
                 </div>
@@ -213,7 +213,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                         <p> <span class="highlight">F1</span></p>
                     </div>
 
-                    <a href="postVoid.php">
+                    <a href="postVoid.php" id="f2">
                     <div class="box">
                         <p>Post</br>Void</p>
                         <p> <span class="highlight">F2</span></p>
@@ -329,6 +329,52 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <p><span id="date"></span>  &nbsp;&nbsp;&nbsp; <span id="time"></span></p>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("keydown", (event) => {
+            if (event.key === 'F11') {
+                highlightRow('prev');
+                event.preventDefault();
+            } else if (event.key === 'F12') {
+                highlightRow('next');
+                event.preventDefault();
+            }
+            switch(event.keyCode) {
+                case 113: // F2 key
+                    event.preventDefault();
+                    document.getElementById('f2').click();
+                    break;
+                case 115: 
+                    event.preventDefault();
+                    document.getElementById('f4').click();
+                    break;
+                case 116: 
+                    event.preventDefault();
+                    document.getElementById('f5').click();
+                    break;
+                case 117: 
+                    event.preventDefault();
+                    document.getElementById('f6').click();
+                    break;
+                case 118: 
+                    event.preventDefault();
+                    document.getElementById('f7').click();
+                    break;
+                case 119: 
+                    event.preventDefault();
+                    document.getElementById('f8').click();
+                    break;
+                case 120: 
+                    event.preventDefault();
+                    document.getElementById('f9').click();
+                    break;
+                case 121: 
+                    event.preventDefault();
+                    document.getElementById('f10').click();
+                    break;
+            }
+    });
+    </script>
 
     <script src="js/main.js"></script>
     

@@ -87,23 +87,15 @@ $row = $product->fetch_assoc();
         </div>
 
         <div class="grays2">
-        <div class="box" onclick="highlightUp()">
-    <img src="img/green-triangle-up.png">
-    <p>F11</p>
-</div>
-
-<div class="box" onclick="highlightDown()">
-    <img src="img/green-triangle-down.png">
-    <p>F12</p>
-</div>
-                    <div class="box">
-                        <p>Help</p>
-                        <p>F2</p>
+        <div class="box" id="box1">
+                        <img src="img/green-triangle-up.png" alt="Up">
+                        <p>F11</p>
                     </div>
 
-                        <div class="box">
-                            <p></p>
-                        </div>
+                    <div class="box" id="box2">
+                        <img src="img/green-triangle-down.png" alt="Down">
+                        <p>F12</p>
+                    </div>
                     
 
                         <div class="boxLook" style="width: 2100px;">
@@ -112,7 +104,7 @@ $row = $product->fetch_assoc();
                    
                 </div>
 
-                <table id="myTable">
+                <table class="products">
     <thead>
         <tr>
             <th>Code</th>
@@ -141,6 +133,18 @@ $row = $product->fetch_assoc();
             
 
         </div>
+
+        <script>
+        document.addEventListener("keydown", (event) => {
+            if (event.key === 'F11') {
+                highlightRow('prev');
+                event.preventDefault();
+            } else if (event.key === 'F12') {
+                highlightRow('next');
+                event.preventDefault();
+            }
+    });
+    </script>
 
 <script src="js/main.js"></script>
 </body>

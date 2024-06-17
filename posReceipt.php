@@ -83,7 +83,7 @@ $row = $product->fetch_assoc();
     <div class="e">
     <div class="column-3z">
             <div class="reds">
-                <div class="button-adjust">
+                <div class="button-adjust" id="f1">
                 <p>Help</p>
                 <p>F1</p>
                 </div>
@@ -93,7 +93,7 @@ $row = $product->fetch_assoc();
                 <p>F2</p>
                 </div>
 
-                <a href="posBankCard.php">
+                <a href="posBankCard.php" id="f3">
                 <div class="button-adjust">
                 <p>Bank Card</p>
                 <p>F3</p>
@@ -106,7 +106,7 @@ $row = $product->fetch_assoc();
                 <p>F4</p>
                 </div>
 
-                <a href="posGiftCert.php">
+                <a href="posGiftCert.php" id="f5">
                 <div class="button-adjust">
                 <p>Gift Cert.</p>
                 <p>F5</p>
@@ -114,7 +114,7 @@ $row = $product->fetch_assoc();
                 </div>
                 </a>
 
-                <a href="posCoupon.php">
+                <a href="posCoupon.php" id="f6">
                 <div class="button-adjust">
                 <p>Coupon</p>
                 <p>F6</p>
@@ -127,7 +127,7 @@ $row = $product->fetch_assoc();
                 <p>F7</p>
                 </div>
                 
-                <div class="button-adjust">
+                <div class="button-adjust" id="f8">
                 <p>Credit</p>
                 <p>Memo</p>
                 <p>F8</span></p>
@@ -239,6 +239,31 @@ $row = $product->fetch_assoc();
    
 <script src="js/main.js"></script>
 <script>
+        document.addEventListener("keydown", (event) => {
+            switch(event.keyCode) {
+                case 112: // F3 key
+                    event.preventDefault();
+                    document.getElementById('f1').click();
+                    break;
+                case 114: // F3 key
+                    event.preventDefault();
+                    document.getElementById('f3').click();
+                    break;
+                case 116: 
+                    event.preventDefault();
+                    document.getElementById('f5').click();
+                    break;
+                case 117: 
+                    event.preventDefault();
+                    document.getElementById('f6').click();
+                    break;
+                case 119: 
+                    event.preventDefault();
+                    document.getElementById('f8').click();
+                    break;
+            }
+    });
+    
      function validateAmount() {
             const totalAmount = <?php echo $totalAmount; ?>;
             const userAmount = parseFloat(document.getElementById('amount').value);
@@ -257,6 +282,8 @@ $row = $product->fetch_assoc();
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
+
+        
 </script>
 </body>
 </html>
