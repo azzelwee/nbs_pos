@@ -23,9 +23,25 @@ body {
 /* Style the container */
 .whole-container {
     position: relative;
-    width: 1100px;
-    height: 800px;
+    width: 900px;
+    height: 600px;
     border: 1px solid black;
+}
+
+/* Media query for screens larger than 1200px */
+@media (min-width: 1200px) {
+    .whole-container {
+        width: 1000px;
+        height: 700px;
+    }
+}
+
+/* Media query for screens larger than 1600px */
+@media (min-width: 1600px) {
+    .whole-container {
+        width: 1100px;
+        height: 800px;
+    }
 }
 
 /* LOGIN SECTION */
