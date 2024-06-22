@@ -185,10 +185,11 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             
             <div class="tendered">   
             <p><?php
-            if (isset($_SESSION['userAmount'])) {
-                echo htmlspecialchars($_SESSION['userAmount']);
+            if (isset($_GET['userAmount'])) {
+                $userAmount = htmlspecialchars($_GET['userAmount']);
+                echo $userAmount;
             } else {
-                echo '0.00';
+                echo '0.00'; // Default value if userAmount is not provided
             }
             ?>
             </p>
@@ -196,13 +197,12 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
 
             <?php
 
-            $change = htmlspecialchars($_SESSION['userAmount']) + $inputAmount - $totalAmount;
-            $formattedChange = number_format($change, 2);
+           
             ?>
 
 
             <div class="change">   
-            <p><p><?php echo number_format($formattedChange, 2); ?></p>
+            <p></p>
             </div>
 
 

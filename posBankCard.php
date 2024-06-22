@@ -184,7 +184,7 @@ $row = $product->fetch_assoc();
 
         <div class="try3">
             
-            <form action="posReceiptFinal2.php" method="get">
+            <form action="posReceiptFinal.php" method="get">
             <p id="paymentText">Please Select Card Type</p>
             <select name="payment_method" id="paymentMethod">
             <option value="">-SELECT-</option>
