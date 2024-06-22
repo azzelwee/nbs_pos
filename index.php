@@ -41,15 +41,6 @@ if(isset($_POST['login'])){
 </head>
 <body>
 
-<div class="note-info">
-    Note:
-    </br>
-    UserName: admin </br>
-    Password: admin1
-    </br>
-    </br>
-    Shift + Ctrl + R to reload CSS
-</div>
 <div class="whole-container">
 
     <div class="form-logo">

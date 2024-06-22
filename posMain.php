@@ -22,12 +22,6 @@ $row = $product->fetch_assoc();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="note-info">
-    Note:
-    </br>
-    The range of UPC scan on DB is 1-30. </br>
-    Test scan only.
-</div>
 <div class="whole-container">
 
     <div class="form-logo">
