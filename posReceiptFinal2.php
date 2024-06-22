@@ -11,6 +11,27 @@ $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
 
+if (isset($_GET['amount'])) {
+    $inputAmount = floatval($_GET['amount']);
+} else {
+    $inputAmount = 0;
+}
+
+// Retrieve the total amount from the cookie
+if (isset($_COOKIE['total_amount'])) {
+    $totalAmount = floatval($_COOKIE['total_amount']);
+} else {
+    $totalAmount = 0;
+}
+
+// Perform the subtraction
+$remainingAmount = $inputAmount - $totalAmount;
+
+// Store the values in the session
+$_SESSION['totalAmount'] = $totalAmount;
+$_SESSION['inputAmount'] = $inputAmount;
+$_SESSION['remainingAmount'] = $remainingAmount;
+
 
 ?>
 
@@ -83,54 +104,38 @@ $row = $product->fetch_assoc();
     <div class="e">
     <div class="column-3z">
             <div class="reds">
-                <div class="button-adjust" id="f1">
-                <p>Help</p>
-                <p>F1</p>
-                </div>
-
-                <div class="button-adjust" style="background-color: #fff36b; color: black;">
-                <p>Cash</p>
-                <p>F2</p>
-                </div>
-
-                <a href="posBankCard.php" id="f3">
                 <div class="button-adjust">
-                <p>Bank Card</p>
+                <p>Help</p>
                 <p>F3</p>
-
                 </div>
-                </a>
-
-                <div class="button-adjust" style="background-color: red; color: white;">
-                <p>Check</p>
+                <div class="button-adjust" style="background-color: yellow">
+                <p>Cash</p>
                 <p>F4</p>
                 </div>
-
-                <a href="posGiftCert.php" id="f5">
+                <div class="button-adjust">
+                <p>Bank Card</p>
+                <p>F5</p>
+                </div>
+                <div class="button-adjust" style="background-color: red">
+                <p>Check</p>
+                <p>F6</p>
+                </div>
                 <div class="button-adjust">
                 <p>Gift Cert.</p>
-                <p>F5</p>
-                
-                </div>
-                </a>
-
-                <a href="posCoupon.php" id="f6">
-                <div class="button-adjust">
-                <p>Coupon</p>
-                <p>F6</p>
-                
-                </div>
-                </a>
-
-                <div class="button-adjust" style="background-color: red; color: white;">
-                <p>E-Purse</p>
                 <p>F7</p>
                 </div>
-                
-                <div class="button-adjust" id="f8">
+                <div class="button-adjust">
+                <p>Coupon</p>
+                <p>F8</p>
+                </div>
+                <div class="button-adjust" style="background-color: red">
+                <p>E-Purse</p>
+                <p>F9</p>
+                </div>
+                <div class="button-adjust">
                 <p>Credit</p>
                 <p>Memo</p>
-                <p>F8</span></p>
+                <p>F9</span></p>
                 </div>
             </div>
         </div>
@@ -170,7 +175,6 @@ $row = $product->fetch_assoc();
                     </br>
                     <p>Tendered</p>
                     </div>
-
                     <?php
                 // Check if the 'totalQty' cookie is set
                 if (isset($_COOKIE['totalQty'])) {
@@ -182,38 +186,45 @@ $row = $product->fetch_assoc();
             <div class="units">   
                 <p><?php echo $totalQty; ?></p>
             </div>
-
             <div class="sales">
             <p><?php echo number_format($totalAmount, 2);?></p>
             </div>
+
+            <?php
+                // Retrieve and store userAmount from query parameter
+                $userAmount = '';
+                if (isset($_GET['userAmount'])) {
+                    $userAmount = htmlspecialchars($userAmount);
+                }
+            ?>
+
                     
             <div class="tendered">
-            <p><?php
-                // Retrieve and display userAmount from query parameter
-                if (isset($_GET['userAmount'])) {
-                    // Convert userAmount to float and format it to 2 decimal places
-                    $formattedAmount = number_format((float)$_GET['userAmount'], 2, '.', '');
-                    echo htmlspecialchars($formattedAmount);
-                } else {
-                    echo '0.00'; // Default value if userAmount is not provided
-                }
-            ?></p>
-        </div>
-
-
+            <p><?php echo number_format($inputAmount, 2); ?></p>
+            </div>
 
         </div>
         <div class="payment-details">
+
             <p>Cash Payment Details</p>
         </div>
 
         <div class="try">
+                <p style="font-size: 18px; margin-bottom: 10px; color: red;"> 
+                Don't press any key.. 
+                </br>
+                Please wait...</p>
+            
             <p>Enter Amount:</p>
-            <form id="paymentForm" action="posReceiptFinal.php" method="get">
-            <input type="text" name="amount" id="amount" placeholder="0.00"> 
+            <form id="myForm" action="posReceiptLast3.php" method="get">
+                <input type="text" name="amount" id="amount" placeholder="0.00">
+                
+                
+            </form>
+            
         </div>
     </div>
-`
+
 
         <div class="bottomx">
             <div class="bottom-1x">
@@ -221,60 +232,15 @@ $row = $product->fetch_assoc();
             </div>
             
         <div class="bottom-2xy">
-            
-        <button type="submit" name="search" class="btn-ok2" onclick="return validateAmount()">Ok</button>
-        <button type="reset" name="search" class="btn-cancel2" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
-
+        <button type="submit" name="search" class="btn-ok2">Ok</button>
+        <button type="reset" name="search" class="btn-cancel2">Cancel</button>
         <p><span id="time"></span></p>
-        </div>  
-        </form>
-
-        
-        <div class="unique-popup" id="popup">
-            <div class="popup-content2">
-            <p>Cannot perform this transaction.</br>
-            Cash must be equal or higher to total transaction amount.
-            </br></br>
-            If you have GC, coupon, credit card, etc.,</br>
-            please use this payment before tendering cash.</p>
-            </div>
-            <div class="closePopers">
-            <button class="popup-close" onclick="closePopup()">OK</button>
-            </div>
         </div>
-
+       
     </div>
-
     
-   
-<script src="js/main.js"></script>
-<script>
-        document.addEventListener("keydown", (event) => {
-            switch(event.keyCode) {
-                case 112: // F3 key
-                    event.preventDefault();
-                    document.getElementById('f1').click();
-                    break;
-                case 114: // F3 key
-                    event.preventDefault();
-                    document.getElementById('f3').click();
-                    break;
-                case 116: 
-                    event.preventDefault();
-                    document.getElementById('f5').click();
-                    break;
-                case 117: 
-                    event.preventDefault();
-                    document.getElementById('f6').click();
-                    break;
-                case 119: 
-                    event.preventDefault();
-                    document.getElementById('f8').click();
-                    break;
-            }
-    });
-    
-     function validateAmount() {
+    <script>
+         function validateAmount() {
             const totalAmount = <?php echo $totalAmount; ?>;
             const userAmount = parseFloat(document.getElementById('amount').value);
 
@@ -292,8 +258,8 @@ $row = $product->fetch_assoc();
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
-
-        
-</script>
+    </script>
+   
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -11,9 +12,54 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    zoom: 1;
+}
+
+/* Media query for screens larger than 1200px */
+@media (min-width: 800px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 125vh;
+        margin: 0;
+        zoom: 0.80;
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 123vh;
+        margin: 0;
+        zoom: 0.80;
+    }
+}
+
+/* Media query for screens larger than 1600px */
+@media (min-width: 1600px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        zoom: 1;
+    }
+}
+
+.note-info-index{
+    padding: 30px;
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .note-info{
+    display: none;
     padding: 30px;
     position: absolute;
     left: 0;
@@ -23,35 +69,20 @@ body {
 /* Style the container */
 .whole-container {
     position: relative;
-    width: 900px;
-    height: 600px;
+    width: 1100px;
+    height: 800px;
     border: 1px solid black;
-}
-
-/* Media query for screens larger than 1200px */
-@media (min-width: 1200px) {
-    .whole-container {
-        width: 1000px;
-        height: 700px;
-    }
-}
-
-/* Media query for screens larger than 1600px */
-@media (min-width: 1600px) {
-    .whole-container {
-        width: 1100px;
-        height: 800px;
-    }
 }
 
 /* LOGIN SECTION */
 
 .logout{
+    display: none;
     position: absolute;
     top: 0;
     margin-top: 20px;
     text-decoration: none;
-    color: blue;
+    color: red;
 }
 
 
@@ -844,12 +875,54 @@ a{
     background-color: rgb(148, 192, 82);
 }
 
-.message-warning{
-    font-weight: bold;
+.message-warnings{
     position: fixed;
-    margin-top: 30px;
-    top: 0;
+    top: 20;
 }
+
+.message-warning{
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 20px;
+    z-index: 1000;
+    width: 550px; /* Set the width of the popup content */
+    height: 170px; /* Set the height of the popup content */
+}
+
+.message-warning p{
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.message-warning-index{
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 20px;
+    z-index: 1000;
+    width: 550px; /* Set the width of the popup content */
+    height: 170px; /* Set the height of the popup content */
+}
+
+.message-warning-index p{
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+
 
   
 .column-4{
@@ -1624,6 +1697,18 @@ th {
     border-radius: 4px;
     cursor: pointer;
 }
+.popup-closed{
+    background: lightgray;
+    position: relative;
+    width: 120px;
+    height: 30px; /* Adjust height as needed */
+    border: 1px solid #888;
+    top: 15px;
+    color: black;
+    padding: 0; /* Remove padding to prevent stretching the button */
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 /* resibo */
 .receipt1{
@@ -1708,3 +1793,40 @@ th {
     margin: 0; /* Reset default margin for paragraphs */
 }
 
+#cardDetails {
+    margin-left: 20px;
+    display: block;
+    text-align: left;
+}
+
+#cardDetails label {
+    text-align: left;
+    font-weight: bold;
+    display: inline-block;
+    width: 30%; /* Adjust as needed */
+    margin-right: 10px; /* Space between label and input */
+    margin-left: 20px;
+}
+
+#cardDetails input[type="text"], 
+#cardDetails input[type="date"] {
+    width: 30%; /* Adjust as needed */
+    box-sizing: border-box; /* Ensure width includes padding */
+    margin-bottom: 5px; /* Space between inputs */
+}
+
+#cardDetails p{
+    color: red;
+}
+
+#fixing{
+    display: flex;
+    flex-direction: row;
+}
+
+
+#swipeLabel{
+    display: inline;
+    text-align: center;
+
+}

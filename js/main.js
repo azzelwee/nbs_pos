@@ -1,3 +1,8 @@
+window.onload = function() {
+    document.body.style.zoom = "85%";
+};
+
+
 function getFormattedDate(date) {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var day = date.getDate();
@@ -43,6 +48,14 @@ function submitForm() {
 
 // Call the submitForm function when the page loads
 window.onload = submitForm;
+
+    function closePopups() {
+        // Find the closest parent element that represents the popup and hide or remove it
+        var popup = document.querySelector('.message-warning');
+        if (popup) {
+            popup.style.display = 'none'; // or remove() if you want to completely remove it from the DOM
+        }
+    }
 
 document.addEventListener('DOMContentLoaded', (event) => {
     var popupButton = document.getElementById('popupButton');

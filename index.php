@@ -25,7 +25,7 @@ if(isset($_POST['login'])){
         $_SESSION['Access'] = $row['access'];
         echo header("Location: posMain.php");
     } else {
-        echo "<div class='message-warning'> No user found. </div>";
+        echo "<div class='message-warnings'> No user found. </div>";
     }
 }
 ?>
@@ -41,6 +41,13 @@ if(isset($_POST['login'])){
 </head>
 <body>
 
+<div class="note-info-index">
+    Note:
+    </br>
+    UserName: admin </br>
+    Password: admin1
+    </br>
+</div>
 <div class="whole-container">
 
     <div class="form-logo">

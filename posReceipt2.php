@@ -12,6 +12,7 @@ $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -188,19 +189,22 @@ $row = $product->fetch_assoc();
             </div>
                     
             <div class="tendered">
-            <p><?php
-                // Retrieve and display userAmount from query parameter
-                if (isset($_GET['userAmount'])) {
-                    // Convert userAmount to float and format it to 2 decimal places
-                    $formattedAmount = number_format((float)$_GET['userAmount'], 2, '.', '');
-                    echo htmlspecialchars($formattedAmount);
-                } else {
-                    echo '0.00'; // Default value if userAmount is not provided
-                }
-            ?></p>
-        </div>
+                <p><?php
+                    // Retrieve and display userAmount from query parameter
+                    if (isset($_GET['userAmount'])) {
+                        // Convert userAmount to float and format it to 2 decimal places
+                        $formattedAmount = number_format((float)$_GET['userAmount'], 2, '.', '');
+                        echo htmlspecialchars($formattedAmount);
+                    } else {
+                        echo '0.00'; // Default value if userAmount is not provided
+                    }
+                ?></p>
+            </div>
 
-
+                <?php
+                    $remains = $totalAmount - htmlspecialchars($formattedAmount);
+                ?>
+                
 
         </div>
         <div class="payment-details">
@@ -209,10 +213,13 @@ $row = $product->fetch_assoc();
 
         <div class="try">
             <p>Enter Amount:</p>
-            <form id="paymentForm" action="posReceiptFinal.php" method="get">
-            <input type="text" name="amount" id="amount" placeholder="0.00"> 
+            <form id="paymentForm" action="posReceiptFinal2.php" method="get">
+            <input type="text" name="amount" id="amount" value="<?php echo number_format($remains, 2); ?>">
+
         </div>
     </div>
+
+    
 `
 
         <div class="bottomx">
@@ -228,6 +235,7 @@ $row = $product->fetch_assoc();
         <p><span id="time"></span></p>
         </div>  
         </form>
+        
 
         
         <div class="unique-popup" id="popup">
@@ -274,26 +282,33 @@ $row = $product->fetch_assoc();
             }
     });
     
-     function validateAmount() {
-            const totalAmount = <?php echo $totalAmount; ?>;
-            const userAmount = parseFloat(document.getElementById('amount').value);
+    function validateAmount() {
+        const totalAmount = <?php echo $totalAmount; ?>;
+        const currentTendered = parseFloat(<?php echo isset($_GET['userAmount']) ? $_GET['userAmount'] : 0; ?>);
+        const newAmount = parseFloat(document.getElementById('amount').value);
 
-            if (isNaN(userAmount) || userAmount < totalAmount) {
-                showPopup();
-                return false; // Prevent form submission
-            }
-            return true; // Allow form submission
+        if (isNaN(newAmount)) {
+            showPopup('Please enter a valid number.');
+            return false; // Prevent form submission
         }
 
-        function showPopup() {
-            document.getElementById('popup').style.display = 'block';
+        const totalTendered = currentTendered + newAmount;
+
+        if (totalTendered < totalAmount) {
+            const remainingAmount = totalAmount - totalTendered;
+            showPopup(`You need to tender ${remainingAmount.toFixed(2)} more.`);
+            return false; // Prevent form submission
         }
 
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
+        return true; // Allow form submission
+    }
+
+    function showPopup(message) {
+        alert(message); // You can replace alert with your actual popup display method
+    }
 
         
 </script>
+
 </body>
 </html>

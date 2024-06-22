@@ -38,11 +38,12 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="note-info">
+<div class="note-info-index">
     Note:
     </br>
-    The range of UPC scan on DB is 1-30. </br>
-    Test scan only.
+    Scan UCP </br>
+    1-30
+    </br>
 </div>
 <a href="logout.php" class="logout">
         Logout
@@ -263,7 +264,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
         <div class="bottom-2">
             <p>Total Sales:</p>
                 <div class="bar2">
-                <?php echo $totalAmount; ?>
+                <?php echo number_format($totalAmount, 2);?>
                 </div>
         </div>
         <div class="bottom-3">

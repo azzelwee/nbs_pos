@@ -18,12 +18,21 @@ $date = date("mdY");
 $time = date("H:i:s");
 $totalQty = $_COOKIE['totalQty'];
 $totalAmount = $_COOKIE['total_amount'];
+$formattedTotal = number_format((float)$totalAmount, 2, '.', '');
+
+$number = "29990001000001";
+$date = str_replace(' ', '', $date);
+$number = str_replace(' ', '', $number);
 
 $results = $_SESSION['search_results'];
 
-$remainingAmount = $_SESSION['remainingAmount'];
-$inputAmount = $_SESSION['inputAmount'];
+$vat = $totalAmount * 0.12 / 1.12;
+$vattable = $totalAmount / 1.12;
 
+$formattedVattable = number_format($vattable, 2);
+$formattedVat = number_format($vat, 2);
+
+$formattedAmount = number_format($inputAmount, 2);
 
 // Get the current date in mm/dd/yyyy format
 
@@ -89,7 +98,7 @@ $inputAmount = $_SESSION['inputAmount'];
 
             <div class="columnReceipt3">
                 <p>
-                <?php echo $row['amount'];?> <?php echo $row['type']; ?>
+                <?php echo number_format($row['amount'], 2); ?> <?php echo $row['type']; ?>
                 </p>    
             </div>
 
@@ -112,13 +121,13 @@ $inputAmount = $_SESSION['inputAmount'];
 
         <div class=\"apart3\">
             <p>Amount Due</p>
-            <p>$totalAmount</p>
+            <p>$formattedTotal</p>
         </div>
         <p>Change -> $remainingAmount</br>
         
         <div class=\"apart3\">
             <p>Cash</p>
-            <p>$inputAmount</p>
+            <p>$formattedAmount</p>
         </div>
    
         </br>
@@ -136,14 +145,9 @@ $inputAmount = $_SESSION['inputAmount'];
         <p style=\"text-align:center;\">Tax Info</p>              
         </br>
 
-        <div class=\"taxApart1\">
-            <p>Non-Vatable </p> 
-            <p>0.00 </p>
-        </div>
-
-        <div class=\"taxApart1\">
+<div class=\"taxApart1\">
             <p>Vatable </p> 
-            <p>0.00 </p>
+            <p>$formattedVattable </p>
         </div>
 
         <div class=\"taxApart1\">
@@ -158,12 +162,12 @@ $inputAmount = $_SESSION['inputAmount'];
         
         <div class=\"taxApart1\">
             <p>VAT(12%) </p> 
-            <p>0.00 </p>
+            <p>$formattedVat</p>
         </div>
 
         <div class=\"taxApart1\">
             <p>Total Sales </p> 
-            <p>$totalAmount</p>
+            <p>$formattedTotal</p>
         </div>
         </br>                        
         BUYER'S NAME : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </br>                      

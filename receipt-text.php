@@ -18,15 +18,19 @@ $date = date("mdY");
 $time = date("H:i:s");
 $totalQty = $_COOKIE['totalQty'];
 $totalAmount = $_COOKIE['total_amount'];
+$formattedTotal = number_format((float)$totalAmount, 2, '.', '');
 
-
+$number = "29990001000001";
+$date = str_replace(' ', '', $date);
+$number = str_replace(' ', '', $number);
 
 $results = $_SESSION['search_results'];
 
+$vat = $totalAmount * 0.12 / 1.12;
+$vattable = $totalAmount / 1.12;
 
-// Get the current date in mm/dd/yyyy format
-
-
+$formattedVattable = number_format($vattable, 2);
+$formattedVat = number_format($vat, 2);
 ?>
 
 <div class="receipt1">
@@ -57,7 +61,7 @@ $results = $_SESSION['search_results'];
         </div>
 
         
-        TrxNo &nbsp&nbsp&nbsp : $date 29990001000001
+        TrxNo &nbsp&nbsp&nbsp : $date$number
         </br>
 
         <div class=\"apart2\">
@@ -88,7 +92,7 @@ $results = $_SESSION['search_results'];
 
             <div class="columnReceipt3">
                 <p>
-                <?php echo $row['amount'];?> <?php echo $row['type']; ?>
+                <?php echo number_format($row['amount'], 2); ?> <?php echo $row['type']; ?>
                 </p>    
             </div>
 
@@ -111,13 +115,13 @@ $results = $_SESSION['search_results'];
 
         <div class=\"apart3\">
             <p> Amount Due: </p>
-            <p> $totalAmount </p>
+            <p> $formattedTotal </p>
             
         </div>
         <p>Change -> 0.00</br>
    
         </br>
-        ***********************************************************
+        ********************************************************************
         </br>
         Join Laking National for free!        </br>  
         </br>                             
@@ -126,7 +130,7 @@ $results = $_SESSION['search_results'];
         for more details or download the app in    </br>   
         your phone's app store.                       
         </br>
-        ***********************************************************
+        ********************************************************************
         </br>
         <p style=\"text-align:center;\">Tax Info</p>              
         </br>
@@ -138,7 +142,7 @@ $results = $_SESSION['search_results'];
 
         <div class=\"taxApart1\">
             <p>Vatable </p> 
-            <p>0.00 </p>
+            <p>$formattedVattable </p>
         </div>
 
         <div class=\"taxApart1\">
@@ -153,12 +157,12 @@ $results = $_SESSION['search_results'];
         
         <div class=\"taxApart1\">
             <p>VAT(12%) </p> 
-            <p>0.00 </p>
+            <p>$formattedVat</p>
         </div>
 
         <div class=\"taxApart1\">
             <p>Total Sales </p> 
-            <p>$totalAmount</p>
+            <p>$formattedTotal</p>
         </div>
         </br>                        
         BUYER'S NAME : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </br>                      

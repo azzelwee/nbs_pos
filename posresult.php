@@ -68,11 +68,12 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="note-info">
+<div class="note-info-index">
     Note:
     </br>
-    The range of UPC scan on DB is 1-30. </br>
-    Test scan only.
+    Scan UCP </br>
+    1-30
+    </br>
 </div>
 <a href="logout.php" class="logout">
         Logout
@@ -158,6 +159,8 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                     </form>
                 </div>
             </div>
+
+            
 
             <div id="popup" class="popup">
                 <div class="popup-content">
@@ -280,7 +283,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     
     <div id="popup-overlay-custom" class="popup-overlay-custom">
         <div class="popup-content-custom">
-            <p>Item[] Not Found!</p>
+            <p>Item Not Found!</p>
             <button onclick="closePopup()">OK</button>
         </div>
     </div>
@@ -299,7 +302,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
         <div class="bottom-2">
             <p>Total Sales:</p>
                 <div class="bar2">
-                <?php echo $totalAmount; ?>
+                <?php echo number_format($totalAmount, 2);?>
                 </div>
         </div>
         <div class="bottom-3">

@@ -6,32 +6,10 @@ if(!isset($_SESSION)){
 
 include_once("connections/connection.php");
 $con = connection();
+$sql = "SELECT * FROM product_list";
+$product = $con->query($sql) or die ($con->error);
+$row = $product->fetch_assoc();
 
-if(isset($_POST['login'])){
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    $sql = "SELECT * FROM pos_users WHERE
-    username = '$username' AND password = '$password'";
-    $user = $con->query($sql) or die ($con->error);
-    $row = $user->fetch_assoc();
-    $total = $user->num_rows;
-
-    if($total > 0){
-        $_SESSION['UserLogin'] = $row['username'];
-        $_SESSION['Name'] = $row['name'];
-        $_SESSION['Trx'] = $row['trx'];
-        $_SESSION['Access'] = $row['access'];
-        echo header("Location: posTrxVoid2_E.php");
-    } else {
-        echo "<div class='message-warning'> <p>Access Denied!</p>
-        <div class='closePopers'>
-            <button class='popup-closed' onclick='closePopups()'>OK</button>
-            </div>
-        </div>";
-    }
-}
 ?>
 
 
@@ -108,28 +86,20 @@ if(isset($_POST['login'])){
 
 
         <div class= "main-container1">
-            <h2>MANAGER OVERRIDE</h2>
-            <div class="center-container4">
-            <form action="" method="post" id="">
+            <h2>TRANSACTION VOID</h2>
+            <div class="center-container3">
             
-            <p>Sorry, you dont have permission to do this
-            </br>operation. Please perform Manager Override.
+            <p>Are you sure you want to void
+            </br>this transaction?
             </p>
 
-            <div class="form-element">
-                    <label>Username</label>
-                    <input type="username" name="username" id="username">
-                </div>
-
-                <div class="form-element">
-                    <label>Password</label>
-                    <input type="password" name="password" id="password">
-                </div>
-      
-                    <button type="submit" name="login" class="btn-ok5">Yes</button>
+            <div class="thebuttons">
+                <form action="handle_form.php" method="post">
+                    <button type="submit" name="" class="btn-ok10">Yes</button> 
+                </form>
+            
                     <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
-       
-            </form>
+                    </div>
             </div>
     </div>
    
