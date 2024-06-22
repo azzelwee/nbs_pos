@@ -184,14 +184,7 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             </div>
             
             <div class="tendered">   
-            <p><?php
-            if (isset($_GET['userAmount'])) {
-                $userAmount = htmlspecialchars($_GET['userAmount']);
-                echo $userAmount;
-            } else {
-                echo '0.00'; // Default value if userAmount is not provided
-            }
-            ?>
+            <p><?php echo number_format($inputAmount, 2); ?>
             </p>
             </div>
 

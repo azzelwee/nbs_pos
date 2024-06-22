@@ -198,6 +198,8 @@ $_SESSION['remainingAmount'] = $remainingAmount;
                 }
             ?>
 
+            
+
                     
             <div class="tendered">
             <p><?php echo number_format($inputAmount, 2); ?></p>
