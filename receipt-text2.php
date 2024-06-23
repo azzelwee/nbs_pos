@@ -122,11 +122,11 @@ $formattedAmount = number_format($inputAmount, 2);
             <p>Amount Due</p>
             <p>$formattedTotal</p>
         </div>
-        <p>Change -> $remainingAmount</br>
+        <p>Change -> 0.00</br>
         
         <div class=\"apart3\">
             <p>Cash</p>
-            <p>$formattedAmount</p>
+            <p>0.00</p>
         </div>";
 
                 echo $longText3;

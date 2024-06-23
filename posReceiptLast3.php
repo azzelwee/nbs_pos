@@ -159,7 +159,7 @@ if (isset($_SESSION['userAmount'])) {
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include 'receipt-text-cc.php'; ?>
+                    <?php include 'receipt-text2.php'; ?>
                  </div>
             </div>
 

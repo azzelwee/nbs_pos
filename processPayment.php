@@ -12,17 +12,21 @@ function processPayment() {
         $salesSlipNo = htmlspecialchars($_GET['salesSlipNo']);
 
         // Process the form data as needed
-        echo '<div class="card-details">';
-        echo "<p>Card Number:</p><p>$cardNumber</p>";
-        echo "<p>Card Holder:</p><p>$cardHolder</p>";
-        echo "<p>Card Terminal:</p><p>$cardTerminal</p>";
-        echo "<p>Valid Until:</p><p>$validUntil</p>";
-        echo "<p>Amount:</p><p>$amount</p>";
-        echo "<p>Authorization Code:</p><p>$authCode</p>";
-        echo "<p>Sales Slip No.:</p><p>$salesSlipNo</p>";
-        echo '</div>';
+        echo "Card Number: XXXXXXXXXXXX<br>";
+        echo "Card Holder: $cardHolder<br>";
+        echo "Card Terminal: $cardTerminal<br>";
+        echo "Valid Until: XXXX-XX-XX<br>";
+        echo "Amount: $amount<br>";
+        echo "Authorization Code: $authCode<br>";
+        echo "Sales Slip No.: $salesSlipNo<br>";
     } else {
-        echo "<p>Incomplete form data.</p>";
+        echo "Card Number: XXXXXXXXXXXX<br>";
+        echo "Card Holder: <br>";
+        echo "Card Terminal: <br>";
+        echo "Valid Until: XXXX-XX-XX<br>";
+        echo "Amount: <br>";
+        echo "Authorization Code:<br>";
+        echo "Sales Slip No.:<br>";
     }
 }
 ?>
