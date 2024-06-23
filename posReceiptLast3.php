@@ -21,7 +21,17 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
     $totalAmount = $inputAmount = $remainingAmount = 0;
 }
 
+$userAmountMessage = '';
 
+// Check if userAmount is set in the session
+if (isset($_SESSION['userAmount'])) {
+    $userAmount = $_SESSION['userAmount'];
+    // Store the message in a variable
+    $userAmountMessage = "User Amount: " . htmlspecialchars($userAmount, ENT_QUOTES, 'UTF-8');
+} else {
+    // Store the default message in a variable
+    $userAmountMessage = "0.00";
+}
 ?>
 
 <!DOCTYPE html>
@@ -149,7 +159,7 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include 'receipt-text2.php'; ?>
+                    <?php include 'receipt-text-cc.php'; ?>
                  </div>
             </div>
 
@@ -184,18 +194,15 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             </div>
             
             <div class="tendered">   
-            <p><?php echo number_format($inputAmount, 2); ?>
-            </p>
+            <p><?php echo number_format($inputAmount, 2); ?></p>
             </div>
 
             <?php
-
-           
+                $change = $userAmount + $inputAmount - $totalAmount;
             ?>
 
-
             <div class="change">   
-            <p></p>
+            <p><?php echo number_format($change,2);?></p>
             </div>
 
 

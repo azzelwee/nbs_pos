@@ -296,30 +296,33 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             swipeText.style.display = 'none';
             // Add additional input fields for credit card details
             cardDetailsDiv.innerHTML += `
-            <label for="cardHolder">Card Number:</label>
-            <input type="text" id="cardHolder" name="cardHolder" required>
-            </br>
+        <form id="paymentForm" action="posReceiptLast2.php" method="get">
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required>
+            <br>
             <label for="cardHolder">Card Holder:</label>
-            <input type="text" id="cardHolder" name="cardHolder" >
-            </br>
+            <input type="text" id="cardHolder" name="cardHolder">
+            <br>
             <label for="cardTerminal">Card Terminal/Hypercom:</label>
             <input type="text" id="cardTerminal" name="cardTerminal">
-            </br>
+            <br>
             <div id="fixing">
                 <label for="validUntil">Valid Until:</label>
                 <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
-                <p style="color:red; font-size: 15px;">(YYYY-mm-dd)</p>
+                <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
             </div>
-                <form id="paymentForm" action="posReceiptLast2.php" method="get">
-                    <label for="creditAmount">Credit Amount:</label>
-                    <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>"> 
-                </form>
-            </br>
+            <br>
+            <label for="creditAmount">Credit Amount:</label>
+            <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>"> 
+            <br>
             <label for="authCode">Authorization Code:</label>
             <input type="text" id="authCode" name="authCode">
-            </br>
+            <br>
             <label for="salesSlipNo">Sales Slip No.:</label>
             <input type="text" id="salesSlipNo" name="salesSlipNo">
+            <br>
+            <button type="submit" name="search" onclick="return validateAmount()">OK</button>
+        </form>
                       `;
             
             // Change the OK button to a submit button

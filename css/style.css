@@ -1772,6 +1772,10 @@ th {
     justify-content: space-between;
 }
 
+.creditCard{
+    display: block;
+}
+
 .receiptItem {
     display: flex;
     align-items: flex-start; /* Align items at the start of the flex container */

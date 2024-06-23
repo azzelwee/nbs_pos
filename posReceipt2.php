@@ -191,18 +191,22 @@ $row = $product->fetch_assoc();
             <div class="tendered">
                 <p><?php
                     // Retrieve and display userAmount from query parameter
-                    if (isset($_GET['userAmount'])) {
+                    $userAmount = filter_input(INPUT_GET, 'userAmount', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+                    if ($userAmount !== null) {
                         // Convert userAmount to float and format it to 2 decimal places
-                        $formattedAmount = number_format((float)$_GET['userAmount'], 2, '.', '');
-                        echo htmlspecialchars($formattedAmount);
+                        $formattedAmount = number_format((float)$userAmount, 2, '.', '');
+                        $_SESSION['userAmount'] = $userAmount; // Store in session
+                        echo htmlspecialchars($formattedAmount, ENT_QUOTES, 'UTF-8');
                     } else {
                         echo '0.00'; // Default value if userAmount is not provided
                     }
-                ?></p>
+                    ?>
+                </p>
             </div>
 
                 <?php
-                    $remains = $totalAmount - htmlspecialchars($formattedAmount);
+                    $remains = $totalAmount - $userAmount;
                 ?>
                 
 
@@ -218,9 +222,6 @@ $row = $product->fetch_assoc();
 
         </div>
     </div>
-
-    
-`
 
         <div class="bottomx">
             <div class="bottom-1x">
