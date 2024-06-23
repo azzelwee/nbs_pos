@@ -193,16 +193,19 @@ if (isset($_SESSION['userAmount'])) {
             <div class="sales">
                 <p><?php echo number_format($totalAmount, 2); ?></p>
             </div>
-
+            
             <div class="tendered">   
             <p><?php echo number_format($inputAmount, 2); ?></p>
             </div>
 
-
+            <?php
+                $change = $userAmount + $inputAmount - $totalAmount;
+            ?>
 
             <div class="change">   
-            <p>0.00</p>
+            <p><?php echo number_format($change,2);?></p>
             </div>
+
 
 
         </div>

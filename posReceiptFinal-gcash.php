@@ -218,7 +218,7 @@ $_SESSION['remainingAmount'] = $remainingAmount;
                 Please wait...</p>
             
             <p>Enter Amount:</p>
-            <form id="myForm" action="posReceiptLast3.php" method="get">
+            <form id="myForm" action="posReceiptLast-gcash.php" method="get">
                 <input type="text" name="amount" id="amount" placeholder="0.00">
                 
                 

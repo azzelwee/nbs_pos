@@ -11,27 +11,27 @@ $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
 
-// Check if the session variables are set
-if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset($_SESSION['remainingAmount'])) {
-    $totalAmount = $_SESSION['totalAmount'];
-    $inputAmount = $_SESSION['inputAmount'];
-    $remainingAmount = $_SESSION['remainingAmount'];
+if (isset($_GET['amount'])) {
+    $inputAmount = floatval($_GET['amount']);
 } else {
-    // Handle the case where session variables are not set
-    $totalAmount = $inputAmount = $remainingAmount = 0;
+    $inputAmount = 0;
 }
 
-$userAmountMessage = '';
-
-// Check if userAmount is set in the session
-if (isset($_SESSION['userAmount'])) {
-    $userAmount = $_SESSION['userAmount'];
-    // Store the message in a variable
-    $userAmountMessage = "User Amount: " . htmlspecialchars($userAmount, ENT_QUOTES, 'UTF-8');
+// Retrieve the total amount from the cookie
+if (isset($_COOKIE['total_amount'])) {
+    $totalAmount = floatval($_COOKIE['total_amount']);
 } else {
-    // Store the default message in a variable
-    $userAmountMessage = "0.00";
+    $totalAmount = 0;
 }
+
+// Perform the subtraction
+$remainingAmount = $inputAmount - $totalAmount;
+
+// Store the values in the session
+$_SESSION['totalAmount'] = $totalAmount;
+$_SESSION['inputAmount'] = $inputAmount;
+$_SESSION['remainingAmount'] = $remainingAmount;
+
 
 ?>
 
@@ -104,35 +104,35 @@ if (isset($_SESSION['userAmount'])) {
     <div class="e">
     <div class="column-3z">
             <div class="reds">
-                <div class="button-adjust" style="background-color: red; color: white;">
+                <div class="button-adjust">
                 <p>Help</p>
                 <p>F3</p>
                 </div>
-                <div class="button-adjust" style="background-color: red; color: white;">
+                <div class="button-adjust" style="background-color: yellow">
                 <p>Cash</p>
                 <p>F4</p>
                 </div>
-                <div class="button-adjust" style="background-color: red; color: white;">
+                <div class="button-adjust">
                 <p>Bank Card</p>
                 <p>F5</p>
                 </div>
-                <div class="button-adjust" style="background-color: red; color: white;">
+                <div class="button-adjust" style="background-color: red">
                 <p>Check</p>
                 <p>F6</p>
                 </div>
-                <div class="button-adjust" style="background-color: red; color: white;">
+                <div class="button-adjust">
                 <p>Gift Cert.</p>
                 <p>F7</p>
                 </div>
-                <div class="button-adjust" style="background-color: red; color: white;">
+                <div class="button-adjust">
                 <p>Coupon</p>
                 <p>F8</p>
                 </div>
-                <div class="button-adjust" style="background-color: red; color: white;">
+                <div class="button-adjust" style="background-color: red">
                 <p>E-Purse</p>
                 <p>F9</p>
                 </div>
-                <div class="button-adjust" style="background-color: red; color: white;">
+                <div class="button-adjust">
                 <p>Credit</p>
                 <p>Memo</p>
                 <p>F9</span></p>
@@ -160,63 +160,70 @@ if (isset($_SESSION['userAmount'])) {
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include 'receipt-text-gcash.php'; ?>
+                    <?php include 'receipt-text-paymaya.php'; ?>
                  </div>
             </div>
 
         </div>
 
         <div class="column-1a">
-            <div class="compute2"> 
+            <div class="compute"> 
                     <div class="textes">
                     <p>Unit</p>
                     </br>
                     <p>Sales</p>
                     </br>
                     <p>Tendered</p>
-                    </br>
-                    <p>Change</p>
                     </div>
-
                     <?php
                 // Check if the 'totalQty' cookie is set
                 if (isset($_COOKIE['totalQty'])) {
                     $totalQty = $_COOKIE['totalQty'];
-                } else { 
+                } else {
                     $totalQty = 0; // Default value if the cookie is not set
                 }
                 ?>
             <div class="units">   
-            <p><?php echo $totalQty; ?></p>
+                <p><?php echo $totalQty; ?></p>
             </div>
-
             <div class="sales">
-                <p><?php echo number_format($totalAmount, 2); ?></p>
+            <p><?php echo number_format($totalAmount, 2);?></p>
             </div>
 
-            <div class="tendered">   
+            <?php
+                // Retrieve and store userAmount from query parameter
+                $userAmount = '';
+                if (isset($_GET['userAmount'])) {
+                    $userAmount = htmlspecialchars($userAmount);
+                }
+            ?>
+
+            
+
+                    
+            <div class="tendered">
             <p><?php echo number_format($inputAmount, 2); ?></p>
             </div>
 
-
-
-            <div class="change">   
-            <p>0.00</p>
-            </div>
-
-
         </div>
         <div class="payment-details">
-            
+
+            <p>Cash Payment Details</p>
         </div>
 
-        <div class="try2">
-            <p>Please Tear-Off the OR and
-            </br>
-            Close the Cash Register.
-            </br>
-            Thank you!!
-            </p>
+        <div class="try">
+                <p style="font-size: 18px; margin-bottom: 10px; color: red;"> 
+                Don't press any key.. 
+                </br>
+                Please wait...</p>
+            
+            <p>Enter Amount:</p>
+            <form id="myForm" action="posReceiptLast-paymaya2.php" method="get">
+                <input type="text" name="amount" id="amount" placeholder="0.00">
+                
+                
+            </form>
+            
         </div>
     </div>
 
@@ -226,16 +233,34 @@ if (isset($_SESSION['userAmount'])) {
 
             </div>
             
-            <div class="bottom-2xz">
-            <form action="handle_form.php" method="post" >
-                <button type="submit" name="search" class="btn-ok2">Ok</button>
-                
-            </form>
-            <p><span id="time"></span></p>
+        <div class="bottom-2xy">
+        <button type="submit" name="search" class="btn-ok2">Ok</button>
+        <button type="reset" name="search" class="btn-cancel2">Cancel</button>
+        <p><span id="time"></span></p>
         </div>
-
        
     </div>
+    
+    <script>
+         function validateAmount() {
+            const totalAmount = <?php echo $totalAmount; ?>;
+            const userAmount = parseFloat(document.getElementById('amount').value);
+
+            if (isNaN(userAmount) || userAmount < totalAmount) {
+                showPopup();
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
    
 <script src="js/main.js"></script>
 </body>
