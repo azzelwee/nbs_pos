@@ -184,7 +184,7 @@ $row = $product->fetch_assoc();
 
         <div class="try3">
             
-            <form action="posReceiptFinal.php" method="get">
+            <form action="posReceiptLast2.php" method="get">
             <p id="paymentText">Please Select Card Type</p>
             <select name="payment_method" id="paymentMethod">
             <option value="">-SELECT-</option>
@@ -311,7 +311,6 @@ document.getElementById('okButtonz').addEventListener('click', function() {
                 <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
                 <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
             </div>
-            <br>
             <label for="creditAmount">Credit Amount:</label>
             <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>"> 
             <br>
@@ -320,8 +319,6 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             <br>
             <label for="salesSlipNo">Sales Slip No.:</label>
             <input type="text" id="salesSlipNo" name="salesSlipNo">
-            <br>
-            <button type="submit" name="search" onclick="return validateAmount()">OK</button>
         </form>
                       `;
             
@@ -341,7 +338,7 @@ function validateAmount() {
 
     if (isNaN(userAmount) || userAmount < totalAmount) {
         // Redirect to posReceipt.php with userAmount as a query parameter
-        window.location.href = 'posReceipt2.php?userAmount=' + encodeURIComponent(userAmount);
+        window.location.href = 'posReceipt3.php?userAmount=' + encodeURIComponent(userAmount);
         return false; // Prevent form submission
     }
     return true; // Allow form submission

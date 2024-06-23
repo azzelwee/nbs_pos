@@ -109,7 +109,6 @@ $formattedAmount = number_format($inputAmount, 2);
     ?>
 </div>
 
-
 <div class="receipt3">
 <?php
     $longText3 =                                    
@@ -128,8 +127,23 @@ $formattedAmount = number_format($inputAmount, 2);
         <div class=\"apart3\">
             <p>Cash</p>
             <p>$formattedAmount</p>
+        </div>";
+
+                echo $longText3;
+        ?>
         </div>
-   
+        
+        <div class="receipt3">
+        <?php
+            include 'processPayment.php';
+            processPayment();
+        ?>
+        </div>
+
+<div class="receipt3">
+<?php
+    $longText3 =                                    
+     "
         </br>
         ***********************************************************
         </br>
@@ -178,6 +192,7 @@ $formattedAmount = number_format($inputAmount, 2);
         echo $longText3;
         ?>
 </div>
+
 
 <div class="receipt4">
 <?php

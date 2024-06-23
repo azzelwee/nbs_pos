@@ -22,6 +22,8 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
 }
 
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -184,18 +186,11 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             </div>
 
             <div class="tendered">   
-                <p><?php echo number_format($inputAmount, 2); ?></p>
+                <p><?php echo number_format($totalAmount, 2); ?></p>
             </div>
 
-            <?php
-
-            $change = $inputAmount - $totalAmount;
-            $formattedChange = number_format($change, 2);
-            ?>
-
-
             <div class="change">   
-            <p><p><?php echo number_format($formattedChange, 2); ?></p>
+            <p>0.00</p>
             </div>
 
 

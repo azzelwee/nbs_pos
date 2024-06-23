@@ -32,13 +32,6 @@ $_SESSION['totalAmount'] = $totalAmount;
 $_SESSION['inputAmount'] = $inputAmount;
 $_SESSION['remainingAmount'] = $remainingAmount;
 
-// posReceiptLast2.php
-include 'processPayment.php';
-
-// Call the function to process the form data
-processPayment();
-
-
 
 ?>
 
@@ -225,7 +218,7 @@ processPayment();
                 Please wait...</p>
             
             <p>Enter Amount:</p>
-            <form id="myForm" action="posReceiptLast2.php" method="get">
+            <form id="myForm" action="posReceiptLast3.php" method="get">
                 <input type="text" name="amount" id="amount" placeholder="0.00">
                 
                 
