@@ -183,10 +183,9 @@ $row = $product->fetch_assoc();
         </div>
 
         <div class="try3">
-            
-            <form action="posReceiptLast2.php" method="get">
-            <p id="paymentText">Please Select Card Type</p>
-            <select name="payment_method" id="paymentMethod">
+    <form id="paymentForm" method="get">
+        <p id="paymentText">Please Select Card Type</p>
+        <select name="payment_method" id="paymentMethod">
             <option value="">-SELECT-</option>
             <option value="CREDIT_CARD">CREDIT CARD</option>
             <option value="SODEXHO">SODEXHO</option>
@@ -241,7 +240,7 @@ $row = $product->fetch_assoc();
             <option value="NBS SURF PROMO P50">NBS SURF PROMO P50</option>
             <option value="UNIQLO DISCOUNT PROMO">UNIQLO DISCOUNT PROMO</option>
             <option value="Vaccine Promo Voucher">Vaccine Promo Voucher</option>
-                 </select> 
+        </select>
                  <div id="cardDetails"></div>
         </div>
         
@@ -271,82 +270,83 @@ document.getElementById('okButtonz').addEventListener('click', function() {
     var cardDetailsDiv = document.getElementById('cardDetails');
     var paymentMethodSelect = document.getElementById('paymentMethod');
     var paymentMethodText = document.getElementById('paymentText');
+    var form = document.getElementById('paymentForm');
 
-    var swipeLabel = document.getElementById('swipeLabel');
-    var swipeText = document.getElementById('swipeText');
-
-    
     if (selectedOption === 'CREDIT_CARD') {
         okButtonzClickCount++;
-        
+
         if (okButtonzClickCount === 1) {
-            // Hide the select dropdown
             paymentMethodSelect.style.display = 'none';
             paymentMethodText.style.display = 'none';
-            
-            // Add initial input fields for credit card details
-            cardDetailsDiv.innerHTML = `
 
+            cardDetailsDiv.innerHTML = `
                 <label for="cardNumber" id="swipeLabel" style="display:flex; margin-left: 160px; width: 100%;">Please Swipe Credit Card</label>
                 <input type="text" id="swipeText" style="display:flex; margin-left: 120px; width: 270px; height:30px;" name="cardNumber">
-
             `;
         } else if (okButtonzClickCount === 2) {
-            swipeLabel.style.display = 'none';
-            swipeText.style.display = 'none';
-            // Add additional input fields for credit card details
+            document.getElementById('swipeLabel').style.display = 'none';
+            document.getElementById('swipeText').style.display = 'none';
+
             cardDetailsDiv.innerHTML += `
-        <form id="paymentForm" action="posReceiptLast2.php" method="get">
-            <label for="cardNumber">Card Number:</label>
-            <input type="text" id="cardNumber" name="cardNumber" required>
-            <br>
-            <label for="cardHolder">Card Holder:</label>
-            <input type="text" id="cardHolder" name="cardHolder">
-            <br>
-            <label for="cardTerminal">Card Terminal/Hypercom:</label>
-            <input type="text" id="cardTerminal" name="cardTerminal">
-            <br>
-            <div id="fixing">
-                <label for="validUntil">Valid Until:</label>
-                <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
-                <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
-            </div>
-            <label for="creditAmount">Credit Amount:</label>
-            <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>"> 
-            <br>
-            <label for="authCode">Authorization Code:</label>
-            <input type="text" id="authCode" name="authCode">
-            <br>
-            <label for="salesSlipNo">Sales Slip No.:</label>
-            <input type="text" id="salesSlipNo" name="salesSlipNo">
-        </form>
-                      `;
-            
-            // Change the OK button to a submit button
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required>
+                <br>
+                <label for="cardHolder">Card Holder:</label>
+                <input type="text" id="cardHolder" name="cardHolder">
+                <br>
+                <label for="cardTerminal">Card Terminal/Hypercom:</label>
+                <input type="text" id="cardTerminal" name="cardTerminal">
+                <br>
+                <div id="fixing">
+                    <label for="validUntil">Valid Until:</label>
+                    <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
+                    <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
+                </div>
+                <label for="creditAmount">Credit Amount:</label>
+                <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>">
+                <br>
+                <label for="authCode">Authorization Code:</label>
+                <input type="text" id="authCode" name="authCode">
+                <br>
+                <label for="salesSlipNo">Sales Slip No.:</label>
+                <input type="text" id="salesSlipNo" name="salesSlipNo">
+            `;
+
             okButtonz.type = 'submit';
-            okButtonz.name = 'search';
+            form.action = 'posReceiptLast2.php';
             okButtonz.setAttribute('onclick', 'return validateAmount()');
         }
+    } else if (selectedOption === 'GCASH') {
+        paymentMethodSelect.style.display = 'none';
+        paymentMethodText.style.display = 'none';
+
+        cardDetailsDiv.innerHTML = `
+            <label for="gcashAmount">Amount:</label>
+            <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2);?>" required>
+            <br>
+            <label for="gcashReferenceNo">Reference No.:</label>
+            <input type="text" id="gcashReferenceNo" name="gcashReferenceNo" required>
+        `;
+
+        form.action = 'posReceiptLast-gcash.php';
+        form.submit();
     } else {
-        // Show an alert if no valid payment method is selected
         alert("Please select a valid payment method.");
     }
 });
+
 function validateAmount() {
     const totalAmount = <?php echo $totalAmount; ?>;
     const userAmount = parseFloat(document.getElementById('amount').value);
 
     if (isNaN(userAmount) || userAmount < totalAmount) {
-        // Redirect to posReceipt.php with userAmount as a query parameter
         window.location.href = 'posReceipt3.php?userAmount=' + encodeURIComponent(userAmount);
-        return false; // Prevent form submission
+        return false;
     }
-    return true; // Allow form submission
+    return true;
 }
-
-
-
 </script>
+
 
 
 
