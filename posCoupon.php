@@ -145,6 +145,7 @@ $row = $product->fetch_assoc();
 
         </div>
 
+
         <div class="column-1a">
             <div class="compute"> 
                     <div class="textes">
@@ -154,17 +155,36 @@ $row = $product->fetch_assoc();
                     </br>
                     <p>Tendered</p>
                     </div>
+
+                    <?php
+                // Check if the 'totalQty' cookie is set
+                if (isset($_COOKIE['totalQty'])) {
+                    $totalQty = $_COOKIE['totalQty'];
+                } else {
+                    $totalQty = 0; // Default value if the cookie is not set
+                }
+                ?>
             <div class="units">   
+                <p><?php echo $totalQty; ?></p>
             </div>
 
             <div class="sales">
-            <p><?php echo $totalAmount = $_COOKIE['total_amount'];?></p>
+            <p><?php echo number_format($totalAmount, 2);?></p>
             </div>
                     
-            <div class="tendered">   
-            
+            <div class="tendered">
+            <p><?php
+                // Retrieve and display userAmount from query parameter
+                if (isset($_GET['userAmount'])) {
+                    // Convert userAmount to float and format it to 2 decimal places
+                    $formattedAmount = number_format((float)$_GET['userAmount'], 2, '.', '');
+                    echo htmlspecialchars($formattedAmount);
+                } else {
+                    echo '0.00'; // Default value if userAmount is not provided
+                }
+            ?></p>
+        </div>
 
-            </div>
 
         </div>
         <div class="payment-details">

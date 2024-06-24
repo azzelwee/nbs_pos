@@ -88,29 +88,29 @@ $row = $product->fetch_assoc();
         <div class= "main-container1">
             <h2>NON-MERCHANDISE</h2>
             <div class="center-container5">
-            <form action="" method="post" id="">
+            <form action="posResultDecoy.php" method="post" id="">
+    <div class="nonmerchant">
+        </br>
+        <p>Select Charge</p>
+        <select id="charge" name="charge">
+            <option value="SODEXHO VARIANCE">SODEXHO VARIANCE</option>
+            <option value="RETURN / EXCHANGE VARIANCE">RETURN / EXCHANGE VARIANCE</option>
+            <option value="PASABUY VOUCHER VARIANCE">PASABUY VOUCHER VARIANCE</option>
+            <option value="NBSFI DONATION">NBSFI DONATION</option>
+            <option value="COUPON VARIANCE">COUPON VARIANCE</option>
+            <option value="LNQR PLUS FEE P500">LNQR PLUS FEE P500</option>
+            <option value="ILLY SERVICE CHARGE">ILLY SERVICE CHARGE</option>
+        </select>
 
-            <div class="nonmerchant">
-            </br>
-                <p>Select Charge</p>
-                    <select id="" name="">
-                        <option value="">SODEXHO VARIANCE</option>
-                        <option value="">RETURN / EXCHANGE VARIANCE</option>
-                        <option value="">PASABUY VOUCHER VARIANCE</option>
-                        <option value="">NBSFI DONATION</option>
-                        <option value="">COUPON VARIANCE</option>
-                        <option value="">LNQR PLUS FEE P500</option>
-                        <option value="">ILLY SERVICE CHARGE</option>
-                    </select>
+        <p>Enter Price</p>
+        <input type="text" name="price" id="price">
+    </div>
 
-                <p>Enter Price</p>
-                    <input type="text">
-                </div>
-      
-                    <button type="submit" name="login" class="btn-ok5">Ok</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posMain.php';">Cancel</button>
-           
-            </form>
+    <button type="submit" name="login" class="btn-ok5">Ok</button>
+    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.history.back();">Back</button>
+
+</form>
+
         </div>
     </div>
    

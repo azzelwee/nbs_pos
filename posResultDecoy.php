@@ -9,6 +9,30 @@ $con = connection();
 $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 
+// Initialize search results if not set
+if (!isset($_SESSION['search_results'])) {
+    $_SESSION['search_results'] = [];
+}
+
+
+
+// Process form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['charge']) && isset($_POST['price'])) {
+    $charge = $_POST['charge'];
+    $price = $_POST['price'];
+
+    // Add new entry to search results
+    $_SESSION['search_results'][] = [
+        'ln' => count($_SESSION['search_results']) + 1,
+        'upc' => 'N/A', // Assuming there's no UPC for these charges
+        'item' => $charge,
+        'qty' => 1, // Assuming quantity is 1 for these charges
+        'srp' => number_format((float)$price, 2),
+        'amount' => number_format((float)$price, 2),
+        'type' => 'NV'
+    ];
+}
+
 
 // Calculate the total amount
 $totalAmount = 0;
@@ -81,7 +105,7 @@ setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 
                     </div>
                 </a>
 
-                <a href="posNonMdse2.php" id="f6">
+                <a href="posNonMdse.php" id="f6">
                     <div class="button">
                     <p>Non Mdse</p>
                     <p> <span class="highlight">F6</span></p>

@@ -83,57 +83,39 @@ $row = $product->fetch_assoc();
     <div class="e">
     <div class="column-3z">
             <div class="reds">
-                <div class="button-adjust" id="f1">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Help</p>
                 <p>F1</p>
                 </div>
-
-                <div class="button-adjust" style="background-color: #fff36b; color: black;">
+                <div class="button-adjust" style="background-color: red; color: black;">
                 <p>Cash</p>
                 <p>F2</p>
                 </div>
-
-                <a href="posBankCard.php" id="f3">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Bank Card</p>
                 <p>F3</p>
-
                 </div>
-                </a>
-
                 <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Check</p>
                 <p>F4</p>
                 </div>
-
-                <a href="posGiftCert.php" id="f5">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Gift Cert.</p>
                 <p>F5</p>
-                
                 </div>
-                </a>
-
-                <a href="posCoupon.php" id="f6">
-                <div class="button-adjust">
+                <div class="button-adjust" style="background-color: red; color: white;">
                 <p>Coupon</p>
                 <p>F6</p>
-                
                 </div>
-                </a>
-
                 <div class="button-adjust" style="background-color: red; color: white;">
                 <p>E-Purse</p>
                 <p>F7</p>
                 </div>
-                
-                <a href="posCreditMemo.php" id="f8">
-                    <div class="button-adjust">
-                    <p>Credit</p>
-                    <p>Memo</p>
-                    <p>F8</span></p>
-                    </div>
-                </a>
+                <div class="button-adjust" style="background-color: #fff36b; color: black;">
+                <p>Credit</p>
+                <p>Memo</p>
+                <p>F8</span></p>
+                </div>
             </div>
         </div>
     </div>
@@ -162,6 +144,7 @@ $row = $product->fetch_assoc();
             </div>
 
         </div>
+
 
         <div class="column-1a">
             <div class="compute"> 
@@ -203,99 +186,142 @@ $row = $product->fetch_assoc();
         </div>
 
 
-
         </div>
         <div class="payment-details">
-            <p>Cash Payment Details</p>
+            <p>Credit Memo Payment Details</p>
         </div>
 
-        <div class="try">
-            <p>Enter Amount:</p>
-            <form id="paymentForm" action="posReceiptFinal.php" method="get">
-            <input type="text" name="amount" id="amount" placeholder="0.00"> 
-        </div>
+        <div class="try3">
+        <form id="gcForm" method="get">
+        <p id="gcText">Please select Credit Memo Type</p>
+        <select name="gc_method" id="gcMethod">
+                <option value="">-SELECT-</option>
+                <option value="refund_credit_memo">Refund Credit Memo</option>
+                <option value="gc_credit_memo">GC Credit Memo</option>
+                
+            </select>
+                    <div id="cardDetails"></div>
+            </div>
+
     </div>
-`
+
 
         <div class="bottomx">
             <div class="bottom-1x">
 
             </div>
             
-        <div class="bottom-2xy">
+<div class="bottom-2xy">
             
-        <button type="submit" name="search" class="btn-ok2" onclick="return validateAmount()">Ok</button>
+        <button type="button" id="okButtonz" class="btn-ok2">Ok</button>
         <button type="reset" name="search" class="btn-cancel2" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
-
         <p><span id="time"></span></p>
         </div>  
         </form>
-
-        
-        <div class="unique-popup" id="popup">
-            <div class="popup-content2">
-            <p>Cannot perform this transaction.</br>
-            Cash must be equal or higher to total transaction amount.
-            </br></br>
-            If you have GC, coupon, credit card, etc.,</br>
-            please use this payment before tendering cash.</p>
-            </div>
-            <div class="closePopers">
-            <button class="popup-close" onclick="closePopup()">OK</button>
-            </div>
-        </div>
-
     </div>
 
-    
+    <script>
+        
+let okButtonzClickCount = 0;
+let wseriesClickCount = 0;
+let ssgcClickCount = 0;
+
+document.getElementById('okButtonz').addEventListener('click', function() {
+    var selectedOption = document.getElementById('gcMethod').value;
+    var cardDetailsDiv = document.getElementById('cardDetails');
+    var gcMethodSelect = document.getElementById('gcMethod');
+    var gcMethodText = document.getElementById('gcText');
+    var form = document.getElementById('gcForm');
+
+    if (selectedOption === 'refund_credit_memo') {
+        okButtonzClickCount++;
+        if (okButtonzClickCount === 1) {
+            gcMethodSelect.style.display = 'none';
+            gcMethodText.style.display = 'none';
+            cardDetailsDiv.innerHTML = `
+             <label for="cardNumber">CM Ref No.:</label>
+                <input type="text" id="gcCertNo" name="gcCertNo" required>
+                <br>
+                <label for="salesSlipNo">CM Amount:</label>
+                <input type="text" id="salesSlipNo" name="salesSlipNo">
+                <br>
+                <div id="fixing">
+                    <label for="validUntil">Redemption Date:</label>
+                    <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
+                    <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
+                </div>
+                <div id="fixing">
+                    <label for="validUntil">Valid Until:</label>
+                    <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
+                    <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
+                </div>
+            `;
+        } else if (okButtonzClickCount === 2) {
+            okButtonz.type = 'submit';
+            form.action = 'posReceiptLast2-gc.php';
+            okButtonz.setAttribute('onclick', 'return validateCreditCardAmount()');
+        }
+        
+    } else if (selectedOption === 'gc_credit_memo') {
+        wseriesClickCount++;
+        if (wseriesClickCount === 1) {
+            gcMethodSelect.style.display = 'none';
+            gcMethodText.style.display = 'none';
+
+            cardDetailsDiv.innerHTML = `
+             <label for="cardNumber">GC Code:</label>
+                <input type="text" id="gcCertNo" name="gcCertNo" required>
+                <br>
+                <label for="cardNumber">GC CM Amount:</label>
+                <input type="text" id="gcCertNo" name="gcCertNo">
+            `;
+            okButtonz.setAttribute('onclick', 'return validateGcashAmount()');
+        } else if (wseriesClickCount === 2) {
+            form.action = 'posReceiptLast2-gc.php';
+            okButtonz.type = 'submit';
+            
+        }
+    } else {
+        alert("Please select a valid gc method.");
+    }
+});
+
+function validateCreditCardAmount() {
+    const totalAmount = <?php echo $totalAmount; ?>;
+    const userAmount = parseFloat(document.getElementById('amount').value);
+
+    if (isNaN(userAmount) || userAmount < totalAmount) {
+        window.location.href = 'posReceipt.php?userAmount=' + encodeURIComponent(userAmount);
+        return false;
+    }
+    return true;
+}
+
+function validateGcashAmount() {
+    const totalAmount = <?php echo $totalAmount; ?>;
+    const userAmount = parseFloat(document.getElementById('amount').value);
+
+    if (isNaN(userAmount) || userAmount < totalAmount) {
+        window.location.href = 'posReceipt3-gcash.php?userAmount=' + encodeURIComponent(userAmount);
+        return false;
+    }
+    return true;
+}
+
+function validatePaymayaAmount() {
+    const totalAmount = <?php echo $totalAmount; ?>;
+    const userAmount = parseFloat(document.getElementById('amount').value);
+
+    if (isNaN(userAmount) || userAmount < totalAmount) {
+        window.location.href = 'posReceipt3-paymaya.php?userAmount=' + encodeURIComponent(userAmount);
+        return false;
+    }
+    return true;
+}
+
+</script>
+
    
 <script src="js/main.js"></script>
-<script>
-        document.addEventListener("keydown", (event) => {
-            switch(event.keyCode) {
-                case 112: // F3 key
-                    event.preventDefault();
-                    document.getElementById('f1').click();
-                    break;
-                case 114: // F3 key
-                    event.preventDefault();
-                    document.getElementById('f3').click();
-                    break;
-                case 116: 
-                    event.preventDefault();
-                    document.getElementById('f5').click();
-                    break;
-                case 117: 
-                    event.preventDefault();
-                    document.getElementById('f6').click();
-                    break;
-                case 119: 
-                    event.preventDefault();
-                    document.getElementById('f8').click();
-                    break;
-            }
-    });
-    
-     function validateAmount() {
-            const totalAmount = <?php echo $totalAmount; ?>;
-            const userAmount = parseFloat(document.getElementById('amount').value);
-
-            if (isNaN(userAmount) || userAmount < totalAmount) {
-                showPopup();
-                return false; // Prevent form submission
-            }
-            return true; // Allow form submission
-        }
-
-        function showPopup() {
-            document.getElementById('popup').style.display = 'block';
-        }
-
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-
-        
-</script>
 </body>
 </html>

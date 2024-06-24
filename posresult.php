@@ -33,6 +33,7 @@ if ($results) {
 
 
 
+
 // Calculate the total amount
 $totalAmount = 0;
 if (!empty($_SESSION['search_results'])) {
