@@ -25,7 +25,11 @@ if(isset($_POST['login'])){
         $_SESSION['Access'] = $row['access'];
         echo header("Location: posMain.php");
     } else {
-        echo "<div class='message-warnings'> No user found. </div>";
+        echo "<div class='message-warning'> <p>Access Denied!</p>
+        <div class='closePopers'>
+            <button class='popup-closed' onclick='closePopups()'>OK</button>
+            </div>
+        </div>";
     }
 }
 ?>
@@ -95,6 +99,6 @@ if(isset($_POST['login'])){
         </div>
 </div>
 
-    <!-- <script src="js/main.js"></script> -->
+    <script src="js/main.js"></script>
 </body>
 </html>
