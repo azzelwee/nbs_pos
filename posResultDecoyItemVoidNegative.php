@@ -25,9 +25,10 @@ if (!isset($_SESSION['search_results'])) {
 // Add new search results to the session variable
 if ($results) {
     foreach ($results as &$result) {
-        $result['qty'] = $quantity; // Add the specified quantity to each result
-        $result['amount'] = $result['srp'] * $quantity; // Calculate the amount based on the quantity and SRP
+        $result['qty'] = -$quantity; // Set the quantity to negative
+        $result['amount'] = -$result['srp'] * $quantity; // Calculate the negative amount
     }
+    
     $_SESSION['search_results'] = array_merge($_SESSION['search_results'], $results);
 }
 
@@ -52,6 +53,9 @@ if (!empty($_SESSION['search_results'])) {
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
 
+// Redirect to posResultDecoy.php immediately
+header('Location: posResultDecoy2.php');
+exit;
 ?>
 
 
@@ -319,6 +323,44 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     </div>
 
     <script>
+
+            // Function to redirect to posResult.php
+            function redirectToPosResultDecoy() {
+            window.location.href = 'posResultDecoy.php'; // Redirect to posResult.php
+        }
+
+        // Check if the page is being refreshed
+        if (performance.navigation.type === 1) {
+            redirectToPosResultDecoy(); // Call the redirect function
+        }
+
+
+        let currentIndex = -1;
+const rows = document.querySelectorAll(".products tbody tr, .products2 tbody tr");
+
+// Automatically highlight the first row if it exists
+if (rows.length > 1) {
+    currentIndex = 1;
+    rows[currentIndex].classList.add("row-highlight");
+}
+
+
+var searchForm = document.getElementById('searchForm');
+    var isFirstSearch = true;
+
+    searchForm.onsubmit = function() {
+        // Check if it's the first search
+        if (isFirstSearch) {
+            // Change the action attribute for the first search
+            this.action = 'posResultDecoyItemVoidNegative.php';
+            isFirstSearch = false; // Set isFirstSearch to false after the first search
+        } else {
+            // For subsequent searches, change the action to posResult.php
+            this.action = 'posResult.php';
+        }
+        return true; // Allow form submission to proceed
+    };
+
         // Function to redirect the page
         function redirectToPosResult() {
             window.location.href = 'posResult.php';
@@ -400,6 +442,9 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                 
             }
     });
+
+
+    
     </script>
 
     <script src="js/main.js"></script>

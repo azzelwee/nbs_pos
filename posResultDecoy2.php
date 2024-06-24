@@ -1,36 +1,13 @@
 <?php
-// PHP code to handle quantity input
-if (!isset($_SESSION)) {
+
+if(!isset($_SESSION)){
     session_start();
 }
 
 include_once("connections/connection.php");
 $con = connection();
-
-// Fetch quantity input if specified, default to 1 if not provided
-$quantity = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-
-// Fetch new search results
-$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln ASC";
-$product = $con->query($sql) or die($con->error);
-$results = $product->fetch_all(MYSQLI_ASSOC);
-
-
-// Check if session variable for searches exists
-if (!isset($_SESSION['search_results'])) {
-    $_SESSION['search_results'] = [];
-}
-
-// Add new search results to the session variable
-if ($results) {
-    foreach ($results as &$result) {
-        $result['qty'] = $quantity; // Add the specified quantity to each result
-        $result['amount'] = $result['srp'] * $quantity; // Calculate the amount based on the quantity and SRP
-    }
-    $_SESSION['search_results'] = array_merge($_SESSION['search_results'], $results);
-}
-
+$sql = "SELECT * FROM product_list";
+$product = $con->query($sql) or die ($con->error);
 
 
 // Calculate the total amount
@@ -50,17 +27,8 @@ if (!empty($_SESSION['search_results'])) {
 }
 
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
-setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
-
+setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 ?>
-
-
-
-<!-- Only add the trigger if no new search results were found -->
-<?php if (empty($results)): ?>
-    <span id="no-product-popup-trigger"></span>
-<?php endif; ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,6 +55,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     </div>
 
     <?php include 'header.php'; ?>
+
     <div class="e">
     <div class="column-3">
             <div class="reds">
@@ -126,12 +95,14 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                     </div>
                 </a>
 
+               
                 <a href="posTrxVoid2.php" id="f8">
-                    <div class="button">
-                    <p>Trx Void</p>
-                    <p> <span class="highlight">F8</span></p>
-                    </div>
+                <div class="button">
+                <p>Trx Void</p>
+                <p> <span class="highlight">F8</span></p>
+                </div>
                 </a>
+
 
                 <a href="posSuspend2.php" id="f9">
                     <div class="button">
@@ -150,7 +121,6 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     <div class="outer-container">
         <div class="container">
             <div class="column-1">
-
             <div class="scan">
                 <div class="scan-element">
                     <label>Scan or Enter UPC</label>
@@ -161,8 +131,6 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                     </form>
                 </div>
             </div>
-
-            
 
             <div id="popup" class="popup">
                 <div class="popup-content">
@@ -188,18 +156,20 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                         <p>F12</p>
                     </div>
 
-                    <div class="box" id="f10">
-                        <p id="status">CSA</br>ON/OFF</br></p>
+
+                    <div class="box">
+                        <p id="status">CSA</br>
+                        ON/OFF</br></p>
                         <p> <span class="highlight">F10</span></p>
                     </div>
 
                     <a href="posLookup2.php" id="f2">
                         <div class="box">
-                        
-                            <p style="color: black;">Lookup</br></p>
-                            <p> <span class="highlight">F2</span></p>
-                        </a>
+                        <p style="color: black;">Lookup</br></p>
+                        <p> <span class="highlight">F2</span></p>
+                    </a>
                         </div>
+
                 </div>
 
             </div>  
@@ -232,7 +202,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                     </div>
 
             <!-- Display total amount -->
-            <div class="price">
+                    <div class="price">
                     <?php
                     if (isset($row['amount']) && !empty($row['amount'])) {
                         echo number_format($row['amount'], 2);
@@ -282,29 +252,18 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
         }
     }
 ?>
-
-
         </tbody>
     </table>
-</div>
 
-    
-    <div id="popup-overlay-custom" class="popup-overlay-custom">
-        <div class="popup-content-custom">
-            <p>Item Not Found!</p>
-            <button onclick="closePopup()">OK</button>
-        </div>
-    </div>
-</div>
-    
     <div class="bottom">
         <div class="bottom-1">
             <p>Total Qty</p>
                 <div class="bar1">
-                    <?php
+                <?php
                     echo $totalQty;
                     ?>
                 </div>
+
         </div>
         
         <div class="bottom-2">
@@ -319,15 +278,170 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     </div>
 
     <script>
-        // Function to redirect the page
-        function redirectToPosResult() {
-            window.location.href = 'posResult.php';
-        }
 
-        // Check if the page is being refreshed
-        if (performance.navigation.type === 1) {
-            redirectToPosResult(); // Call the redirect function
+window.onload = function() {
+    document.body.style.zoom = "85%";
+};
+
+
+function getFormattedDate(date) {
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    return year + '-' + months[monthIndex] + '-' + (day < 10 ? '0' : '') + day;
+}
+
+function updateTime() {
+    var currentDate = new Date();
+    var dateElement = document.getElementById("date");
+    var timeElement = document.getElementById("time");
+
+    // Get the formatted date
+    var formattedDate = getFormattedDate(currentDate);
+
+    // Update the date and time elements
+    dateElement.innerHTML = formattedDate;
+    timeElement.innerHTML = currentDate.toLocaleTimeString();
+}
+
+// Update time every second
+setInterval(updateTime, 100);
+
+function search() {
+    let searchTerm = $('#searchInput').val();
+    
+    $.ajax({
+        url: 'search.php',
+        type: 'POST',
+        data: { searchTerm: searchTerm },
+        success: function(response) {
+            $('#resultsBody').html(response);
         }
+    });
+}
+
+function submitForm() {
+    setTimeout(function() {
+        document.getElementById("myForm").submit();
+    }, 4000); // 5000 milliseconds = 5 seconds
+}
+
+// Call the submitForm function when the page loads
+window.onload = submitForm;
+
+    function closePopups() {
+        // Find the closest parent element that represents the popup and hide or remove it
+        var popup = document.querySelector('.message-warning');
+        if (popup) {
+            popup.style.display = 'none'; // or remove() if you want to completely remove it from the DOM
+        }
+    }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    var popupButton = document.getElementById('popupButton');
+    var popup = document.getElementById('popup');
+    var close = document.getElementsByClassName('close')[0];
+    var okButton = document.getElementById('okButton');
+    var cancelButton = document.getElementById('cancelButton');
+    var quantityInput = document.getElementById('quantityInput');
+    var quantityHidden = document.getElementById('quantityHidden');
+    var searchForm = document.querySelector('form[action="posResult.php"]');
+
+    popupButton.onclick = function() {
+        popup.style.display = "block";
+    }
+
+    close.onclick = function() {
+        popup.style.display = "none";
+    }
+
+    cancelButton.onclick = function() {
+        popup.style.display = "none";
+    }
+
+    okButton.onclick = function() {
+        quantityHidden.value = quantityInput.value || 1; // Set quantityHidden to input value or default to 1
+        popup.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == popup) {
+            popup.style.display = "none";
+        }
+    }
+
+    searchForm.onsubmit = function() {
+        if (!quantityHidden.value) {
+            quantityHidden.value = 1; // Default quantity if not set
+        }
+    }
+});
+
+
+
+// No Product Found
+function showNoProductPopup() {
+    const popupOverlay = document.getElementById('popup-overlay-custom');
+    popupOverlay.style.display = 'flex';
+}
+
+function closePopup() {
+    const popupOverlay = document.getElementById('popup-overlay-custom');
+    popupOverlay.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const noProductTrigger = document.getElementById('no-product-popup-trigger');
+    if (noProductTrigger) {
+        showNoProductPopup();
+        // Remove the trigger element after showing the popup to reset state
+        noProductTrigger.parentNode.removeChild(noProductTrigger);
+    }
+});
+
+let currentIndex = -1;
+const rows = document.querySelectorAll(".products tbody tr, .products2 tbody tr");
+
+// Automatically highlight the first row if it exists
+if (rows.length > 1) {
+    currentIndex = 1;
+    rows[currentIndex].classList.add("row-highlight");
+}
+
+// Define a function to handle the keydown event
+// Function to handle row highlighting
+function highlightRow(direction) {
+    if (direction === 'prev' && currentIndex > 0) {
+        rows[currentIndex].classList.remove("row-highlight");
+        currentIndex--;
+        rows[currentIndex].classList.add("row-highlight");
+    } else if (direction === 'next' && currentIndex < rows.length - 1) {
+        if (currentIndex >= 0) {
+            rows[currentIndex].classList.remove("row-highlight");
+        }
+        currentIndex++;
+        rows[currentIndex].classList.add("row-highlight");
+    }
+}
+
+// Click event listeners for box1 and box2
+document.getElementById("box1").addEventListener("click", () => {
+    highlightRow('prev');
+});
+
+document.getElementById("box2").addEventListener("click", () => {
+    highlightRow('next');
+});
+
+
+
+
+
+
+
+
+        
 
     document.addEventListener("DOMContentLoaded", function() {
         var statusParagraph = document.getElementById("status");
@@ -401,8 +515,6 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
             }
     });
     </script>
-
-    <script src="js/main.js"></script>
     
 </body>
 </html>

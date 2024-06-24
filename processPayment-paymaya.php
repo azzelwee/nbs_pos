@@ -1,14 +1,14 @@
 <?php
 
-function processPaymentGcash() {
-    if (isset($_GET['gcashReferenceNo'], $_GET['amount'])) {
-        $gcashReferenceNo = htmlspecialchars($_GET['gcashReferenceNo']);
+function processPaymentPaymaya() {
+    if (isset($_GET['paymayaReferenceNo'], $_GET['amount'])) {
+        $paymayaReferenceNo = htmlspecialchars($_GET['paymayaReferenceNo']);
         $amount = htmlspecialchars($_GET['amount']);
 
         // Process the form data as needed
         echo "PAYMAYA: </br>";
         echo "Amount: $amount <br>";
-        echo "Reference No.: $gcashReferenceNo<br>";
+        echo "Reference No.: $paymayaReferenceNo<br>";
         
     } else {
         echo "PAYMAYA: </br>";

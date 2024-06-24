@@ -122,8 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
 let currentIndex = -1;
 const rows = document.querySelectorAll(".products tbody tr, .products2 tbody tr");
 
-
-
 // Automatically highlight the first row if it exists
 if (rows.length > 0) {
     currentIndex = 0;

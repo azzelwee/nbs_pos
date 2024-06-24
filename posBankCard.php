@@ -280,7 +280,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             `;
             okButtonz.setAttribute('onclick', 'return validateGcashAmount()');
         } else if (gcashClickCount === 2) {
-            form.action = 'posReceiptFinal-gcash.php';
+            form.action = 'posReceiptLast-gcash.php';
             okButtonz.type = 'submit';
             
         }
@@ -299,7 +299,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             `;
             okButtonz.setAttribute('onclick', 'return validatePaymayaAmount()');
         } else if (paymayaClickCount === 2) {
-            form.action = 'posReceiptFinal-paymaya.php';
+            form.action = 'posReceiptLast-paymaya.php';
             okButtonz.type = 'submit';
             
         }
@@ -343,11 +343,6 @@ function validatePaymayaAmount() {
 
 </script>
 
-
-
-
-
-   
 <script src="js/main.js"></script>
 </body>
 </html>

@@ -136,7 +136,7 @@ $formattedAmount = number_format($inputAmount, 2);
         <div class="receipt3">
         <?php
             include 'processPayment-paymaya.php';
-            processPaymentGcash();
+            processPaymentPaymaya();
         ?>
         </div>
 

@@ -1,36 +1,13 @@
 <?php
-// PHP code to handle quantity input
-if (!isset($_SESSION)) {
+
+if(!isset($_SESSION)){
     session_start();
 }
 
 include_once("connections/connection.php");
 $con = connection();
-
-// Fetch quantity input if specified, default to 1 if not provided
-$quantity = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-
-// Fetch new search results
-$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln ASC";
-$product = $con->query($sql) or die($con->error);
-$results = $product->fetch_all(MYSQLI_ASSOC);
-
-
-// Check if session variable for searches exists
-if (!isset($_SESSION['search_results'])) {
-    $_SESSION['search_results'] = [];
-}
-
-// Add new search results to the session variable
-if ($results) {
-    foreach ($results as &$result) {
-        $result['qty'] = $quantity; // Add the specified quantity to each result
-        $result['amount'] = $result['srp'] * $quantity; // Calculate the amount based on the quantity and SRP
-    }
-    $_SESSION['search_results'] = array_merge($_SESSION['search_results'], $results);
-}
-
+$sql = "SELECT * FROM product_list";
+$product = $con->query($sql) or die ($con->error);
 
 
 // Calculate the total amount
@@ -50,17 +27,8 @@ if (!empty($_SESSION['search_results'])) {
 }
 
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
-setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
-
+setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 ?>
-
-
-
-<!-- Only add the trigger if no new search results were found -->
-<?php if (empty($results)): ?>
-    <span id="no-product-popup-trigger"></span>
-<?php endif; ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,56 +55,59 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     </div>
 
     <?php include 'header.php'; ?>
+
     <div class="e">
     <div class="column-3">
             <div class="reds">
 
             <a href="#" id="popupButton">
-                <div class="popup-button" id="f3">
+                <div class="popup-button" style="background-color: red; color: white;">
                     <p>Quantity</p>
-                    <p><span class="popup-highlight">F3</span></p>
+                    <p style="color: gray;">F3</span></p>
                 </div>
             </a>
             
-                <a href="posPayment.php" id="f4">
-                    <div class="button">
+                <a href="posPayment.php">
+                    <div class="button" style="background-color: red; color: white;">
                     <p>Payment</p>
-                    <p> <span class="highlight">F4</span></p>
+                    <p style="color: gray;">F4</span></p>
                     </div>
                 </a>
 
-                <a href="posOption2.php" id="f5">
-                    <div class="button">
+                <a href="posOption2.php">
+                    <div class="button" style="background-color: red; color: white;">
                     <p>Option</p>
-                    <p> <span class="highlight">F5</span></p>
+                    <p style="color: gray;">F5</span></p>
                     </div>
                 </a>
 
-                <a href="posNonMdse2.php" id="f6">
-                    <div class="button">
+                <a href="posNonMdse2.php">
+                    <div class="button" style="background-color: red; color: white;">
                     <p>Non Mdse</p>
-                    <p> <span class="highlight">F6</span></p>
+                    <p style="color: gray;">F6</span></p>
                     </div>
                 </a>
 
-                <a href="posItemVoid2.php" id="f7">
-                    <div class="button">
+                <a href="posItemVoid2.php">
+                    <div class="button" style="background-color: #fff36b; color: black;">
                     <p>Item Void</p>
-                    <p> <span class="highlight">F7</span></p>
+                    <p style="color: gray;">F7</span></p>
                     </div>
                 </a>
 
-                <a href="posTrxVoid2.php" id="f8">
-                    <div class="button">
-                    <p>Trx Void</p>
-                    <p> <span class="highlight">F8</span></p>
-                    </div>
+               
+                <a href="posTrxVoid2.php">
+                <div class="button" style="background-color: red; color: white;">
+                <p>Trx Void</p>
+                <p style="color: gray;">F8</span></p>
+                </div>
                 </a>
 
-                <a href="posSuspend2.php" id="f9">
-                    <div class="button">
+
+                <a href="posSuspend2.php">
+                    <div class="button" style="background-color: red; color: white;">
                     <p>Suspend</p>
-                    <p> <span class="highlight">F9</span></p>
+                    <p style="color: gray;">F9</span></p>
                     </div>
                 </a>
 
@@ -150,19 +121,16 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     <div class="outer-container">
         <div class="container">
             <div class="column-1">
-
             <div class="scan">
                 <div class="scan-element">
-                    <label>Scan or Enter UPC</label>
-                    <form action="posResult.php" method="get">
+                    <label>Void SKU</label>
+                    <form action="posResultDecoyItemVoidNegative.php" method="get">
                         <input type="text" name="search" id="search">
                         <input type="hidden" name="quantity" id="quantityHidden">
                         <input type="submit" name="submit" style="display: none">
                     </form>
                 </div>
             </div>
-
-            
 
             <div id="popup" class="popup">
                 <div class="popup-content">
@@ -188,18 +156,20 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                         <p>F12</p>
                     </div>
 
-                    <div class="box" id="f10">
-                        <p id="status">CSA</br>ON/OFF</br></p>
+
+                    <div class="box">
+                        <p id="status">CSA</br>
+                        ON/OFF</br></p>
                         <p> <span class="highlight">F10</span></p>
                     </div>
 
-                    <a href="posLookup2.php" id="f2">
-                        <div class="box">
-                        
-                            <p style="color: black;">Lookup</br></p>
-                            <p> <span class="highlight">F2</span></p>
-                        </a>
+                    <a href="posLookup2.php">
+                        <div class="box" style=" background-color: red;">
+                        <p style="color: white;">Lookup</br></p>
+                        <p style="color: gray;">F2</span></p>
+                    </a>
                         </div>
+
                 </div>
 
             </div>  
@@ -232,7 +202,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                     </div>
 
             <!-- Display total amount -->
-            <div class="price">
+                    <div class="price">
                     <?php
                     if (isset($row['amount']) && !empty($row['amount'])) {
                         echo number_format($row['amount'], 2);
@@ -250,7 +220,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
         <thead>
             <tr>
                 <th>LN</th>
-                <th>UPC</th>
+                <th>SKU</th>
                 <th>Description</th>
                 <th>Qty</th>
                 <th>SRP</th>
@@ -282,29 +252,18 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
         }
     }
 ?>
-
-
         </tbody>
     </table>
-</div>
 
-    
-    <div id="popup-overlay-custom" class="popup-overlay-custom">
-        <div class="popup-content-custom">
-            <p>Item Not Found!</p>
-            <button onclick="closePopup()">OK</button>
-        </div>
-    </div>
-</div>
-    
     <div class="bottom">
         <div class="bottom-1">
             <p>Total Qty</p>
                 <div class="bar1">
-                    <?php
+                <?php
                     echo $totalQty;
                     ?>
                 </div>
+
         </div>
         
         <div class="bottom-2">
@@ -319,15 +278,6 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     </div>
 
     <script>
-        // Function to redirect the page
-        function redirectToPosResult() {
-            window.location.href = 'posResult.php';
-        }
-
-        // Check if the page is being refreshed
-        if (performance.navigation.type === 1) {
-            redirectToPosResult(); // Call the redirect function
-        }
 
     document.addEventListener("DOMContentLoaded", function() {
         var statusParagraph = document.getElementById("status");
@@ -353,42 +303,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                 event.preventDefault();
             }
             switch(event.keyCode) {
-                case 112: // F1 key
-                    event.preventDefault();
-                    document.getElementById('f1').click();
-                    break;
-                case 113: // F2 key
-                    event.preventDefault();
-                    document.getElementById('f2').click();
-                    break;
-                case 114: // F3 key
-                    event.preventDefault();
-                    document.getElementById('f3').click();
-                    break;
-                case 115: 
-                    event.preventDefault();
-                    document.getElementById('f4').click();
-                    break;
-                case 116: 
-                    event.preventDefault();
-                    document.getElementById('f5').click();
-                    break;
-                case 117: 
-                    event.preventDefault();
-                    document.getElementById('f6').click();
-                    break;
-                case 118: 
-                    event.preventDefault();
-                    document.getElementById('f7').click();
-                    break;
-                case 119: 
-                    event.preventDefault();
-                    document.getElementById('f8').click();
-                    break;
-                case 120: 
-                    event.preventDefault();
-                    document.getElementById('f9').click();
-                    break;
+
                 case 27:
                     cancelButton.click();
                     document.getElementById('esc').click();

@@ -154,14 +154,25 @@ $row = $product->fetch_assoc();
                     </br>
                     <p>Tendered</p>
                     </div>
+
+                    <?php
+                // Check if the 'totalQty' cookie is set
+                if (isset($_COOKIE['totalQty'])) {
+                    $totalQty = $_COOKIE['totalQty'];
+                } else {
+                    $totalQty = 0; // Default value if the cookie is not set
+                }
+                ?>
             <div class="units">   
+                <p><?php echo $totalQty; ?></p>
             </div>
 
             <div class="sales">
-            <p><?php echo $totalAmount = $_COOKIE['total_amount'];?></p>
+            <p><?php echo number_format($totalAmount, 2);?></p>
             </div>
                     
             <div class="tendered">   
+                <p>0.00</p>
             
 
             </div>
@@ -172,15 +183,17 @@ $row = $product->fetch_assoc();
         </div>
 
         <div class="try3">
-            <p>Please select Gift Certificate</p>
-            <form action="posReceiptFinal.php" method="get">
-                 <select name="" id="">
-                    <option value="">-SELECT-</option>
-                    <option value="">Without Series</option>
-                    <option value="">With Series</option>
-                    <option value="">Specialty Store GC</option>
-                 </select> 
-        </div>
+        <form id="gcForm" method="get">
+        <p id="gcText">Please select Gift Certificate</p>
+        <select name="gc_method" id="gcMethod">
+                <option value="">-SELECT-</option>
+                <option value="without_series">Without Series</option>
+                <option value="with_series">With Series</option>
+                <option value="specialty_store_gc">Specialty Store GC</option>
+            </select>
+                    <div id="cardDetails"></div>
+            </div>
+
     </div>
 
 
@@ -189,14 +202,168 @@ $row = $product->fetch_assoc();
 
             </div>
             
-        <div class="bottom-2xy">
+<div class="bottom-2xy">
             
-        <button type="submit" name="search" class="btn-ok2">Ok</button>
-        <button type="reset" name="search" class="btn-cancel2">Cancel</button>
+        <button type="button" id="okButtonz" class="btn-ok2">Ok</button>
+        <button type="reset" name="search" class="btn-cancel2" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
         <p><span id="time"></span></p>
         </div>  
         </form>
     </div>
+
+    <script>
+        
+let okButtonzClickCount = 0;
+let wseriesClickCount = 0;
+let ssgcClickCount = 0;
+
+document.getElementById('okButtonz').addEventListener('click', function() {
+    var selectedOption = document.getElementById('gcMethod').value;
+    var cardDetailsDiv = document.getElementById('cardDetails');
+    var gcMethodSelect = document.getElementById('gcMethod');
+    var gcMethodText = document.getElementById('gcText');
+    var form = document.getElementById('gcForm');
+
+    if (selectedOption === 'without_series') {
+        okButtonzClickCount++;
+        if (okButtonzClickCount === 1) {
+            gcMethodSelect.style.display = 'none';
+            gcMethodText.style.display = 'none';
+            cardDetailsDiv.innerHTML = `
+            
+                <label for="cardNumber" id="swipeLabel" style="display:flex; margin-left: 121px; width: 100%; text-align:center; font-size:20px;">Please scan the GC barcode</br>
+or Enter the GC Number </label>
+                <input type="text" id="swipeText" style="display:flex; margin-left: 85px; width: 330px; height:40px;" name="cardNumber">
+            `;
+        } else if (okButtonzClickCount === 2) {
+            document.getElementById('swipeLabel').style.display = 'none';
+            document.getElementById('swipeText').style.display = 'none';
+            cardDetailsDiv.innerHTML += `
+                <label for="cardNumber">Gift Cert. No:</label>
+                <input type="text" id="gcCertNo" name="gcCertNo" required>
+                <br>
+    <div id="fixing">
+        <label for="validUntil">Redemption Date:</label>
+        <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
+        <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
+    </div>
+                <label for="salesSlipNo">Valid Until:</label>
+                <input type="date" id="validUntil" name="validUntil">
+                </br>
+                <label for="salesSlipNo">GTIN:</label>
+                <input type="text" id="salesSlipNo" name="salesSlipNo">
+                </br>
+                <label for="creditAmount">Credit Amount:</label>
+                <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>">
+
+            `;
+            okButtonz.type = 'submit';
+            form.action = 'posReceiptLast2-gc.php';
+            okButtonz.setAttribute('onclick', 'return validateCreditCardAmount()');
+        }
+        
+    } else if (selectedOption === 'with_series') {
+        wseriesClickCount++;
+        if (wseriesClickCount === 1) {
+            gcMethodSelect.style.display = 'none';
+            gcMethodText.style.display = 'none';
+
+            cardDetailsDiv.innerHTML = `
+                 <label for="cardNumber">Gift Cert. No:</label>
+                <input type="text" id="gcCertNo" name="gcCertNo" required>
+                <br>
+    <div id="fixing">
+        <label for="validUntil">Redemption Date:</label>
+        <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
+        <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
+    </div>
+                <label for="salesSlipNo">Valid Until:</label>
+                <input type="date" id="validUntil" name="validUntil">
+                </br>
+                <label for="salesSlipNo">GTIN:</label>
+                <input type="text" id="salesSlipNo" name="salesSlipNo">
+                </br>
+                <label for="creditAmount">Credit Amount:</label>
+                <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>">
+
+            `;
+            okButtonz.setAttribute('onclick', 'return validateGcashAmount()');
+        } else if (wseriesClickCount === 2) {
+            form.action = 'posReceiptLast2-gc.php';
+            okButtonz.type = 'submit';
+            
+        }
+    } else if (selectedOption === 'specialty_store_gc') {
+        ssgcClickCount++;
+        if (ssgcClickCount === 1) {
+            gcMethodSelect.style.display = 'none';
+            gcMethodText.style.display = 'none';
+
+            cardDetailsDiv.innerHTML += `
+                <label for="cardNumber">Gift Cert. No:</label>
+                <input type="text" id="gcCertNo" name="gcCertNo" required>
+                <br>
+    <div id="fixing">
+        <label for="validUntil">Redemption Date:</label>
+        <input type="date" id="validUntil" name="validUntil" style="width:20%; margin-left: 5px; margin-right: 10px;">
+        <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
+    </div>
+                <label for="salesSlipNo">Valid Until:</label>
+                <input type="date" id="validUntil" name="validUntil">
+                </br>
+                <label for="salesSlipNo">GTIN:</label>
+                <input type="text" id="salesSlipNo" name="salesSlipNo">
+                </br>
+                <label for="creditAmount">Credit Amount:</label>
+                <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>">
+
+            `;
+            okButtonz.setAttribute('onclick', 'return validatePaymayaAmount()');
+        } else if (ssgcClickCount === 2) {
+            form.action = 'posReceiptLast2-gc.php';
+            okButtonz.type = 'submit';
+            
+        }
+    } else {
+        alert("Please select a valid gc method.");
+    }
+});
+
+function validateCreditCardAmount() {
+    const totalAmount = <?php echo $totalAmount; ?>;
+    const userAmount = parseFloat(document.getElementById('amount').value);
+
+    if (isNaN(userAmount) || userAmount < totalAmount) {
+        window.location.href = 'posReceipt.php?userAmount=' + encodeURIComponent(userAmount);
+        return false;
+    }
+    return true;
+}
+
+function validateGcashAmount() {
+    const totalAmount = <?php echo $totalAmount; ?>;
+    const userAmount = parseFloat(document.getElementById('amount').value);
+
+    if (isNaN(userAmount) || userAmount < totalAmount) {
+        window.location.href = 'posReceipt3-gcash.php?userAmount=' + encodeURIComponent(userAmount);
+        return false;
+    }
+    return true;
+}
+
+function validatePaymayaAmount() {
+    const totalAmount = <?php echo $totalAmount; ?>;
+    const userAmount = parseFloat(document.getElementById('amount').value);
+
+    if (isNaN(userAmount) || userAmount < totalAmount) {
+        window.location.href = 'posReceipt3-paymaya.php?userAmount=' + encodeURIComponent(userAmount);
+        return false;
+    }
+    return true;
+}
+
+</script>
+
    
 <script src="js/main.js"></script>
 </body>
