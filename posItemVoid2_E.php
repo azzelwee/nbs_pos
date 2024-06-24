@@ -113,7 +113,7 @@ $row = $product->fetch_assoc();
                     <button type="submit" name="" class="btn-ok10" id="altEnter">Yes</button> 
                 </form>
             
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';" id="escButton">No</button>
                     </div>
             </div>
     </div>
@@ -122,14 +122,18 @@ $row = $product->fetch_assoc();
             
         </div> 
 
-<script>
-         document.addEventListener('keydown', function(event) {
-            if (event.altKey && event.keyCode === 13) { // Alt + Enter
-                event.preventDefault();
-                document.getElementById('altEnter').click();
-            }
-        });
+        <script>
+    document.addEventListener('keydown', function(event) {
+        if (event.altKey && event.keyCode === 13) { // Alt + Enter
+            event.preventDefault();
+            document.getElementById('altEnter').click();
+        } else if (event.keyCode === 27) { // Escape key
+            event.preventDefault();
+            document.getElementById('escButton').click(); // Replace 'escButton' with your actual element ID
+        }
+    });
 </script>
+
 
 <script src="js/main.js"></script>
 </body>

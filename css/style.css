@@ -1857,3 +1857,57 @@ th {
     text-align: center;
 
 }
+
+.reprint-column{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+
+}
+
+.left-reprint{
+    margin-left: 20px;
+    padding: 10px;
+    display: block;
+    align-items: flex-end;
+
+}
+
+.right-reprint{
+    width: 50%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.reprint-buttons{
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-top: 150px; /* Pushes .reprint-buttons to the bottom */
+}
+
+.bottom-buttons2{
+    background-color: lightgray;
+    height: 46px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bottom-buttons2 p{
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bottom-buttons2 h3{
+    color: blue;
+    text-align: center;
+}
+
+.orNo{
+    margin-top: 12px;
+}
