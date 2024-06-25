@@ -9,6 +9,7 @@ $con = connection();
 $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 
+
 // Initialize search results if not set
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the submitted charge and price

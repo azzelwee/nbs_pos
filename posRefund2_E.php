@@ -6,32 +6,10 @@ if(!isset($_SESSION)){
 
 include_once("connections/connection.php");
 $con = connection();
+$sql = "SELECT * FROM product_list";
+$product = $con->query($sql) or die ($con->error);
+$row = $product->fetch_assoc();
 
-if(isset($_POST['login'])){
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    $sql = "SELECT * FROM pos_users WHERE
-    username = '$username' AND password = '$password'";
-    $user = $con->query($sql) or die ($con->error);
-    $row = $user->fetch_assoc();
-    $total = $user->num_rows;
-
-    if($total > 0){
-        $_SESSION['UserLogin'] = $row['username'];
-        $_SESSION['Name'] = $row['name'];
-        $_SESSION['Trx'] = $row['trx'];
-        $_SESSION['Access'] = $row['access'];
-        echo header("Location: posRefund2_E.php");
-    } else {
-        echo "<div class='message-warning'> <p>Access Denied!</p>
-        <div class='closePopers'>
-            <button class='popup-closed' onclick='closePopups()'>OK</button>
-            </div>
-        </div>";
-    }
-}
 ?>
 
 
@@ -108,34 +86,46 @@ if(isset($_POST['login'])){
 
 
         <div class= "main-container1">
-            <h2>MANAGER OVERRIDE</h2>
-            <div class="center-container4">
-            <form action="" method="post" id="">
+            <h2>ITEM REFUND</h2>
+            <div class="center-container3">
             
-            <p>Sorry, you dont have permission to do this
-            </br>operation. Please perform Manager Override.
-            </p>
-
-            <div class="form-element">
-                    <label>Username</label>
-                    <input type="username" name="username" id="username">
+            <div class="item-refund">
+                <label for="">Enter ORNO</label>
+                <input type="text">
                 </div>
 
-                <div class="form-element">
-                    <label>Password</label>
-                    <input type="password" name="password" id="password">
-                </div>
-      
-                    <button type="submit" name="login" class="btn-ok5">Yes</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
-       
-            </form>
+            <p style="color: red; font-size: 15px;margin-top:10px;">Please press Alt+Enter to continue, otherwise</br>
+            ESC.</p>
+
+            <div class="thebuttons">
+                <form action="" method="post">
+                    <button type="submit" name="" class="btn-ok10" id="altEnter" onclick="window.location.href = 'posResultDecoy.php'">Yes</button> 
+                </form>
+            
+                    <button type="button" id="esc2" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
+                    </div>
             </div>
     </div>
    
         <div class="bottom-payment">
             
         </div>
+        <script>
+        document.addEventListener("keydown", (event) => {
+            switch(event.keyCode) {
+            case 13: // Enter key
+                if (event.altKey) {
+                    event.preventDefault();
+                    document.getElementById('altEnter').click(); // Assuming the ID for Alt+Enter action is '6'
+                }
+                break;
+            case 27: // ESC key
+                event.preventDefault();
+                document.getElementById('esc2').click(); // Assuming the ID for ESC action is '7'
+                break;
+                }
+        });
+        </script>
 
 <script src="js/main.js"></script>
 </body>

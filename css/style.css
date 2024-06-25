@@ -1910,6 +1910,18 @@ th {
     width: 170px;
 }
 
+.item-refund{
+    margin-top: 65px;
+    color: black;
+    font-size: 18px;
+}
+
+.item-refund input{
+    height: 25px;
+}
+
+
+
 
 .reprint-buttons{
     display: flex;
