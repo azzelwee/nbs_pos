@@ -10,27 +10,41 @@ $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 
 // Initialize search results if not set
-if (!isset($_SESSION['search_results'])) {
-    $_SESSION['search_results'] = [];
-}
-
-
-
-// Process form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['charge']) && isset($_POST['price'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve the submitted charge and price
     $charge = $_POST['charge'];
     $price = $_POST['price'];
 
-    // Add new entry to search results
+    // Define the mapping of charges to UPCs (this could also be retrieved from a database or other source)
+    $charge_upc_mapping = [
+        "SODEXHO VARIANCE" => "ZSOI",
+        "RETURN / EXCHANGE VARIANCE" => "ZROI",
+        "PASABUY VOUCHER VARIANCE" => "ZPVI",
+        "NBSFI DONATION" => "ZNFD",
+        "COUPON VARIANCE" => "ZCOI",
+        "LNQR PLUS FEE P500" => "S200100078488",
+        "ILLY SERVICE CHARGE" => "2910104820009"
+    ];
+
+    // Get the UPC for the selected charge
+    $upc = isset($charge_upc_mapping[$charge]) ? $charge_upc_mapping[$charge] : 'N/A';
+
+        // Set fixed price for "LNQR PLUS FEE P500"
+        if ($charge === "LNQR PLUS FEE P500") {
+            $price = 500;
+        }
+
+    // Add the charge details to the session
     $_SESSION['search_results'][] = [
-        'ln' => count($_SESSION['search_results']) + 1,
-        'upc' => 'N/A', // Assuming there's no UPC for these charges
+        'ln' => '',
+        'upc' => $upc,
         'item' => $charge,
-        'qty' => 1, // Assuming quantity is 1 for these charges
-        'srp' => number_format((float)$price, 2),
-        'amount' => number_format((float)$price, 2),
+        'qty' => 1,
+        'srp' => $price,
+        'amount' => $price,
         'type' => 'NV'
     ];
+    
 }
 
 

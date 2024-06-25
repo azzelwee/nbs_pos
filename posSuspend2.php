@@ -95,10 +95,10 @@ $row = $product->fetch_assoc();
 
             <div class="thebuttons">
                 <form action="handle_form.php" method="post">
-                    <button type="submit" name="" class="btn-ok10">Yes</button> 
+                    <button type="submit" name="" id="y" class="btn-ok10">Yes</button> 
                 </form>
             
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
+                    <button type="button" id="n" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
                     </div>
             </div>
     </div>
@@ -106,6 +106,21 @@ $row = $product->fetch_assoc();
         <div class="bottom-payment">
             
         </div>
+
+        <script>
+        document.addEventListener("keydown", (event) => {
+            switch(event.keyCode) {
+                case 89: // Letter Y key
+                event.preventDefault();
+                document.getElementById('y').click();
+                break;
+            case 78: // Letter N key
+                event.preventDefault();
+                document.getElementById('n').click();
+                break;
+                }
+        });
+        </script>
 
 <script src="js/main.js"></script>
 </body>

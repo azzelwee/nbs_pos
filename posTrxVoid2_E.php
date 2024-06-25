@@ -89,16 +89,18 @@ $row = $product->fetch_assoc();
             <h2>TRANSACTION VOID</h2>
             <div class="center-container3">
             
-            <p>Are you sure you want to void
+            <p style="margin-top: 65px;">Are you sure you want to void
             </br>this transaction?
             </p>
 
+            <p style="color: red; font-size: 15px;margin:0;">Please press Y to continue, otherwise Press N.</p>
+
             <div class="thebuttons">
                 <form action="handle_form.php" method="post">
-                    <button type="submit" name="" class="btn-ok10">Yes</button> 
+                    <button type="submit" name="" class="btn-ok10" id="y">Yes</button> 
                 </form>
             
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
+                    <button type="button" id="n" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
                     </div>
             </div>
     </div>
@@ -106,6 +108,20 @@ $row = $product->fetch_assoc();
         <div class="bottom-payment">
             
         </div>
+        <script>
+        document.addEventListener("keydown", (event) => {
+            switch(event.keyCode) {
+                case 89: // Letter Y key
+                event.preventDefault();
+                document.getElementById('y').click();
+                break;
+            case 78: // Letter N key
+                event.preventDefault();
+                document.getElementById('n').click();
+                break;
+                }
+        });
+        </script>
 
 <script src="js/main.js"></script>
 </body>

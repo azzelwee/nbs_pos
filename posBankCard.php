@@ -264,6 +264,7 @@ $row = $product->fetch_assoc();
 let okButtonzClickCount = 0;
 let gcashClickCount = 0;
 let paymayaClickCount = 0;
+let depositClickCount = 0;
 
 document.getElementById('okButtonz').addEventListener('click', function() {
     var selectedOption = document.getElementById('paymentMethod').value;
@@ -351,6 +352,28 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             okButtonz.type = 'submit';
             
         }
+    } else if (selectedOption === 'DEPOSIT') {
+        depositClickCount++;
+        if (depositClickCount === 1) {
+            paymentMethodSelect.style.display = 'none';
+            paymentMethodText.style.display = 'none';
+
+            cardDetailsDiv.innerHTML = `
+                <label for="depositReferenceNo">Reference OR No.:</label>
+                <input type="text" id="depositReferenceNo" name="depositReferenceNo" required>
+                <br>
+                <label for="depositReferenceNo">Customer:</label>
+                <input type="text" id="depositReferenceNo" name="depositReferenceNo" required>
+                <br>
+                <label for="depositAmount">Amount:</label>
+                <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2);?>">
+            `;
+            okButtonz.setAttribute('onclick', 'return validateDepositAmount()');
+        } else if (depositClickCount === 2) {
+            form.action = 'posReceiptLast-basic.php';
+            okButtonz.type = 'submit';
+            
+        }
     } else {
         alert("Please select a valid payment method.");
     }
@@ -384,6 +407,17 @@ function validatePaymayaAmount() {
 
     if (isNaN(userAmount) || userAmount < totalAmount) {
         window.location.href = 'posReceipt3-paymaya.php?userAmount=' + encodeURIComponent(userAmount);
+        return false;
+    }
+    return true;
+}
+
+function validateDepositAmount() {
+    const totalAmount = <?php echo $totalAmount; ?>;
+    const userAmount = parseFloat(document.getElementById('amount').value);
+
+    if (isNaN(userAmount) || userAmount < totalAmount) {
+        window.location.href = 'posReceipt3-basic.php?userAmount=' + encodeURIComponent(userAmount);
         return false;
     }
     return true;
