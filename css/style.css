@@ -1881,6 +1881,36 @@ th {
 
 }
 
+.price-changer{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.price-change{
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.price-change input{
+    height: 30px;
+}
+
+.change-reason{
+    margin-top: 27px;
+    font-weight: bold;
+}
+
+.change-reason select{
+    text-align: center;
+    height: 30px;
+    width: 170px;
+}
+
+
 .reprint-buttons{
     display: flex;
     align-items: flex-end;

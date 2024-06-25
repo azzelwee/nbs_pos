@@ -7,31 +7,6 @@ if(!isset($_SESSION)){
 include_once("connections/connection.php");
 $con = connection();
 
-if(isset($_POST['login'])){
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    $sql = "SELECT * FROM pos_users WHERE
-    username = '$username' AND password = '$password'";
-    $user = $con->query($sql) or die ($con->error);
-    $row = $user->fetch_assoc();
-    $total = $user->num_rows;
-
-    if($total > 0){
-        $_SESSION['UserLogin'] = $row['username'];
-        $_SESSION['Name'] = $row['name'];
-        $_SESSION['Trx'] = $row['trx'];
-        $_SESSION['Access'] = $row['access'];
-        echo header("Location: posPriceChange_E.php");
-    } else {
-        echo "<div class='message-warning'> <p>Access Denied!</p>
-        <div class='closePopers'>
-            <button class='popup-closed' onclick='closePopups()'>OK</button>
-            </div>
-        </div>";
-    }
-}
 ?>
 
 
@@ -108,34 +83,67 @@ if(isset($_POST['login'])){
 
 
         <div class= "main-container1">
-            <h2>MANAGER OVERRIDE</h2>
+            <h2>PRICE CHANGE</h2>
             <div class="center-container4">
-            <form action="" method="post" id="">
+        
+            <p><?php 
+            if (!empty($_SESSION['search_results'])) {
+                // Reverse the array
+                $reversed_results = array_reverse($_SESSION['search_results']);
+                
+                // Check if there are any results after reversing
+                if (!empty($reversed_results)) {
+                    // Display the first item
+                    $row = $reversed_results[0];
+                    echo '<p>' . htmlspecialchars($row['item']) . '</p>';
+                    
+                }
+            }
             
-            <p>Sorry, you dont have permission to do this
-            </br>operation. Please perform Manager Override.
-            </p>
+            ?></p>
 
-            <div class="form-element">
-                    <label>Username</label>
-                    <input type="username" name="username" id="username">
+
+            <div class="price-changer">
+                <div class="price-change">
+                    <label>Current Price</label>
+                    <input type="text" name="current_price" id="current-price" 
+                    value="<?php echo htmlspecialchars($row['srp']);?> " readonly>
                 </div>
 
-                <div class="form-element">
-                    <label>Password</label>
-                    <input type="password" name="password" id="password">
+                <div class="price-change">
+                    <label>Enter Price</label>
+                    <input type="text" name="new_price" id="new-price">
                 </div>
+            </div>
+
+            <div class="change-reason">
+                <label for="">Select a Reason</label>
+                <select name="" id="">
+                    <option value="">Wrong Author</option>
+                    <option value="">Wrong Size</option>
+                    <option value="">Exchange</option>
+                    <option value="">Wrong Product</option>
+                    <option value="">Changed Mind</option>
+                    <option value="">Double Purchase</option>
+                    <option value="">Wrong Color</option>
+                    <option value="">Wrong Edition</option>
+                    <option value="">Wrong Title</option>
+                    <option value="">Wrong Price</option>
+                    <option value="">Promo</option>
+                </select>
+            </div>
       
-                    <button type="submit" name="login" class="btn-ok5">Yes</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
+                <button type="submit" name="login" class="btn-ok5" onclick="window.location.href = 'posResultDecoy.php';">Yes</button>
+                <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
        
-            </form>
             </div>
     </div>
    
         <div class="bottom-payment">
             
         </div>
+
+        
 
 <script src="js/main.js"></script>
 </body>
