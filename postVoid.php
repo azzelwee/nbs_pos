@@ -6,10 +6,32 @@ if(!isset($_SESSION)){
 
 include_once("connections/connection.php");
 $con = connection();
-$sql = "SELECT * FROM product_list";
-$product = $con->query($sql) or die ($con->error);
-$row = $product->fetch_assoc();
 
+if(isset($_POST['login'])){
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    
+    $sql = "SELECT * FROM pos_users WHERE
+    username = '$username' AND password = '$password'";
+    $user = $con->query($sql) or die ($con->error);
+    $row = $user->fetch_assoc();
+    $total = $user->num_rows;
+
+    if($total > 0){
+        $_SESSION['UserLogin'] = $row['username'];
+        $_SESSION['Name'] = $row['name'];
+        $_SESSION['Trx'] = $row['trx'];
+        $_SESSION['Access'] = $row['access'];
+        echo header("Location: postVoid_E.php");
+    } else {
+        echo "<div class='message-warning'> <p>Access Denied!</p>
+        <div class='closePopers'>
+            <button class='popup-closed' onclick='closePopups()'>OK</button>
+            </div>
+        </div>";
+    }
+}
 ?>
 
 
@@ -104,8 +126,8 @@ $row = $product->fetch_assoc();
                     <input type="password" name="password" id="password">
                 </div>
       
-                    <button type="submit" name="" class="btn-ok5">Yes</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posNextOption.php';">No</button>
+                    <button type="submit" name="login" class="btn-ok5">Yes</button>
+                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
        
             </form>
             </div>

@@ -23,7 +23,7 @@ if(isset($_POST['login'])){
         $_SESSION['Name'] = $row['name'];
         $_SESSION['Trx'] = $row['trx'];
         $_SESSION['Access'] = $row['access'];
-        echo header("Location: posTrxJournal_E.php");
+        echo header("Location: posRefund_E.php");
     } else {
         echo "<div class='message-warning'> <p>Access Denied!</p>
         <div class='closePopers'>

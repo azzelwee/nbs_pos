@@ -1,37 +1,12 @@
 <?php
-
-if(!isset($_SESSION)){
+// PHP code to handle quantity input
+if (!isset($_SESSION)) {
     session_start();
 }
 
 include_once("connections/connection.php");
 $con = connection();
 
-if(isset($_POST['login'])){
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    $sql = "SELECT * FROM pos_users WHERE
-    username = '$username' AND password = '$password'";
-    $user = $con->query($sql) or die ($con->error);
-    $row = $user->fetch_assoc();
-    $total = $user->num_rows;
-
-    if($total > 0){
-        $_SESSION['UserLogin'] = $row['username'];
-        $_SESSION['Name'] = $row['name'];
-        $_SESSION['Trx'] = $row['trx'];
-        $_SESSION['Access'] = $row['access'];
-        echo header("Location: posTrxJournal_E.php");
-    } else {
-        echo "<div class='message-warning'> <p>Access Denied!</p>
-        <div class='closePopers'>
-            <button class='popup-closed' onclick='closePopups()'>OK</button>
-            </div>
-        </div>";
-    }
-}
 ?>
 
 
@@ -104,38 +79,50 @@ if(isset($_POST['login'])){
     <div class="outer-container">
         <div class="container">
             <div class="column-1xz">
+                <h1></h1>
             </div>
-
-
-        <div class= "main-container1">
-            <h2>MANAGER OVERRIDE</h2>
-            <div class="center-container4">
-            <form action="" method="post" id="">
-            
-            <p>Sorry, you dont have permission to do this
-            </br>operation. Please perform Manager Override.
-            </p>
-
-            <div class="form-element">
-                    <label>Username</label>
-                    <input type="username" name="username" id="username">
-                </div>
-
-                <div class="form-element">
-                    <label>Password</label>
-                    <input type="password" name="password" id="password">
-                </div>
-      
-                    <button type="submit" name="login" class="btn-ok5">Yes</button>
-                    <button type="button" name="cancelButtons" class="btn-cancel5" onclick="window.location.href = 'posResultDecoy.php';">No</button>
-       
-            </form>
-            </div>
-    </div>
-   
-        <div class="bottom-payment">
-            
         </div>
+
+        <div class="reprint-column">
+
+            <div class="left-reprint2">
+
+            <div class="cashier-journal">
+                
+            <button type="submit" name="search">Print <br> <span style="color: blue; font-size: 15px;">Enter</span></button>
+
+                <button type="submit" name="search" style="background-color: red; color: white">Help
+                </br><span style="color: blue; font-size: 15px;">F1</button>
+                <button type="button" id="altB" onclick="window.location.href='posNextOption.php'">Back </br><span style="color: blue; font-size: 15px;"> Alt+B</button>
+
+            </div>
+
+            </div>
+
+            <div class="right-reprint">
+            <div class="scrollable-container">
+                <div class="content">
+                    <?php include 'receipt-text-sample.php'; ?>
+                 </div>
+            </div>
+            </div>
+        </div>
+
+        
+   
+        <div class="bottom-payment2">
+        
+        </div>
+
+        <script>
+                 document.addEventListener('keydown', function(event) {
+            if (event.altKey && event.keyCode === 66) { // Alt + B
+                event.preventDefault();
+                document.getElementById('altB').click();
+            }
+        });
+        </script>
+        
 
 <script src="js/main.js"></script>
 </body>

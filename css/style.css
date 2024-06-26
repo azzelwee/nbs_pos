@@ -1873,6 +1873,30 @@ th {
 
 }
 
+.cashier-journal{
+
+    display: flex;
+    flex-direction: column;
+}
+.cashier-journal button{
+    font-size: 18px;
+    font-weight: bold;
+    height: 80px;
+    width: 120px;
+}
+
+.left-reprint2{
+    background-color: rgb(29, 157, 200);
+    width: 50%;
+    margin-left: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+    text-align: center;
+
+}
+
 .right-reprint{
     width: 50%;
     margin-top: 20px;
