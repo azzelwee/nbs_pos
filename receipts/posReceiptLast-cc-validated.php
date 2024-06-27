@@ -4,12 +4,15 @@ if(!isset($_SESSION)){
     session_start();
 }
 
-include_once("connections/connection.php");
+include_once('../connections/connection.php');
+
 $con = connection();
 
 $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
+
+
 
 // Check if the session variables are set
 if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset($_SESSION['remainingAmount'])) {
@@ -21,17 +24,6 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
     $totalAmount = $inputAmount = $remainingAmount = 0;
 }
 
-$userAmountMessage = '';
-
-// Check if userAmount is set in the session
-if (isset($_SESSION['userAmount'])) {
-    $userAmount = $_SESSION['userAmount'];
-    // Store the message in a variable
-    $userAmountMessage = "User Amount: " . htmlspecialchars($userAmount, ENT_QUOTES, 'UTF-8');
-} else {
-    // Store the default message in a variable
-    $userAmountMessage = "0.00";
-}
 
 ?>
 
@@ -40,7 +32,7 @@ if (isset($_SESSION['userAmount'])) {
 <head>
     <meta charset="UTF-8">
     <title>Point of Sale</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -50,7 +42,7 @@ if (isset($_SESSION['userAmount'])) {
 <div class="whole-container">
 
     <div class="form-logo">
-        <img src="img/nbslogo.png" alt="">
+        <img src="../img/nbslogo.png" alt="">
     </div>
 
     <div class= "gray">
@@ -160,7 +152,7 @@ if (isset($_SESSION['userAmount'])) {
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include 'receipt-text-gcash.php'; ?>
+                    <?php include '../receipt-text-cc.php'; ?>
                  </div>
             </div>
 
@@ -182,28 +174,41 @@ if (isset($_SESSION['userAmount'])) {
                 // Check if the 'totalQty' cookie is set
                 if (isset($_COOKIE['totalQty'])) {
                     $totalQty = $_COOKIE['totalQty'];
-                } else { 
+                } else {
                     $totalQty = 0; // Default value if the cookie is not set
                 }
+                
                 ?>
+
             <div class="units">   
             <p><?php echo $totalQty; ?></p>
             </div>
 
             <div class="sales">
-                <p><?php echo number_format($totalAmount, 2); ?></p>
+            <p><?php echo number_format($totalAmount, 2);?></p>
             </div>
-
+                    
             <div class="tendered">   
-            <p><?php echo number_format($inputAmount, 2); ?></p>
+            <p><?php echo number_format($inputAmount, 2);?></p>
             </div>
 
+            <?php
+                if (isset($_SESSION['formattedAmount'])) {
+                    $storedAmount = $_SESSION['formattedAmount'];
+                    // echo htmlspecialchars($storedAmount);
 
+                } else {
+                    echo '0.00';
+                }
+
+                $validatedChange = $storedAmount + $inputAmount - $totalAmount;
+            ?>
+
+            
 
             <div class="change">   
-            <p>0.00</p>
+            <p><?php echo number_format($validatedChange, 2); ?></p>
             </div>
-
 
         </div>
         <div class="payment-details">
@@ -227,7 +232,7 @@ if (isset($_SESSION['userAmount'])) {
             </div>
             
             <div class="bottom-2xz">
-            <form action="handle_form.php" method="post" >
+            <form action="../handle_form.php" method="post" >
                 <button type="submit" name="search" class="btn-ok2">Ok</button>
                 
             </form>
@@ -236,7 +241,9 @@ if (isset($_SESSION['userAmount'])) {
 
        
     </div>
+
+
    
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

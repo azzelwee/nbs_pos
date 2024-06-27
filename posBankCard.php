@@ -310,7 +310,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
                 <input type="text" id="salesSlipNo" name="salesSlipNo">
             `;
             okButtonz.type = 'submit';
-            form.action = 'posReceiptLast2.php';
+            form.action = 'receipts/posReceiptLast-cc.php';
             okButtonz.setAttribute('onclick', 'return validateCreditCardAmount()');
         }
         
@@ -384,7 +384,7 @@ function validateCreditCardAmount() {
     const userAmount = parseFloat(document.getElementById('amount').value);
 
     if (isNaN(userAmount) || userAmount < totalAmount) {
-        window.location.href = 'posReceipt3.php?userAmount=' + encodeURIComponent(userAmount);
+        window.location.href = 'receipts/posReceipt-validate.php?userAmount=' + encodeURIComponent(userAmount);
         return false;
     }
     return true;

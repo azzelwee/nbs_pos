@@ -4,13 +4,12 @@ if(!isset($_SESSION)){
     session_start();
 }
 
-include_once("connections/connection.php");
+include_once("../connections/connection.php");
 $con = connection();
 
 $sql = "SELECT * FROM product_list";
 $product = $con->query($sql) or die ($con->error);
 $row = $product->fetch_assoc();
-
 
 
 ?>
@@ -20,7 +19,7 @@ $row = $product->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <title>Point of Sale</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -128,11 +127,13 @@ $row = $product->fetch_assoc();
                 <p>F7</p>
                 </div>
                 
-                <div class="button-adjust" id="f8">
-                <p>Credit</p>
-                <p>Memo</p>
-                <p>F8</span></p>
-                </div>
+                <a href="posCreditMemo.php" id="f8">
+                    <div class="button-adjust">
+                    <p>Credit</p>
+                    <p>Memo</p>
+                    <p>F8</span></p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -156,7 +157,7 @@ $row = $product->fetch_assoc();
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include 'receipt-text.php'; ?>
+                    <?php include '../receipt-text.php'; ?>
                  </div>
             </div>
 
@@ -189,38 +190,45 @@ $row = $product->fetch_assoc();
             </div>
                     
             <div class="tendered">
-                <p><?php
-                    // Retrieve and display userAmount from query parameter
-                    $userAmount = filter_input(INPUT_GET, 'userAmount', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-
-                    if ($userAmount !== null) {
-                        // Convert userAmount to float and format it to 2 decimal places
-                        $formattedAmount = number_format((float)$userAmount, 2, '.', '');
-                        $_SESSION['userAmount'] = $userAmount; // Store in session
-                        echo htmlspecialchars($formattedAmount, ENT_QUOTES, 'UTF-8');
-                    } else {
-                        echo '0.00'; // Default value if userAmount is not provided
-                    }
-                    ?>
-                </p>
-            </div>
-
-                <?php
-                    $remains = $totalAmount - $userAmount;
-                ?>
-                
+            <p><?php
+    // Retrieve and display userAmount from query parameter
+    if (isset($_GET['userAmount'])) {
+        // Convert userAmount to float and format it to 2 decimal places
+        $formattedAmount = number_format((float)$_GET['userAmount'], 2, '.', '');
+        
+        // Save formattedAmount in a session variable
+        $_SESSION['formattedAmount'] = $formattedAmount;
+        
+        echo htmlspecialchars($formattedAmount);
+    } else {
+        echo '0.00'; // Default value if userAmount is not provided
+    }
+            ?></p>
+        </div>
+    
 
         </div>
         <div class="payment-details">
-            <p>Cash Payment Details</p>
+            <p>Card Payment Details</p>
         </div>
+
+        <?php
+            if (isset($totalAmount) && isset($formattedAmount) && is_numeric($totalAmount) && is_numeric($formattedAmount)) {
+                $remains = $totalAmount - $formattedAmount;
+            } else {
+                $remains = 0; 
+            }
+            $remainsFormatted = number_format($remains, 2);
+        ?>
+
+
 
         <div class="try">
             <p>Enter Amount:</p>
-            <form id="paymentForm" action="posReceiptFinal2.php" method="get">
-            <input type="text" name="amount" id="amount" value="<?php echo number_format($remains, 2); ?>">
-
+            <form id="paymentForm" action="posReceiptFinal-cc.php" method="get">
+            <input type="text" name="amount" id="amount" value="<?php echo $remainsFormatted?>"> 
         </div>
+        
     </div>
 
         <div class="bottomx">
@@ -231,12 +239,11 @@ $row = $product->fetch_assoc();
         <div class="bottom-2xy">
             
         <button type="submit" name="search" class="btn-ok2" onclick="return validateAmount()">Ok</button>
-        <button type="reset" name="search" class="btn-cancel2" onclick="window.location.href = 'posResultDecoy.php';">Cancel</button>
+        <button type="reset" name="search" class="btn-cancel2" onclick="window.location.href = '../posResultDecoy.php';">Cancel</button>
 
         <p><span id="time"></span></p>
         </div>  
         </form>
-        
 
         
         <div class="unique-popup" id="popup">
@@ -254,9 +261,6 @@ $row = $product->fetch_assoc();
 
     </div>
 
-    
-   
-<script src="js/main.js"></script>
 <script>
         document.addEventListener("keydown", (event) => {
             switch(event.keyCode) {
@@ -284,32 +288,52 @@ $row = $product->fetch_assoc();
     });
     
     function validateAmount() {
-        const totalAmount = <?php echo $totalAmount; ?>;
-        const currentTendered = parseFloat(<?php echo isset($_GET['userAmount']) ? $_GET['userAmount'] : 0; ?>);
-        const newAmount = parseFloat(document.getElementById('amount').value);
+    const totalAmount = <?php echo $totalAmount; ?>;
+    const formattedAmount = <?php echo $formattedAmount; ?>;
+    const userAmount = parseFloat(document.getElementById('amount').value);
 
-        if (isNaN(newAmount)) {
-            showPopup('Please enter a valid number.');
-            return false; // Prevent form submission
-        }
+    if (isNaN(userAmount) || (userAmount + formattedAmount) < totalAmount) {
+        showPopup();
+        return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+}
 
-        const totalTendered = currentTendered + newAmount;
 
-        if (totalTendered < totalAmount) {
-            const remainingAmount = totalAmount - totalTendered;
-            showPopup(`You need to tender ${remainingAmount.toFixed(2)} more.`);
-            return false; // Prevent form submission
-        }
-
-        return true; // Allow form submission
+    function showPopup() {
+        document.getElementById('popup').style.display = 'block';
     }
 
-    function showPopup(message) {
-        alert(message); // You can replace alert with your actual popup display method
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
     }
 
+    function getFormattedDate(date) {
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    return year + '-' + months[monthIndex] + '-' + (day < 10 ? '0' : '') + day;
+}
+
+function updateTime() {
+    var currentDate = new Date();
+    var dateElement = document.getElementById("date");
+    var timeElement = document.getElementById("time");
+
+    // Get the formatted date
+    var formattedDate = getFormattedDate(currentDate);
+
+    // Update the date and time elements
+    dateElement.innerHTML = formattedDate;
+    timeElement.innerHTML = currentDate.toLocaleTimeString();
+}
+
+// Update time every second
+setInterval(updateTime, 100);
         
 </script>
+
 
 </body>
 </html>

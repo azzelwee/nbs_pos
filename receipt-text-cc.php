@@ -4,13 +4,14 @@ if(!isset($_SESSION)){
     session_start();
 }
 
-include_once("connections/connection.php");
+include_once("../connections/connection.php");
 $con = connection();
 
 $sql = "SELECT * FROM product_list ";
 $product = $con->query($sql) or die($con->error);
 $results = $product->fetch_all(MYSQLI_ASSOC);
 $searchResults = $_SESSION['search_results'];
+
 
 date_default_timezone_set('Asia/Manila');
 $currentDate = date("m/d/Y");
@@ -26,23 +27,25 @@ $number = str_replace(' ', '', $number);
 
 $results = $_SESSION['search_results'];
 
+if (isset($_SESSION['remainingAmount'])) {
+    $remainingAmount = $_SESSION['remainingAmount'];
+    $change = number_format($remainingAmount, 2);
+} else {
+    // Handle the case when 'remainingAmount' is not set in the session
+    $remainingAmount = 0; // or some default value
+    $change = number_format($remainingAmount, 2);
+}
+
 $vat = $totalAmount * 0.12 / 1.12;
 $vattable = $totalAmount / 1.12;
 
 $formattedVattable = number_format($vattable, 2);
 $formattedVat = number_format($vat, 2);
-
-$formattedAmount = number_format($inputAmount, 2);
-
-// Get the current date in mm/dd/yyyy format
-
-
 ?>
 
 <div class="receipt1">
 <?php
     $longText1 = "<p>
-    
                ABACUS BOOK AND CARD CORP.   </br>       
                    NBS OUTLET STORE       </br>        
         2nd Floor National Book Store Superbranch   </br>
@@ -68,7 +71,7 @@ $formattedAmount = number_format($inputAmount, 2);
         </div>
 
         
-        TrxNo &nbsp&nbsp&nbsp : $date 29990001000001
+        TrxNo &nbsp&nbsp&nbsp : $date$number
         </br>
 
         <div class=\"apart2\">
@@ -81,6 +84,7 @@ $formattedAmount = number_format($inputAmount, 2);
  echo $longText2;
 ?>        
 </div>
+
 <div class="productGenerated">
     <?php
     foreach ($results as $row) {
@@ -110,38 +114,25 @@ $formattedAmount = number_format($inputAmount, 2);
 </div>
 
 
+
 <div class="receipt3">
 <?php
     $longText3 =                                    
      "      
         <div class=\"apart3\">
-            <p>No. of Items</p> 
-            <p>$totalQty</p>
+            <p>No. of Items: </p> 
+            <p>$totalQty </p>
         </div>
 
         <div class=\"apart3\">
-            <p>Amount Due</p>
-            <p>$formattedTotal</p>
+            <p> Amount Due: </p>
+            <p> $formattedTotal </p>
+            
         </div>
-        <p>Change -> $remainingAmount</br>
-        
-        <div class=\"apart3\">
-            <p>Cash</p>
-            <p>$formattedAmount</p>
-        </div>
-        
-        <div class=\"creditCard\">
-            <p>BPI</p>
-            <p>Card Number:</p>
-            <p>Card Holder:</p>
-            <p>Expiry Date:</p>
-            <p>Authorization Code:</p>
-            <p>Sales Slip #</p>
-            <p>Credit Amt.:</p>
-        </div>
+        <p>Change -> $change</br>
    
         </br>
-        ***********************************************************
+        ********************************************************************
         </br>
         Join Laking National for free!        </br>  
         </br>                             
@@ -150,12 +141,17 @@ $formattedAmount = number_format($inputAmount, 2);
         for more details or download the app in    </br>   
         your phone's app store.                       
         </br>
-        ***********************************************************
+        ********************************************************************
         </br>
         <p style=\"text-align:center;\">Tax Info</p>              
         </br>
 
-<div class=\"taxApart1\">
+        <div class=\"taxApart1\">
+            <p>Non-Vatable </p> 
+            <p>0.00 </p>
+        </div>
+
+        <div class=\"taxApart1\">
             <p>Vatable </p> 
             <p>$formattedVattable </p>
         </div>
@@ -188,6 +184,8 @@ $formattedAmount = number_format($inputAmount, 2);
         echo $longText3;
         ?>
 </div>
+
+
 
 <div class="receipt4">
 <?php

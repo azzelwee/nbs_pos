@@ -12,6 +12,7 @@ $product = $con->query($sql) or die($con->error);
 $results = $product->fetch_all(MYSQLI_ASSOC);
 $searchResults = $_SESSION['search_results'];
 
+
 date_default_timezone_set('Asia/Manila');
 $currentDate = date("m/d/Y");
 $date = date("mdY");
@@ -26,6 +27,14 @@ $number = str_replace(' ', '', $number);
 
 $results = $_SESSION['search_results'];
 
+if (isset($_SESSION['remainingAmount'])) {
+    $remainingAmount = $_SESSION['remainingAmount'];
+    $change = number_format($remainingAmount, 2);
+} else {
+    // Handle the case when 'remainingAmount' is not set in the session
+    $remainingAmount = 0; // or some default value
+    $change = number_format($remainingAmount, 2);
+}
 $vat = $totalAmount * 0.12 / 1.12;
 $vattable = $totalAmount / 1.12;
 
@@ -118,7 +127,7 @@ $formattedVat = number_format($vat, 2);
             <p> $formattedTotal </p>
             
         </div>
-        <p>Change -> 0.00</br>
+        <p>Change -> $change</br>
    
         </br>
         ********************************************************************
