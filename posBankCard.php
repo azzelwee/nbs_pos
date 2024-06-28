@@ -293,7 +293,13 @@ document.getElementById('okButtonz').addEventListener('click', function() {
                 <input type="text" id="cardHolder" name="cardHolder">
                 <br>
                 <label for="cardTerminal">Card Terminal/Hypercom:</label>
-                <input type="text" id="cardTerminal" name="cardTerminal">
+                <select id="cardTerminal" name="cardTerminal">
+                    <option value="">-SELECT</option>
+                    <option value="BDO">BDO</option>
+                    <option value="BPI">BPI</option>
+                    <option value="BPI_EPS">BPI EPS</option>
+                </select>
+
                 <br>
                 <div id="fixing">
                     <label for="validUntil">Valid Until:</label>
@@ -301,7 +307,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
                     <p style="color:red; font-size: 15px;">(dd-mm-YYYY)</p>
                 </div>
                 <label for="creditAmount">Credit Amount:</label>
-                <input type="text" name="amount" id="amount" value="<?php echo number_format($totalAmount, 2);?>">
+                <input type="text" name="amount" id="amount" value="<?php echo $totalAmount;?>">
                 <br>
                 <label for="authCode">Authorization Code:</label>
                 <input type="text" id="authCode" name="authCode">

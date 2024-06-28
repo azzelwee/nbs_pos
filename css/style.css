@@ -1842,6 +1842,15 @@ th {
     margin-bottom: 5px; /* Space between inputs */
 }
 
+#cardDetails select {
+    width: 30%; /* Adjust as needed */
+    height: 20px;
+    text-align: left;
+    font-size: 15px;
+    box-sizing: border-box; /* Ensure width includes padding */
+    margin-bottom: 5px; /* Space between inputs */
+}
+
 #cardDetails p{
     color: red;
 }

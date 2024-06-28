@@ -160,7 +160,7 @@ $_SESSION['remainingAmount'] = $remainingAmount;
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include '../receipt-text.php'; ?>
+                    <?php include '../receipt-text-cc.php'; ?>
                  </div>
             </div>
 
@@ -190,9 +190,21 @@ $_SESSION['remainingAmount'] = $remainingAmount;
             <div class="sales">
             <p><?php echo number_format($totalAmount, 2);?></p>
             </div>
-                    
+
+            <?php
+                if (isset($_SESSION['formattedAmount'])) {
+                    $storedAmount = $_SESSION['formattedAmount'];
+                    // echo htmlspecialchars($storedAmount);
+
+                } else {
+                    echo '0.00';
+                }
+
+                $validatedChange = $storedAmount + $inputAmount - $totalAmount;
+            ?>
+
             <div class="tendered">   
-            <p><?php echo number_format($remainingAmount, 2); ?></p>
+            <p><?php echo number_format($validatedChange, 2); ?></p>
 
             </div>
 

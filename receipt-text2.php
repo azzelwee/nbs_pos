@@ -133,12 +133,7 @@ $formattedAmount = number_format($inputAmount, 2);
         ?>
         </div>
         
-        <div class="receipt3">
-        <?php
-            include 'processPayment.php';
-            processPayment();
-        ?>
-        </div>
+
 
 <div class="receipt3">
 <?php

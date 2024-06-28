@@ -114,7 +114,6 @@ $formattedVat = number_format($vat, 2);
 </div>
 
 
-
 <div class="receipt3">
 <?php
     $longText3 =                                    
@@ -129,8 +128,23 @@ $formattedVat = number_format($vat, 2);
             <p> $formattedTotal </p>
             
         </div>
-        <p>Change -> $change</br>
-   
+        <p>Change -> $change</br>";
+        echo $longText3;
+        ?>
+</div>
+
+<div class="receipt3">
+        <?php
+            include 'processPayment-cc.php';
+            processPayment();
+        ?>
+        </div>
+
+<div class="receipt3">
+<?php
+    $longText3 =                                    
+     "
+
         </br>
         ********************************************************************
         </br>
