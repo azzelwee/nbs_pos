@@ -328,7 +328,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
 
             cardDetailsDiv.innerHTML = `
                 <label for="gcashAmount">Amount:</label>
-                <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2);?>">
+                <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2, '.', ''); ?>">
                 <br>
                 <label for="gcashReferenceNo">Reference No.:</label>
                 <input type="text" id="gcashReferenceNo" name="gcashReferenceNo" required>
@@ -347,7 +347,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
 
             cardDetailsDiv.innerHTML = `
                 <label for="paymayaAmount">Amount:</label>
-                <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2);?>" required>
+                <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2, '.', ''); ?>" required>
                 <br>
                 <label for="paymayaReferenceNo">Reference No.:</label>
                 <input type="text" id="paymayaReferenceNo" name="paymayaReferenceNo" required>
@@ -372,7 +372,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
                 <input type="text" id="depositReferenceNo" name="depositReferenceNo" required>
                 <br>
                 <label for="depositAmount">Amount:</label>
-                <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2);?>">
+                <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2, '.', ''); ?>">
             `;
             okButtonz.setAttribute('onclick', 'return validateDepositAmount()');
         } else if (depositClickCount === 2) {
