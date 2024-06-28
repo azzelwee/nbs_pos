@@ -221,12 +221,17 @@ $row = $product->fetch_assoc();
             $remainsFormatted = number_format($remains, 2);
         ?>
 
+            <?php
+            $remainsWhole = str_replace(',', '', $remainsFormatted);
+            ?>
+
+
 
 
         <div class="try">
             <p>Enter Amount:</p>
-            <form id="paymentForm" action="posReceiptFinal-cc.php" method="get">
-            <input type="text" name="amount" id="amount" value="<?php echo $remainsFormatted?>"> 
+            <form id="paymentForm" action="posReceiptFinal-paymaya.php" method="get">
+            <input type="text" name="amount" id="amount" value="<?php echo $remainsWhole?>"> 
         </div>
         
     </div>

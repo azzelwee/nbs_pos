@@ -297,7 +297,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
                     <option value="">-SELECT</option>
                     <option value="BDO">BDO</option>
                     <option value="BPI">BPI</option>
-                    <option value="BPI_EPS">BPI EPS</option>
+                    <option value="BPI EPS">BPI EPS</option>
                 </select>
 
                 <br>
@@ -335,7 +335,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             `;
             okButtonz.setAttribute('onclick', 'return validateGcashAmount()');
         } else if (gcashClickCount === 2) {
-            form.action = 'posReceiptLast-gcash.php';
+            form.action = 'receipts/posReceiptLast-gcash.php';
             okButtonz.type = 'submit';
             
         }
@@ -354,7 +354,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             `;
             okButtonz.setAttribute('onclick', 'return validatePaymayaAmount()');
         } else if (paymayaClickCount === 2) {
-            form.action = 'posReceiptLast-paymaya.php';
+            form.action = 'receipts/posReceiptLast-paymaya.php';
             okButtonz.type = 'submit';
             
         }
@@ -390,7 +390,7 @@ function validateCreditCardAmount() {
     const userAmount = parseFloat(document.getElementById('amount').value);
 
     if (isNaN(userAmount) || userAmount < totalAmount) {
-        window.location.href = 'receipts/posReceipt-validate.php?userAmount=' + encodeURIComponent(userAmount);
+        window.location.href = 'receipts/posReceipt-validate-forCC.php?userAmount=' + encodeURIComponent(userAmount);
         return false;
     }
     return true;
@@ -401,7 +401,7 @@ function validateGcashAmount() {
     const userAmount = parseFloat(document.getElementById('amount').value);
 
     if (isNaN(userAmount) || userAmount < totalAmount) {
-        window.location.href = 'posReceipt3-gcash.php?userAmount=' + encodeURIComponent(userAmount);
+        window.location.href = 'receipts/posReceipt-validate-forGCASH.php?userAmount=' + encodeURIComponent(userAmount);
         return false;
     }
     return true;
@@ -412,7 +412,7 @@ function validatePaymayaAmount() {
     const userAmount = parseFloat(document.getElementById('amount').value);
 
     if (isNaN(userAmount) || userAmount < totalAmount) {
-        window.location.href = 'posReceipt3-paymaya.php?userAmount=' + encodeURIComponent(userAmount);
+        window.location.href = 'receipts/posReceipt-validate-forPAYMAYA.php?userAmount=' + encodeURIComponent(userAmount);
         return false;
     }
     return true;

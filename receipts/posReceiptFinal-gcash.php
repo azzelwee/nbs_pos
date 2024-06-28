@@ -160,7 +160,7 @@ $_SESSION['remainingAmount'] = $remainingAmount;
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include '../receipt-text-cc-validate.php'; ?>
+                    <?php include '../receipt-text-gcash.php'; ?>
                  </div>
             </div>
 
@@ -221,7 +221,7 @@ $_SESSION['remainingAmount'] = $remainingAmount;
                 Please wait...</p>
             
             <p>Enter Amount:</p>
-            <form id="myForm" action="posReceiptLast-cc-validated.php" method="get">
+            <form id="myForm" action="posReceiptLast-gcash-validated.php" method="get">
                 <input type="text" name="amount" id="amount" placeholder="0.00">
             </form>
             
