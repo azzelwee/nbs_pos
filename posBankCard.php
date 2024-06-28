@@ -188,6 +188,7 @@ $row = $product->fetch_assoc();
         <select name="payment_method" id="paymentMethod">
             <option value="">-SELECT-</option>
             <option value="CREDIT_CARD">CREDIT CARD</option>
+            <option value="SODEXHO">SODEXHO</option>
             <option value="GCASH">GCASH</option>
             <option value="PAYMAYA">PAYMAYA</option>
             <option value="DEPOSIT">DEPOSIT</option>
@@ -264,7 +265,7 @@ $row = $product->fetch_assoc();
 let okButtonzClickCount = 0;
 let gcashClickCount = 0;
 let paymayaClickCount = 0;
-let depositClickCount = 0;
+let sodexhoClickCount = 0;
 
 document.getElementById('okButtonz').addEventListener('click', function() {
     var selectedOption = document.getElementById('paymentMethod').value;
@@ -358,7 +359,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             okButtonz.type = 'submit';
             
         }
-    } else if (selectedOption === 'DEPOSIT') {
+    } else if (selectedOption === 'SODEXHO') {
         depositClickCount++;
         if (depositClickCount === 1) {
             paymentMethodSelect.style.display = 'none';
