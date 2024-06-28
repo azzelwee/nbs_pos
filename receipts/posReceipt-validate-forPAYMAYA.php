@@ -199,7 +199,8 @@ $row = $product->fetch_assoc();
         // Save formattedAmount in a session variable
         $_SESSION['formattedAmount'] = $formattedAmount;
         
-        echo htmlspecialchars($formattedAmount);
+        $formattedAmounted = number_format($formattedAmount, 2);
+        echo htmlspecialchars($formattedAmounted);
     } else {
         echo '0.00'; // Default value if userAmount is not provided
     }

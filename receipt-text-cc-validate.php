@@ -148,8 +148,8 @@ $ccChange = number_format($validatedChange, 2);
 
 <div class="receipt3">
         <?php
-            include 'processPayment-gcash.php';
-            processPaymentGcash();
+            include 'processPayment-cc.php';
+            processPaymentCC();
         ?>
         </div>
 

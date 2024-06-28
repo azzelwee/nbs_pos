@@ -152,7 +152,7 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
 
             <div class="scrollable-container">
                 <div class="content">
-                    <?php include '../receipt-text-cc-validate.php'; ?>
+                    <?php include '../receipt-text-gcash-validate.php'; ?>
                  </div>
             </div>
 

@@ -1,7 +1,7 @@
 <?php
 // paymentFunctions.php
 
-function processPayment() {
+function processPaymentCC() {
     $output = "<style>
                     .label {
                         display: inline-block;

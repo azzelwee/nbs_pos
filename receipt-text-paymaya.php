@@ -114,6 +114,7 @@ $formattedVat = number_format($vat, 2);
 </div>
 
 
+
 <div class="receipt3">
 <?php
     $longText3 =                                    
@@ -126,6 +127,7 @@ $formattedVat = number_format($vat, 2);
         <div class=\"apart3\">
             <p> Amount Due: </p>
             <p> $formattedTotal </p>
+            
             
         </div>
         <p>Change -> $change</br>";

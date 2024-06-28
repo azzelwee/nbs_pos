@@ -41,6 +41,19 @@ $vattable = $totalAmount / 1.12;
 
 $formattedVattable = number_format($vattable, 2);
 $formattedVat = number_format($vat, 2);
+
+if (isset($_SESSION['formattedAmount'])) {
+    $storedAmount = $_SESSION['formattedAmount'];
+    // echo htmlspecialchars($storedAmount);
+
+} else {
+    echo '0.00';
+}
+
+$validatedChange = $storedAmount + $inputAmount - $totalAmount;
+$ccChange = number_format($validatedChange, 2);
+
+
 ?>
 
 <div class="receipt1">
@@ -128,15 +141,15 @@ $formattedVat = number_format($vat, 2);
             <p> $formattedTotal </p>
             
         </div>
-        <p>Change -> $change</br>";
-        echo $longText3;
+        <p>Change -> $ccChange</br>";
+        echo $longText3; 
         ?>
 </div>
 
 <div class="receipt3">
         <?php
-            include 'processPayment-cc.php';
-            processPaymentCC();
+            include 'processPayment-gcash.php';
+            processPaymentGcash();
         ?>
         </div>
 
