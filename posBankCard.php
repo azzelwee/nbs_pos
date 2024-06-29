@@ -188,9 +188,9 @@ $row = $product->fetch_assoc();
         <select name="payment_method" id="paymentMethod">
             <option value="">-SELECT-</option>
             <option value="CREDIT_CARD">CREDIT CARD</option>
-            <option value="SODEXHO">SODEXHO</option>
             <option value="GCASH">GCASH</option>
             <option value="PAYMAYA">PAYMAYA</option>
+            <option value="SODEXHO">SODEXHO</option>
             <option value="DEPOSIT">DEPOSIT</option>
             <option value="TAX_WITHHELD">TAX WITHHELD</option>
             <option value="ATOME">ATOME</option>
@@ -273,6 +273,7 @@ document.getElementById('okButtonz').addEventListener('click', function() {
     var paymentMethodSelect = document.getElementById('paymentMethod');
     var paymentMethodText = document.getElementById('paymentText');
     var form = document.getElementById('paymentForm');
+    var okButtonz = document.getElementById('okButtonz');
 
     if (selectedOption === 'CREDIT_CARD') {
         okButtonzClickCount++;
@@ -328,6 +329,16 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             paymentMethodText.style.display = 'none';
 
             cardDetailsDiv.innerHTML = `
+            <div id="pleaseWaitMessage" 
+            style=" 
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-right: 120px;
+            margin-bottom: 20px;
+            display: none;
+
+            ">Don't press any key..</br>Please wait...</div>
                 <label for="gcashAmount">Amount:</label>
                 <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2, '.', ''); ?>">
                 <br>
@@ -336,9 +347,16 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             `;
             okButtonz.setAttribute('onclick', 'return validateGcashAmount()');
         } else if (gcashClickCount === 2) {
-            form.action = 'receipts/posReceiptLast-gcash.php';
-            okButtonz.type = 'submit';
-            
+            // Show the "please wait" message
+            var pleaseWaitMessage = document.getElementById('pleaseWaitMessage');
+            pleaseWaitMessage.style.display = 'block';
+
+            // Delay the form submission by 3 seconds (3000 milliseconds)
+            setTimeout(function() {
+                form.action = 'receipts/posReceiptLast-gcash.php';
+                okButtonz.type = 'submit';
+                form.submit(); // Submit the form after 3 seconds
+            }, 3000);
         }
     } else if (selectedOption === 'PAYMAYA') {
         paymayaClickCount++;
@@ -347,6 +365,16 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             paymentMethodText.style.display = 'none';
 
             cardDetailsDiv.innerHTML = `
+            <div id="pleaseWaitMessage" 
+            style=" 
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-right: 120px;
+            margin-bottom: 20px;
+            display: none;
+
+            ">Don't press any key..</br>Please wait...</div>
                 <label for="paymayaAmount">Amount:</label>
                 <input type="text" id="amount" name="amount" value="<?php echo number_format($totalAmount, 2, '.', ''); ?>" required>
                 <br>
@@ -355,9 +383,16 @@ document.getElementById('okButtonz').addEventListener('click', function() {
             `;
             okButtonz.setAttribute('onclick', 'return validatePaymayaAmount()');
         } else if (paymayaClickCount === 2) {
-            form.action = 'receipts/posReceiptLast-paymaya.php';
-            okButtonz.type = 'submit';
-            
+            // Show the "please wait" message
+            var pleaseWaitMessage = document.getElementById('pleaseWaitMessage');
+            pleaseWaitMessage.style.display = 'block';
+
+            // Delay the form submission by 3 seconds (3000 milliseconds)
+            setTimeout(function() {
+                form.action = 'receipts/posReceiptLast-paymaya.php';
+                okButtonz.type = 'submit';
+                form.submit(); // Submit the form after 3 seconds
+            }, 3000);
         }
     } else if (selectedOption === 'SODEXHO') {
         depositClickCount++;
