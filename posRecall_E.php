@@ -97,24 +97,41 @@ $con = connection();
                     </thead>
                     <tbody>
                         <tr>
-                        <td style="height: 25px; text-align: center;">0620202429990002000031</td>
+                        <td style="height: 25px; text-align: center;"></td>
                         </tr>
+                        
                         <tr>
-                        <td style="height: 25px;"></td>
+                        <td style="height: 25px; text-align: center;"></td>
                         </tr>
+                        
                         <tr>
-                        <td style="height: 25px;"></td>
+                        <td style="height: 25px; text-align: center;"></td>
                         </tr>
-                    <td style="height: 25px;"></td>
+                        
+                        <tr>
+                        <td style="height: 25px; text-align: center;"></td>
                         </tr>
-                    <td style="height: 25px;"></td>
+                        
+                        <tr>
+                        <td style="height: 25px; text-align: center;"></td>
                         </tr>
-                    <td style="height: 25px;"></td>
+                        
+                        <tr>
+                        <td style="height: 25px; text-align: center;"></td>
                         </tr>
-                    <td style="height: 25px;"></td>
+                        
+                        <tr>
+                        <td style="height: 25px; text-align: center;"></td>
                         </tr>
-                    <td style="height: 25px;"></td>
+                        
+                        <tr>
+                        <td style="height: 25px; text-align: center;"></td>
                         </tr>
+                        
+                        <tr>
+                        <td style="height: 25px; text-align: center;"></td>
+                        </tr>
+                        
                     </tbody>
                     </table>
                 </div>
@@ -147,7 +164,7 @@ $con = connection();
             <div class="right-reprint">
             <div class="scrollable-container">
                 <div class="content">
-                    <!-- <?php include 'receipt-text-sample.php'; ?> -->
+                    <?php include 'receipt-text.php'; ?>
                  </div>
             </div>
             </div>
