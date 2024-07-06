@@ -7,48 +7,6 @@ if (!isset($_SESSION)) {
 include_once("connections/connection.php");
 $con = connection();
 
-// Fetch quantity input if specified, default to 1 if not provided
-$quantity = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-
-// Fetch new search results
-$sql = "SELECT * FROM lookup_list WHERE sku = '$search' ORDER BY ln ASC";
-$product = $con->query($sql) or die($con->error);
-$results = $product->fetch_all(MYSQLI_ASSOC);
-
-
-// Check if session variable for searches exists
-if (!isset($_SESSION['search_results2'])) {
-    $_SESSION['search_results2'] = [];
-}
-
-// Add new search results to the session variable
-if ($results) {
-    foreach ($results as &$result) {
-        $result['qty'] = $quantity; // Add the specified quantity to each result
-        $result['amount'] = $result['srp'] * $quantity; // Calculate the amount based on the quantity and SRP
-    }
-    $_SESSION['search_results2'] = array_merge($_SESSION['search_results2'], $results);
-}
-
-// Calculate the total amount
-$totalAmount = 0;
-if (!empty($_SESSION['search_results2'])) {
-    foreach ($_SESSION['search_results2'] as $row) {
-        $totalAmount += $row['amount'];
-    }
-}
-
-$totalQty = 0;
-
-if (!empty($_SESSION['search_results2'])) {
-    foreach ($_SESSION['search_results2'] as $row) {
-        $totalQty += $row['qty'];
-    }
-}
-
-setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
-setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
 
 ?>
 
