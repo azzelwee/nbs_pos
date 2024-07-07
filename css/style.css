@@ -1967,6 +1967,7 @@ th {
     margin-top: 150px; /* Pushes .reprint-buttons to the bottom */
 }
 
+
 .bottom-buttons2{
     background-color: lightgray;
     height: 46px;
@@ -1983,6 +1984,26 @@ th {
 }
 
 .bottom-buttons2 h3{
+    color: blue;
+    text-align: center;
+}
+
+.bottom-buttons3{
+    background-color: lightgray;
+    height: 46px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bottom-buttons3 p{
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bottom-buttons3 h3{
     color: blue;
     text-align: center;
 }
