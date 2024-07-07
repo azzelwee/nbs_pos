@@ -53,6 +53,25 @@ if (!empty($_SESSION['search_results'])) {
 setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
 setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['done'])) {
+    // Save current search results to a new transaction ID
+    if (!isset($_SESSION['transaction_counter'])) {
+        $_SESSION['transaction_counter'] = 1;
+    }
+    $transaction_id = '29990001' . str_pad($_SESSION['transaction_counter'], 4, '0', STR_PAD_LEFT);
+    $_SESSION['transactions'][$transaction_id] = $_SESSION['search_results'];
+
+    // Increment transaction counter for next transaction
+    $_SESSION['transaction_counter']++;
+
+    // Clear search results
+    $_SESSION['search_results'] = [];
+
+    // Redirect to posRecall_E.php
+    header('Location: posRecall_E.php');
+    exit;
+}
+
 ?>
 
 
@@ -248,19 +267,19 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     
     <div class="scrollable-table-container">
     <table class="products">
-        <thead>
-            <tr>
-                <th>LN</th>
-                <th>UPC</th>
-                <th>Description</th>
-                <th>Qty</th>
-                <th>SRP</th>
-                <th>Amount</th>
-                <th>Type</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php 
+    <thead>
+        <tr>
+            <th>LN</th>
+            <th>UPC</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>SRP</th>
+            <th>Amount</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php 
     if (!empty($_SESSION['search_results'])) {
         $counter = count($_SESSION['search_results']);
         foreach (array_reverse($_SESSION['search_results']) as $row) {
@@ -269,7 +288,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
             $row_class = ($quantity < 0) ? 'negative-qty' : '';
 
             // Output table row with appropriate class
-?>
+    ?>
             <tr class="<?php echo $row_class; ?>" data-ln="<?php echo $row['ln']; ?>">
                 <td class="centered"><?php echo $counter--; ?></td>
                 <td class="centered"><?php echo $row['upc']; ?></td>
@@ -279,15 +298,17 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                 <td class="centered"><?php echo number_format($row['amount'], 2); ?></td>
                 <td class="centered"><?php echo $row['type']; ?></td>
             </tr>
-<?php
+    <?php
         }
     }
-?>
-
-
-        </tbody>
-    </table>
+    ?>
+    </tbody>
+</table>
 </div>
+
+<form method="post">
+    <button type="submit" name="done" class="done-button">Done</button>
+</form>
 
     
     <div id="popup-overlay-custom" class="popup-overlay-custom">
@@ -322,7 +343,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
     <script>
         // Function to redirect the page
         function redirectToPosResult() {
-            window.location.href = 'posResult.php';
+            window.location.href = 'posResultDecoy.php';
         }
 
         // Check if the page is being refreshed

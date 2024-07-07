@@ -876,6 +876,10 @@ a{
     margin-bottom: 10px;
 }
 
+.highlighted {
+    background-color: #ff0000;
+}
+
 .row-highlight {
     background-color: rgb(161, 229, 60);
     color: white;
