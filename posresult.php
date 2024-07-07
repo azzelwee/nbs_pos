@@ -1,5 +1,4 @@
 <?php
-// PHP code to handle quantity input
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -7,79 +6,61 @@ if (!isset($_SESSION)) {
 include_once("connections/connection.php");
 $con = connection();
 
-// Fetch quantity input if specified, default to 1 if not provided
 $quantity = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Fetch new search results
-$sql = "SELECT * FROM product_list WHERE upc = '$search' ORDER BY ln ASC";
-$product = $con->query($sql) or die($con->error);
-$results = $product->fetch_all(MYSQLI_ASSOC);
+// Process form submission
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
+    $sql = "SELECT * FROM product_list WHERE upc = ? ORDER BY ln ASC";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("s", $search);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $results = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
 
-
-// Check if session variable for searches exists
-if (!isset($_SESSION['search_results'])) {
-    $_SESSION['search_results'] = [];
-}
-
-// Add new search results to the session variable
-if ($results) {
-    foreach ($results as &$result) {
-        $result['qty'] = $quantity; // Add the specified quantity to each result
-        $result['amount'] = $result['srp'] * $quantity; // Calculate the amount based on the quantity and SRP
+    if (!isset($_SESSION['search_results'])) {
+        $_SESSION['search_results'] = [];
     }
-    $_SESSION['search_results'] = array_merge($_SESSION['search_results'], $results);
+
+    if ($results) {
+        foreach ($results as &$result) {
+            $result['qty'] = $quantity;
+            $result['amount'] = $result['srp'] * $quantity;
+        }
+        $_SESSION['search_results'] = array_merge($_SESSION['search_results'], $results);
+        $_SESSION['no_product_found'] = false;
+    } else {
+        $_SESSION['no_product_found'] = true;
+    }
+
+    header("Location: posResult.php");
+    exit();
 }
 
-
-
-
-// Calculate the total amount
 $totalAmount = 0;
-if (!empty($_SESSION['search_results'])) {
-    foreach ($_SESSION['search_results'] as $row) {
-        $totalAmount += $row['amount'];
-    }
-}
-
 $totalQty = 0;
 
 if (!empty($_SESSION['search_results'])) {
     foreach ($_SESSION['search_results'] as $row) {
+        $totalAmount += $row['amount'];
         $totalQty += $row['qty'];
     }
 }
 
-setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
-setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
+setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/");
+setcookie('totalQty', $totalQty, time() + 3600, "/");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['done'])) {
-    // Save current search results to a new transaction ID
-    if (!isset($_SESSION['transaction_counter'])) {
-        $_SESSION['transaction_counter'] = 1;
-    }
-    $transaction_id = '29990001' . str_pad($_SESSION['transaction_counter'], 4, '0', STR_PAD_LEFT);
-    $_SESSION['transactions'][$transaction_id] = $_SESSION['search_results'];
 
-    // Increment transaction counter for next transaction
-    $_SESSION['transaction_counter']++;
-
-    // Clear search results
-    $_SESSION['search_results'] = [];
-
-    // Redirect to posRecall_E.php
-    header('Location: posRecall_E.php');
-    exit;
-}
-
+$showNoProductPopup = isset($_SESSION['no_product_found']) && $_SESSION['no_product_found'];
+unset($_SESSION['no_product_found']);
 ?>
 
-
-
 <!-- Only add the trigger if no new search results were found -->
-<?php if (empty($results)): ?>
+<?php if ($showNoProductPopup): ?>
     <span id="no-product-popup-trigger"></span>
 <?php endif; ?>
+
 
 
 <!DOCTYPE html>
@@ -172,15 +153,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['done'])) {
             <div class="column-1">
 
             <div class="scan">
-                <div class="scan-element">
-                    <label>Scan or Enter UPC</label>
-                    <form action="posResult.php" method="get">
-                        <input type="text" name="search" id="search">
-                        <input type="hidden" name="quantity" id="quantityHidden">
-                        <input type="submit" name="submit" style="display: none">
-                    </form>
-                </div>
-            </div>
+    <div class="scan-element">
+        <label>Scan or Enter UPC</label>
+        <form action="posResult.php" method="get">
+            <input type="text" name="search" id="search">
+            <input type="hidden" name="quantity" id="quantityHidden">
+            <input type="submit" name="submit" style="display: none">
+        </form>
+    </div>
+</div>
 
             
 
@@ -306,9 +287,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['done'])) {
 </table>
 </div>
 
-<form method="post">
-    <button type="submit" name="done" class="done-button">Done</button>
-</form>
 
     
     <div id="popup-overlay-custom" class="popup-overlay-custom">
@@ -342,14 +320,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['done'])) {
 
     <script>
         // Function to redirect the page
-        function redirectToPosResult() {
-            window.location.href = 'posResultDecoy.php';
-        }
+        // function redirectToPosResult() {
+        //     window.location.href = 'posResultDecoy.php';
+        // }
 
-        // Check if the page is being refreshed
-        if (performance.navigation.type === 1) {
-            redirectToPosResult(); // Call the redirect function
-        }
+        // // Check if the page is being refreshed
+        // if (performance.navigation.type === 1) {
+        //     redirectToPosResult(); // Call the redirect function
+        // }
 
     document.addEventListener("DOMContentLoaded", function() {
         var statusParagraph = document.getElementById("status");
@@ -422,6 +400,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['done'])) {
                 
             }
     });
+
     </script>
 
     <script src="js/main.js"></script>

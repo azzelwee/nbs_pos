@@ -21,6 +21,25 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
     $totalAmount = $inputAmount = $remainingAmount = 0;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['done'])) {
+    // Save current search results to a new transaction ID
+    if (!isset($_SESSION['transaction_counter'])) {
+        $_SESSION['transaction_counter'] = 1;
+    }
+    $transaction_id = '29990001' . str_pad($_SESSION['transaction_counter'], 4, '0', STR_PAD_LEFT);
+    $_SESSION['transactions'][$transaction_id] = $_SESSION['search_results'];
+
+    // Increment transaction counter for next transaction
+    $_SESSION['transaction_counter']++;
+
+    // Clear search results
+    $_SESSION['search_results'] = [];
+
+    // Redirect to posRecall_E.php
+    header('Location: posMain.php');
+    exit;
+}
+
 
 ?>
 
@@ -214,10 +233,10 @@ if (isset($_SESSION['totalAmount']) && isset($_SESSION['inputAmount']) && isset(
             </div>
             
             <div class="bottom-2xz">
-            <form action="handle_form.php" method="post" >
-                <button type="submit" name="search" class="btn-ok2">Ok</button>
-                
-            </form>
+
+            <form method="post">
+    <button type="submit" name="done" class="btn-ok2">Ok</button>
+</form>
             <p><span id="time"></span></p>
         </div>
 
