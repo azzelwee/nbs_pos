@@ -106,30 +106,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reprint'])) {
                 </tr>
             </thead>
             <tbody>
-            <?php
-// Get the current date in mmddyyyy format
-$currentDate = date("mdY");
-
-if (!empty($_SESSION['transactions'])) {
-    foreach ($_SESSION['transactions'] as $transaction_id => $transaction) {
-        echo "<tr>";
-        echo "<td style='height: 25px; text-align: center;'>";
-        echo "<input type='radio' name='transaction_id' value='$transaction_id' onclick='previewTransaction(\"$transaction_id\")'> " . $currentDate . $transaction_id;
-        echo "</td>";
-        echo "</tr>";
-    }
-}
-?>
+                <?php 
+                if (!empty($_SESSION['transactions'])) {
+                    foreach ($_SESSION['transactions'] as $transaction_id => $transaction) {
+                        echo "<tr>";
+                        echo "<td style='height: 25px; text-align: center;'>";
+                        echo "<input type='radio' name='transaction_id' value='$transaction_id' onclick='previewTransaction(\"$transaction_id\")'> $transaction_id";
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                }
+                ?>
             </tbody>
         </table>
                 </div>
 
                 <div class="reprint-buttons">
-                    
-                    <button type="submit" name="reprint" class="bottom-buttons2">
-                        <h3>REPRINT</h3>
-                        <p>&lt;Alt-Enter&gt;</p>
-                    </button>
+
+                <button type="submit" name="reprint" class="bottom-buttons2">
+                    <h3>REPRINT</h3>
+                    <p>&lt;Alt-Enter&gt;</p>
+                </button>
 
                     <div class="bottom-buttons2">
                         <h3>PREV</h3>
