@@ -97,43 +97,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reprint'])) {
 
             <div class="left-reprint">
 
-                <div class="orNo">
+            <div class="orNo">
                 <form method="post">
-               <table>
-            <thead>
-                <tr>
-                    <th>Transaction No.</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                if (!empty($_SESSION['transactions'])) {
-                    foreach ($_SESSION['transactions'] as $transaction_id => $transaction) {
-                        echo "<tr>";
-                        echo "<td style='height: 25px; text-align: center;'>";
-                        echo "<input type='radio' name='transaction_id' value='$transaction_id' onclick='previewTransaction(\"$transaction_id\")'> $transaction_id";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                }
-                ?>
-            </tbody>
-        </table>
-                </div>
+                <table>
+    <thead>
+        <tr>
+            <th>Transaction No.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Get the current date in mmddyyyy format
+        $currentDate = date("mdY");
 
-                <div class="reprint-buttons">
+        if (!empty($_SESSION['transactions'])) {
+            foreach ($_SESSION['transactions'] as $transaction_id => $transaction) {
+                echo "<tr>";
+                echo "<td style='height: 25px; width: 500px; text-align: center;'>";
+                echo "<input type='radio' name='transaction_id' value='$transaction_id' onclick='previewTransaction(\"$transaction_id\")'> " . $currentDate . $transaction_id;
+                echo "</td>";
+                echo "</tr>";
+            }
+        } else {
+            // Display a row indicating no transactions are available
+            echo "<tr>";
+            echo "<td style='height: 25px; width: 500px; text-align: center;'>No transactions available.</td>";
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
 
-                <button type="submit" name="reprint" class="bottom-buttons2">
-                    <h3>REPRINT</h3>
-                    <p>&lt;Alt-Enter&gt;</p>
-                </button>
+            </div> 
+        </div>
+
+            <div class="reprint-buttons">
+                    
+                    <button type="submit" name="reprint" class="bottom-buttons2">
+                        <h3>REPRINT</h3>
+                        <p>&lt;Alt-Enter&gt;</p>
+                    </button>
 
                     <div class="bottom-buttons2">
                         <h3>PREV</h3>
                         <p>&lt;Left-Arrow&gt;</p>
                     </div>
 
-                    <div class="bottom-buttons2">
+                    <div class="bottom-buttons2"> 
                         <h3>NEXT</h3>
                         <p>&lt;Right-Arrow&gt;</p>
                     </div>
@@ -145,10 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reprint'])) {
                     </div>
                     </a>
                 </div>
-
                 </form>
-            </div>
-
 
             <div class="right-reprint">
             <div class="scrollable-container">

@@ -7,48 +7,15 @@ if (!isset($_SESSION)) {
 include_once("connections/connection.php");
 $con = connection();
 
-// Fetch quantity input if specified, default to 1 if not provided
-$quantity = isset($_GET['quantity']) ? (int)$_GET['quantity'] : 1;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reprint'])) {
+    $transaction_id = $_POST['transaction_id'];
+    $_SESSION['search_results'] = $_SESSION['transactions'][$transaction_id];
 
-// Fetch new search results
-$sql = "SELECT * FROM lookup_list WHERE sku = '$search' ORDER BY ln ASC";
-$product = $con->query($sql) or die($con->error);
-$results = $product->fetch_all(MYSQLI_ASSOC);
-
-
-// Check if session variable for searches exists
-if (!isset($_SESSION['search_results2'])) {
-    $_SESSION['search_results2'] = [];
+    // Redirect to posResult.php
+    header('Location: posResultDecoy.php');
+    exit;
 }
 
-// Add new search results to the session variable
-if ($results) {
-    foreach ($results as &$result) {
-        $result['qty'] = $quantity; // Add the specified quantity to each result
-        $result['amount'] = $result['srp'] * $quantity; // Calculate the amount based on the quantity and SRP
-    }
-    $_SESSION['search_results2'] = array_merge($_SESSION['search_results2'], $results);
-}
-
-// Calculate the total amount
-$totalAmount = 0;
-if (!empty($_SESSION['search_results2'])) {
-    foreach ($_SESSION['search_results2'] as $row) {
-        $totalAmount += $row['amount'];
-    }
-}
-
-$totalQty = 0;
-
-if (!empty($_SESSION['search_results2'])) {
-    foreach ($_SESSION['search_results2'] as $row) {
-        $totalQty += $row['qty'];
-    }
-}
-
-setcookie('total_amount', $totalAmount, time() + (86400 * 30), "/"); // 86400 = 1 day
-setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1 hour
 
 ?>
 
@@ -130,41 +97,47 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
 
             <div class="left-reprint">
 
-                <div class="orNo">
+            <div class="orNo">
+                <form method="post">
                 <table>
-                    <thead>
-                        <tr>
-                        <th>OR No.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td style="height: 25px; text-align: center;">0620202429990002000031</td>
-                        </tr>
-                        <tr>
-                        <td style="height: 25px;"></td>
-                        </tr>
-                        <tr>
-                        <td style="height: 25px;"></td>
-                        </tr>
-                    <td style="height: 25px;"></td>
-                        </tr>
-                    <td style="height: 25px;"></td>
-                        </tr>
-                    <td style="height: 25px;"></td>
-                        </tr>
-                    <td style="height: 25px;"></td>
-                        </tr>
-                    <td style="height: 25px;"></td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
+    <thead>
+        <tr>
+            <th>Transaction No.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Get the current date in mmddyyyy format
+        $currentDate = date("mdY");
 
-                <div class="reprint-buttons">
-                    <div class="bottom-buttons2">
-                        <h3>PRINT</h3>
+        if (!empty($_SESSION['transactions'])) {
+            foreach ($_SESSION['transactions'] as $transaction_id => $transaction) {
+                echo "<tr>";
+                echo "<td style='height: 25px; width: 500px; text-align: center;'>";
+                echo "<input type='radio' name='transaction_id' value='$transaction_id' onclick='previewTransaction(\"$transaction_id\")'> " . $currentDate . $transaction_id;
+                echo "</td>";
+                echo "</tr>";
+            }
+        } else {
+            // Display a row indicating no transactions are available
+            echo "<tr>";
+            echo "<td style='height: 25px; width: 500px; text-align: center;'>No transactions available.</td>";
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
+            </div> 
+        </div>
+
+            <div class="reprint-buttons">
+                    
+                    <!-- <button type="submit" name="reprint" class="bottom-buttons2"> -->
+                    <div class="bottom-buttons2">    
+                        <h3>REPRINT</h3>
                         <p>&lt;Alt-Enter&gt;</p>
+                    <!-- </button> -->
                     </div>
 
                     <div class="bottom-buttons2">
@@ -172,7 +145,7 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                         <p>&lt;Left-Arrow&gt;</p>
                     </div>
 
-                    <div class="bottom-buttons2">
+                    <div class="bottom-buttons2"> 
                         <h3>NEXT</h3>
                         <p>&lt;Right-Arrow&gt;</p>
                     </div>
@@ -184,13 +157,32 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
                     </div>
                     </a>
                 </div>
-            </div>
+                </form>
 
             <div class="right-reprint">
             <div class="scrollable-container">
-                <div class="content">
-                    <?php include 'receipt-text-sample.php'; ?>
-                 </div>
+
+<div class="content">
+    <?php 
+    // Suppress warnings and notices
+    error_reporting(0);
+    
+    // Start output buffering
+    ob_start(); 
+    include 'receipt-text-preview.php'; // Include the PHP file
+    $output = ob_get_clean(); // Get the buffered output and clean buffer
+    
+    // Restore error reporting
+    error_reporting(E_ALL);
+    
+    // Check for errors in the output
+    if (strpos($output, 'Undefined array key') === false) {
+        // Display output if no error found
+        echo $output;
+    }
+    ?>
+</div>
+
             </div>
             </div>
         </div>
@@ -205,7 +197,40 @@ setcookie('totalQty', $totalQty, time() + 3600, "/"); // The cookie expires in 1
             </div>
         </div>
         
+<script>
+    function previewTransaction(transactionId) {
+    var transactions = <?php echo json_encode($_SESSION['transactions']); ?>;
+    var transaction = transactions[transactionId];
 
+    var previewSection = document.getElementById('previewSection');
+    previewSection.innerHTML = '';
+
+    if (transaction) {
+        transaction.forEach(function(row) {
+            var productReceipt = document.createElement('div');
+            productReceipt.className = 'productReceipt';
+
+            var columnReceipt1 = document.createElement('div');
+            columnReceipt1.className = 'columnReceipt1';
+            columnReceipt1.innerText = row['qty'] + '';
+
+            var columnReceipt2 = document.createElement('div');
+            columnReceipt2.className = 'columnReceipt2';
+            columnReceipt2.innerHTML = row['upc'] + ' @ ' + row['srp'] + '<br>' + row['item'].substring(0, 20);
+
+            var columnReceipt3 = document.createElement('div');
+            columnReceipt3.className = 'columnReceipt3';
+            columnReceipt3.innerHTML = '<p>' + Number(row['amount']).toFixed(2) + ' ' + row['type'] + '</p>';
+
+            productReceipt.appendChild(columnReceipt1);
+            productReceipt.appendChild(columnReceipt2);
+            productReceipt.appendChild(columnReceipt3);
+
+            previewSection.appendChild(productReceipt);
+        });
+    }
+}
+</script>
 <script src="js/main.js"></script>
 </body>
 </html>
